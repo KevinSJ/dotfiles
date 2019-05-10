@@ -1,0 +1,62 @@
+#! /bin/sh
+
+$HOME/.config/polybar/launch.sh
+sxhkd &
+compton &
+fcitx-autostart &
+remmina -i &
+/usr/bin/keepassxc &
+xscreensaver -no-splash &
+#polybar example &
+blueman-applet &
+plank &
+guake &
+octopi-notifier &
+redshift-gtk &
+libinput-gestures &
+
+DISP_NUM=`xrandr -d :0 -q | grep ' connected' | wc -l`
+if [ $DISP_NUM -eq 2 ];
+then
+        bspc monitor eDP1 -d web code chat
+        bspc monitor HDMI1 -d video game torrent
+
+else
+        # bspc monitor -d web code chat video game torrent server
+        bspc monitor eDP1 -d web code chat video game torrent server
+fi
+
+#bspc monitor -d I II III IV V VI VII VIII IX X
+#bspc monitor eDP1 -d tty www dev opt
+#bspc monitor HDMI1 -d tty www dev opt
+
+bspc config border_width        0.5
+bspc config window_gap          1
+bspc config top_padding         1
+
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+#Focusing behavior
+bspc config focus_follows_pointer     true
+bspc config history_aware_focus     true
+bspc config focus_by_distance     true
+
+#Multihead behavior
+bspc config remove_disabled_monitors  true
+bspc config remove_unplugged_monitors true
+
+bspc rule -a Gimp desktop='^4' state=floating follow=on
+bspc rule -a org.remmina.Remmina desktop='^7' state=floating follow=on
+bspc rule -a telegram-desktop desktop='^3' state=floating follow=on
+bspc rule -a Chromium desktop='^1' follow=on
+bspc rule -a atom desktop='^4' follow=on
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+
+
+wal -i Pictures/bg.png
