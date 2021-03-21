@@ -1,0 +1,6 @@
+# Rime user dictionary
+#@/db_name	emoji.userdb
+#@/db_type	userdb
+#@/rime_version	1.3.1
+#@/tick	0
+#@/user_id	a8b00f8d-da25-48f6-bb68-71052c2c8d80
