@@ -16,10 +16,41 @@ let g:airline#extensions#tabline#enabled = 1
 " Performance optimization
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
+" Golang specific settings
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_type_info = 1
+" let g:coc_filetype_map
+
+let g:go_fmt_command = "goimports"
+
 " Solarized theme
 set background=dark
 colorscheme onedark
 syntax on
+
+" Persistent undo
+set undodir=~/.vim/undo/
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+" Ignored files/directories from autocomplete (and CtrlP)
+set wildignore+=*/tmp/*
+set wildignore+=*.so
+set wildignore+=*.zip
+set wildignore+=*/vendor/bundle/*
+set wildignore+=*/node_modules/
+
+"-------------------------------------------------------------------------------
+" Interface
+"-------------------------------------------------------------------------------
 
 " Use vim, not vi api
 set nocompatible
@@ -77,6 +108,11 @@ set shiftwidth=4
 " Turn on line numbers
 set number
 
+
+set numberwidth=5 " Set number width
+set scrolloff=5       " Leave 5 lines of buffer when scrolling
+set sidescrolloff=10  " Leave 10 characters of horizontal buffer when scrolling
+
 " Turn on relative line numbers
 set relativenumber
 
@@ -93,6 +129,7 @@ set laststatus=2
 
 " Set the status line to something useful
 set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Hide the toolbar
 set guioptions-=T
@@ -140,9 +177,13 @@ set colorcolumn=80
 "autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 
+" Change leader key from \ to space.
+map <Space> <leader>
+map <Leader>w :update<CR>
+map <Leader>q :qall<CR>
+map <Leader>gs :Gstatus<CR>
 "vim fzf config
 nnoremap <C-P> :GFiles --exclude-standard --cached --others<CR>
-"nnoremap <silent> <C-p> :GitFiles<CR>
 map <leader>t :Files<cr>
 map <leader>1 :1tabn<cr>
 map <leader>2 :2tabn<cr>
@@ -153,11 +194,69 @@ map <leader>6 :6tabn<cr>
 map <leader>7 :7tabn<cr>
 map <leader>8 :8tabn<cr>
 map <leader>9 :9tabn<cr>
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent><leader>k :call <SID>show_documentation()<CR>
+" Find/replace
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left><left>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup vimrcex
+  autocmd!
+
+  " when editing a file, always jump to the last known cursor position.
+  " don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd bufreadpost *
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  " set syntax highlighting for specific file types
+  autocmd bufread,bufnewfile *.md set filetype=markdown
+  autocmd bufread,bufnewfile .{jscs,jshint,eslint}rc set filetype=json
+  autocmd bufread,bufnewfile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
+  autocmd bufread,bufnewfile gitconfig.local set filetype=gitconfig
+  autocmd bufread,bufnewfile tmux.conf.local set filetype=tmux
+  autocmd bufread,bufnewfile vimrc.local set filetype=vim
+augroup end
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
+" Easy tab navigation
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
 
+command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -246,6 +345,7 @@ map <leader>yd :bufdo bd<cr>
 map <leader>w- <C-W>- " decrement height
 map <leader>w+ <C-W>+ " increment height
 map <leader>w] <C-W>_ " maximize height
+map <leader>w<SPACE> <C-W>\| " maximize width
 map <leader>w[ <C-W>= " equalize all windows
 
 " Handling horizontal Vim windows doesn't appear to be possible.
@@ -257,7 +357,6 @@ map <leader>; <C-W>s
 map <leader>` <C-W>v
 " Make saving easier
 " map <leader>w :update<CR>
-map <leader>q :exit<CR>
 map <leader>sv :source ~/.vimrc<CR>
 
 " Commands {{{
