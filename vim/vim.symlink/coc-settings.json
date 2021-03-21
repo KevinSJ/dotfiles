@@ -15,7 +15,7 @@
     "node_modules"
   ],
   "suggest.detailMaxLength": 100,
-  "suggest.noselect": true,
+  "suggest.noselect": false,
   "suggest.enablePreselect": true,
   "suggest.triggerAfterInsertEnter": false,
   "suggest.timeout": 5000,
@@ -189,6 +189,7 @@
   "javascript.suggest.names": true,
   "javascript.suggestionActions.enabled": true,
   "javascript.format.enabled": true,
+  "tsserver.formatOnType": false,
   /* "tsserver.locale": "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript-language-features", */
   "snippets.priority": 3,
   "snippets.autoTrigger": false,
