@@ -1,5 +1,6 @@
 #!/bin/sh
-
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim_config_file=~/.config/nvim
 
 mkdir -p ~/.config/
