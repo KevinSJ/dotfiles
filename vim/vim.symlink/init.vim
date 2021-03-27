@@ -1,1 +1,1 @@
-vimrc.symlink
+../vimrc.symlink
