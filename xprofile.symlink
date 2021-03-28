@@ -1,0 +1,6 @@
+export XMODIFIERS="@im=ibus"
+export GTK_IM_MODULE="ibus"
+export QT_IM_MODULE="ibus"
+IBUS_ENABLE_SYNC_MODE=1 ibus-daemon -xrd
+/usr/bin/setxkbmap -option "ctrl:nocaps"
+export LC_ALL="zh_CN.UTF-8"
