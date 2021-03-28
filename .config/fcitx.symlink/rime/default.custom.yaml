@@ -5,8 +5,8 @@
 #   %APPDATA%\Rime       (windows)
 
 patch:
+  menu:
+    page_size: 15
   schema_list:
-    - schema: luna_pinyin           # 朙月拼音
-    - {schema: double_pinyin_flypy} # 小鶴雙拼
-    - schema: double_pinyin         # 自然碼雙拼
-  "menu/page_size": 9
+    - {schema: double_pinyin_flypy}
+    - {schema: emoji}
