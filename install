@@ -136,12 +136,20 @@ install_dotfiles () {
   for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
     dst="$HOME/.$(basename "${src%.*}")"
+    if [ "$(uname -s)" == "Linux" ] && [[ $(dirname $src) == *"config"* ]]
+    then
+      dst="$HOME/$(basename $(dirname "${src}"))/$(basename ${src%.*})"
+    fi
     link_file "$src" "$dst"
   done
 }
 
 setup_gitconfig
 install_dotfiles
+if [ "$(uname -s)" == "Linux" ]
+then
+  linux_specific
+fi
 
 # find the installers and run them iteratively
 for installer in $(find . -name "*install.sh"); do
