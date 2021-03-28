@@ -28,7 +28,14 @@
   prompt = false
 [push]
   default = upstream
+[pull]
+  ff = only
+  rebase = true
 [commit]
-  gpgsign = true
+  gpgsign = false
 [hub]
   protocol = https
+[fetch]
+  prune = true
+
+; vim:ft=dosini
