@@ -5,3 +5,16 @@ git/gitconfig.symlink
 ruby/bundle.symlink/cache/
 vim/vim.symlink/plugged
 vim/vim.symlink/undo
+
+.config/fcitx.symlink/cached_layout
+.config/fcitx.symlink/clipboard
+.config/fcitx.symlink/conf
+.config/fcitx.symlink/data
+.config/fcitx.symlink/dbus
+.config/fcitx.symlink/profile
+.config/fcitx.symlink/rime/.place_holder
+.config/fcitx.symlink/rime/build
+.config/fcitx.symlink/rime/luna_pinyin.userdb
+.config/fcitx.symlink/rime/trash
+.config/fcitx.symlink/log
+.config/fcitx.symlink/rime/user.yaml
