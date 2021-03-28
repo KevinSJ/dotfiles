@@ -2,6 +2,7 @@ distribution_code_name: "fcitx-rime"
 distribution_name: Rime
 distribution_version: 0.2.3
 install_time: "Wed Aug 15 23:15:52 2018"
-installation_id: "a8b00f8d-da25-48f6-bb68-71052c2c8d80"
-rime_version: 1.5.3
-update_time: "Wed Aug  7 09:01:11 2019"
+installation_id: "Kevin-Linux-laptop"
+rime_version: 1.7.3
+sync_dir: "/home/kevin/dotfiles/rime.symlink"
+update_time: "Sun Mar 28 17:28:40 2021"
