@@ -1,0 +1,12 @@
+# default.custom.yaml
+# save it to:
+#   ~/.config/ibus/rime  (linux)
+#   ~/Library/Rime       (macos)
+#   %APPDATA%\Rime       (windows)
+
+patch:
+  menu:
+    page_size: 15
+  schema_list:
+    - {schema: double_pinyin_flypy}
+    - {schema: emoji}
