@@ -11,7 +11,7 @@ super + e
        pcmanfm-qt
 # program launcher
 alt + F2
-	rofi -show run
+    rofi -show drun -display-drun "Run" -show-icons
 
 # make sxhkd reload its configuration files:
 super + Escape
