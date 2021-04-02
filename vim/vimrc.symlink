@@ -1,6 +1,3 @@
-" Settings {{{
-  "
-" Switch syntax highlighting on, when the terminal has colors
 source ~/.config/nvim/plugin/plugins.vim
 
 let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-stylelint', 'coc-styled-components', 'coc-rls', 'coc-rust-analyzer']
@@ -228,6 +225,8 @@ map <leader>` <C-W>v
 " Make saving easier
 " map <leader>w :update<CR>
 map <leader>sv :source ~/.vimrc<CR>
+" Recently edited files
+map <Leader>h :History<CR>
 
 " Commands {{{
 " jump to last cursor
@@ -260,6 +259,7 @@ autocmd Bufread,BufNewFile *.spv set filetype=php
 
 " Highlight words to avoid in tech writing
 " http://css-tricks.com/words-avoid-educational-writing/
+highlight Comment cterm=italic gui=italic
 highlight TechWordsToAvoid ctermbg=red ctermfg=white
 match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however\|so,\|easy/
 autocmd BufWinEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
@@ -316,4 +316,3 @@ fun! SetDiffColors()
   highlight DiffText   cterm=bold ctermfg=white ctermbg=DarkRed
 endfun
 autocmd FilterWritePre * call SetDiffColors()
-" }}}
