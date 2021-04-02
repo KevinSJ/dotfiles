@@ -1,3 +1,5 @@
+[init]
+  defaultBranch = master
 [user]
   name = AUTHOR_NAME
   email = AUTHOR_EMAIL
@@ -6,7 +8,17 @@
   user = AUTHOR_HANDLE
 [credential]
   helper = GIT_CREDENTIAL_HELPER
+[branch]
+  # Show most recently changed branches first.
+  sort = -committerdate
 [alias]
+  ca = !git add -A && git commit -av
+  # Switch to a branch, creating it if necessary.
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch --all
+  remotes = remote --verbose
   br = branch
   p = add -p
   co = checkout
@@ -19,17 +31,34 @@
   status = auto
   branch = auto
   ui = auto
+[status]
+  short = true
+  branch = true
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
 [core]
   excludesfile = ~/.gitignore
   editor = nvim
+  # Speed up commands involving untracked files such as `git status`.
+  # https://git-scm.com/docs/git-update-index#_untracked_cache
+  untrackedCache = true
 [difftool]
   prompt = false
 [mergetool]
   prompt = false
 [push]
-  default = upstream
+  #simple - in centralized workflow, work like upstream with an added safety to
+  #refuse to push if the upstream branch’s name is different from the local one.
+  default = simple
+[rebase]
+  # squash commits down when merging
+  # https://thoughtbot.com/blog/autosquashing-git-commits
+  autosquash = true
 [pull]
   ff = only
+  # Always prefer rebase
   rebase = true
 [commit]
   gpgsign = false
@@ -38,4 +67,5 @@
 [fetch]
   prune = true
 
-; vim:ft=dosini
+# Force vim to use .gitconfig type
+# vim:ft=.gitconfig:ts=2:sw=2
