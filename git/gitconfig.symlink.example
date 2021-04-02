@@ -38,6 +38,12 @@
   added = yellow
   changed = green
   untracked = cyan
+[help]
+  # Automatically correct and execute mistyped commands.
+  autocorrect = 1
+[commit]
+  template = ~/.gitmessage
+  verbose = true
 [core]
   excludesfile = ~/.gitignore
   editor = nvim
