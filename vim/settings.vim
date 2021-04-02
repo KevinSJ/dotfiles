@@ -32,7 +32,7 @@ set nowritebackup
 set noswapfile
 
 " Command history
-set history=100
+set history=500
 
 " Always show cursor
 set ruler
@@ -95,7 +95,7 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 set laststatus=2
 
 " Set the status line to something useful
-set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
+" set statusline=%f\ %=L:%l/%L\ %c\ (%p%%)
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Hide the toolbar
@@ -134,4 +134,7 @@ set lazyredraw
 set showmatch
 
 " color the 80th column
-set colorcolumn=80
+set textwidth=80
+set colorcolumn=+1
+set ttyfast                           " Send more characters in fast terminals
+set noerrorbells novisualbell         " Turn off visual and audible bells
