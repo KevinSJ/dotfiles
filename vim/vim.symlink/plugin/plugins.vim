@@ -2,11 +2,28 @@ call plug#begin('~/.vim/plugged')
 " Added 15/03/2021
 Plug 'jlanzarotta/bufexplorer'
 Plug 'roman/golden-ratio'
+" Added 2021年04月01日
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'tpope/vim-eunuch'
+Plug 'ervandew/supertab'
+Plug 'blarghmatey/split-expander'
+Plug 'farmergreg/vim-lastplace'
+Plug '907th/vim-auto-save'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+"let g:deoplete#enable_at_startup = 1
+
 " Plugs to install
 " General
 Plug 'iCyMind/NeoSolarized'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/echodoc.vim'
+Plug 'janko-m/vim-test'
 "Plug 'Lokaltog/vim-easymotion'
 Plug 'bkad/CamelCaseMotion'
 Plug 'sickill/vim-pasta'
@@ -46,6 +63,7 @@ Plug 'tpope/vim-endwise', {'for': 'ruby'}
 Plug 'nelstrom/vim-textobj-rubyblock', {'for': 'ruby'}
 
 " Javascript
+Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " Disabled for now due to buggy typescript integration
 "Plug 'styled-components/vim-styled-components', {'for': ['javascript', 'typescript', 'typescript.tsx'], 'branch': 'main'}
