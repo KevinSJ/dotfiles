@@ -36,10 +36,13 @@ then
   # Set sidebar icon size to small
   defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
 
+  defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool "true"
+  defaults write NSGlobalDomain AppleEnableMouseSwipeNavigateWithScrolls -bool "true"
+
+  defaults write NSGlobalDomain AppleICUForce24HourTime -bool "true"
   # Always show scrollbars
   defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
   # Possible values: `WhenScrolling`, `Automatic` and `Always`
-
 
   # Disable the crash reporter
   defaults write com.apple.CrashReporter DialogType -string "none"
@@ -134,7 +137,7 @@ then
   sudo systemsetup -settimezone "Pacific/Auckland" > /dev/null
 
   # Stop iTunes from responding to the keyboard media keys
-  #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+  launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
   ###############################################################################
   # Energy saving                                                               #
@@ -156,7 +159,7 @@ then
   sudo pmset -c sleep 0
 
   # Set machine sleep to 5 minutes on battery
-  sudo pmset -b sleep 10
+  sudo pmset -b sleep 5
 
   # Set standby delay to 24 hours (default is 1 hour)
   sudo pmset -a standbydelay 86400
@@ -251,8 +254,8 @@ then
   # Enable highlight hover effect for the grid view of a stack (Dock)
   defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-  # Set the icon size of Dock items to 36 pixels
-  defaults write com.apple.dock tilesize -int 36
+  # Set the icon size of Dock items to 96 pixels
+  defaults write com.apple.dock tilesize -int 96
 
   # Change minimize/maximize window effect
   defaults write com.apple.dock mineffect -string "scale"
@@ -336,7 +339,8 @@ then
   ###############################################################################
   # Mail                                                                        #
   ###############################################################################
-
+  defaults write /Users/"${USER}"/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail WebKitJavaScriptEnabled -bool false
+  defaults write /Users/"${USER}"/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail WebKitJavaEnabled -bool false
   # Disable send and reply animations in Mail.app
   defaults write com.apple.mail DisableReplyAnimations -bool true
   defaults write com.apple.mail DisableSendAnimations -bool true
@@ -398,15 +402,15 @@ then
     '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
     '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
     '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
-    # Load new settings before rebuilding the index
-    killall mds > /dev/null 2>&1
-    # Make sure indexing is enabled for the main volume
-    sudo mdutil -i on / > /dev/null
-    # Rebuild the index from scratch
-    sudo mdutil -E / > /dev/null
-    ###############################################################################
-    # Terminal & iTerm 2                                                          #
-    ###############################################################################
+      # Load new settings before rebuilding the index
+      killall mds > /dev/null 2>&1
+      # Make sure indexing is enabled for the main volume
+      sudo mdutil -i on / > /dev/null
+      # Rebuild the index from scratch
+      sudo mdutil -E / > /dev/null
+      ###############################################################################
+      # Terminal & iTerm 2                                                          #
+      ###############################################################################
 
     # Only use UTF-8 in Terminal.app
     defaults write com.apple.terminal StringEncodings -array 4
@@ -548,6 +552,7 @@ EOD
     defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
     defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
+
     ###############################################################################
     # Transmission.app                                                            #
     ###############################################################################
@@ -583,6 +588,96 @@ EOD
     # Randomize port on launch
     defaults write org.m0k.transmission RandomPort -bool true
 
+    defaults write com.apple.helpviewer HVIncludesKBSearches -bool false
+    defaults write com.apple.screencapture include-date -bool true
+    defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+    # My personal config:
+    # Set a global lock screen shortcut command+l
+    defaults write NSGlobalDomain NSUserKeyEquivalents -dict "Lock Screen" "@l"
+
+    defaults write com.apple.menuextra.battery ShowTime -string "YES"
+
+    defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+    # Map command+h to history in Chrome, so it's the same as in other system.
+    defaults write com.google.Chrome NSUserKeyEquivalents -dict \
+      "Show Full History" "@h"
+
+
+    defaults write com.apple.systemuiserver "NSStatusItem Visible Siri" -bool false
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.airport" -bool true
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.appleuser" -bool true
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.battery" -bool true
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.bluetooth" -bool true
+    defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad DragLock -int 0;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -int 0;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFiveFingerPinchGesture -int 2;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerHorizSwipeGesture -int 2;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerPinchGesture -int 2;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerVertSwipeGesture -int 2;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadHandResting -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadHorizScroll -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadMomentumScroll -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadScroll -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 0;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 0;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -int 1;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad USBMouseStopsTrackpad -int 0;
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad UserPreferences -int 1;
+
+    defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad DragLock -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad Dragging -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 2;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadHandResting -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadHorizScroll -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadPinch -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadRotate -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadScroll -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -int 1;
+    defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3;
+    defaults write com.apple.AppleMultitouchTrackpad USBMouseStopsTrackpad -int 0;
+    defaults write com.apple.AppleMultitouchTrackpad UserPreferences -int 1;
+
+    for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
+      defaults write "${domain}" dontAutoLoad -array \
+        "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+        "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+        "/System/Library/CoreServices/Menu Extras/User.menu";
+    done
+    defaults write com.apple.systemuiserver menuExtras -array \
+      "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+      "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+      "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+      "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+      "/System/Library/CoreServices/Menu Extras/User.menu" \
+      "/System/Library/CoreServices/Menu Extras/Volume.menu";
+
     for app in "Activity Monitor" \
       "Address Book" \
       "Calendar" \
@@ -602,6 +697,6 @@ EOD
       "Tweetbot" \
       "Twitter" \
       "iCal"; do
-      killall "${app}" &> /dev/null
-    done
-fi
+          killall "${app}" &> /dev/null
+        done
+        fi
