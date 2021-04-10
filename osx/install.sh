@@ -602,7 +602,7 @@ EOD
 
     # Map command+h to history in Chrome, so it's the same as in other system.
     defaults write com.google.Chrome NSUserKeyEquivalents -dict \
-      "Show Full History" "@h"
+      "Show full history" "@h"
 
 
     defaults write com.apple.systemuiserver "NSStatusItem Visible Siri" -bool false
