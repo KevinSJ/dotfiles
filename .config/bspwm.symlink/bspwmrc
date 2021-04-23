@@ -23,11 +23,11 @@ pkill polybar
 
 $HOME/.config/polybar/launch.sh
 
-pfkill picom
+pkill picom
 picom &
 #fcitx-autostart &
 remmina -i &
-pfkill keepassxc
+pkill keepassxc
 /usr/bin/keepassxc &
 xscreensaver -no-splash &
 #caffeine &
@@ -35,16 +35,16 @@ xscreensaver -no-splash &
 blueman-applet &
 #solaar &
 
-pfkill plank
+pkill plank
 plank &
 
-pfkill guake
+pkill guake
 guake &
 
 /usr/bin/lxqt-policykit-agent &
 octopi-notifier &
 
-pfkill dunst
+pkill dunst
 dunst &
 
 
