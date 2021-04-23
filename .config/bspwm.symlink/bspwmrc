@@ -2,6 +2,7 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 DISP_NUM=`xrandr -d :0 -q | grep ' connected' | wc -l`
+RESOLUTION=`xrandr | grep \* | cut -d' ' -f4`
 if [ $DISP_NUM -eq 2 ];
 then
         bspc monitor DP-0 -d web code chat
@@ -9,7 +10,12 @@ then
         #polybar top_ext > /dev/null 2>&1 &
         mons -e top
 else
-        bspc monitor -d web code chat video game torrent server
+        if [ $RESOLUTION = '1080x1920' ];
+        then
+          bspc monitor -d web code server
+        else
+          bspc monitor -d web code chat video game torrent server
+        fi
         #bspc monitor DP-0 -d web code chat video game torrent server
 fi
 
