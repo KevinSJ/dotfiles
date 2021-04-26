@@ -4,11 +4,11 @@
 
 # terminal emulator
 super + Return
-      alacritty
+    termite
 
 # terminal emulator
 super + e
-       pcmanfm-qt
+    pcmanfm-qt
 # program launcher
 alt + F2
     rofi -show drun -display-drun "Run" -show-icons
