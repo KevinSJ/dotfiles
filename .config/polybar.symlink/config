@@ -1,10 +1,6 @@
 [colors]
-;background = ${xrdb:color0:#222}
-;background = #222
 background = #00000000
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
-;foreground = #dfdfdf
 foreground = #ccffff
 foreground-alt = #555
 primary = #ffb52a
@@ -18,21 +14,18 @@ margin-bottom = 0
 [bar/top_ext]
 enable-ipc = true
 monitor = ${env:MONITOR:}
-;monitor = DP-2
 width = 100%
 height = 32
 offset-x = 0
 offset-y = 0
 
-;background = #212E3A
-;foreground = #C4CADA
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 overline-size = 5
-overline-color = #212E3A
+overline-color = ${colors.background}
 underline-size = 5
-underline-color = #212E3A
+underline-color = ${colors.background}
 
 border-bottom-size = 0
 border-bottom-color = #212E3A
@@ -43,16 +36,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Roboto:style=bold:size=10;3
-;font-1 = Unifont:size=10;3
-font-1 = Material Design Icons:style=regular:size=14;5
-font-2 = Sarasa Mono H:style=bold:size=10;3
-font-3 = FontAwesome:size=12;4
-font-4 = Siji:pixelsize=10;1
-#font-3 = M+ 1m:style=bold:size=10;3
+font-0 = Roboto:style=regular:size=12;3
+font-1 = Unifont:size=12;3
+font-2 = Material Icons:style=Regular:size=14;3
+font-3 = Sarasa Mono H:style=bold:size=10;3
+font-4 = FontAwesome:size=12;4
+font-5 = Siji:pixelsize=11;1
 
 modules-left = powermenu bspwm mpd
-modules-right = network cpu pulseaudio memory eth temperature date
+modules-right = network cpu pulseaudio xbacklight memory eth temperature date
 tray-position = right
 tray-padding = 2
 
@@ -62,7 +54,6 @@ scroll-up = #bspwm.next
 scroll-down = #bspwm.prev
 
 [bar/top]
-;monitor = DP-0
 enable-ipc = true
 monitor = ${env:MONITOR:}
 width = 100%
@@ -70,18 +61,16 @@ height = 32
 offset-x = 0
 offset-y = 0
 
-;background = #212E3A
-;foreground = #C4CADA
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-overline-size = 5
-overline-color = #212E3A
-underline-size = 5
-underline-color = #212E3A
+overline-size = 2
+overline-color = ${colors.background}
+underline-size = 2
+underline-color = ${colors.background}
 
 border-bottom-size = 0
-border-bottom-color = #212E3A
+border-bottom-color = ${colors.background}
 
 spacing = 1
 padding-left = 2
@@ -89,17 +78,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Roboto:style=bold:size=10;3
-font-1 = Material Design Icons:size=14;5
-font-2 = Sarasa Mono H:style=bold:size=10;3
-font-3 = FontAwesome:size=12;4
-font-4 = Unifont:size=10;0
-font-5 = siji:pixelsize=10;0
-#font-3 = M+ 1m:style=bold:size=10;3
+font-0 = Roboto:style=regular:size=10;3
+font-1 = Unifont:size=10;3
+font-2 = Material Icons:style=Regular:size=12;3
+font-3 = Sarasa Mono H:style=bold:size=10;3
+font-4 = FontAwesome:size=12;4
+font-5 = Siji:pixelsize=10;1
 
 modules-left = powermenu bspwm
-modules-right = network cpu pulseaudio memory eth temperature battery date
-#modules-right = network cpu pulseaudio xbacklight battery date
+modules-right = network cpu pulseaudio xbacklight memory eth temperature battery date
 tray-position = right
 tray-padding = 2
 
@@ -130,7 +117,7 @@ type = internal/bspwm
 
 pin-workspaces = true
 
-format = <label-state> <label-mode>
+format = <label-monitor> <label-state> <label-mode>
 
 ws-icon-0 = web; ネット
 ws-icon-1 = code; コード
@@ -140,6 +127,8 @@ ws-icon-4 = game; ゲーム
 ws-icon-5 = torrent; トレント
 ws-icon-6 = server; サーバー
 ws-icon-default = 
+
+label-monitor = %name%
 
 label-dimmed = %{B}  %{B-}%{B#C4CADA}  %icon%  %{B-}%{B}  %{B-}
 label-dimmed-background = #212E3A
@@ -177,8 +166,8 @@ label-empty-overline = #212E3A
 label-empty-padding = 0
 
 label-monocle = 
-label-tiled = 󰕮
-label-fullscreen = 
+label-tiled = 
+label-fullscreen = 
 label-floating = 
 label-locked = 
 label-locked-foreground = #FF6A6A
@@ -226,9 +215,7 @@ date-alt = "    %Y-%m-%d %a  "
 time = " %a %I:%M %p "
 time-alt =   %H:%M:%S
 
-#label = %{F#BB5F80}%{F-}  %date% %time%  %{F#}%{F-}
 label = %{F#BB5F80}// %{F-} %{A3:calen.sh:}%{F}%date% %time%  %{F-}%{A}
-#label = %{F#BB5F80}// %{F-} %{A3:calen.sh:}%{F-}%date% %time%  %{F-}%{A}
 
 
 [module/volume]
@@ -330,7 +317,7 @@ menu-2-0-foreground = #fba922
 menu-2-0-exec = menu-open-0
 menu-2-1 = Power off
 menu-2-1-foreground = #fba922
-menu-2-1-exec = poweroff
+menu-2-1-exec = systemctl poweroff
 
 [module/memory]
 type = internal/memory
@@ -339,7 +326,7 @@ interval = 3
 
 format = <label>
 
-label = %{F#BB5F80}    %{F-}  %percentage_used% %{F#BB5F80}    %{F-}
+label = %{F#BB5F80}    %{F-}  %percentage_used%% %{F#BB5F80}    %{F-}
 
 [bar/bottom]
 # As small as possible, polybar will resize it when items get added
@@ -382,8 +369,6 @@ interface = ${env:WLAN_INTERFACE}
 interval = 3.0
 
 format-connected = %{F-}%{A1:networkmanager_dmenu:}<ramp-signal><label-connected>%{A} %{F#BB5F80}%{F-}
-format-connected-underline = #212E3A
-format-connected-overline = #212E3A
 
 format-disconnected = %{A1:networkmanager_dmenu:}<label-disconnected>%{A} %{F#BB5F80}%{F-}
 format-disconnected-underline = #212E3A
@@ -394,11 +379,9 @@ format-packetloss-underline = #212E3A
 format-packetloss-overline = #212E3A
 
 label-connected = %{} %essid%  %{}
-label-connected-background = #212E3A
 
-;label-disconnected = wireless not connected  %{}
 label-disconnected-foreground = #656D7E
-label-disconnected-background = #212E3A
+;label-disconnected-background = #212E3A
 
 ramp-signal-0 = %{}  
 ramp-signal-0-foreground = #FF6A6A
@@ -412,7 +395,6 @@ ramp-signal-4 = %{}  
 ramp-signal-4-foreground = #C4CADA
 ramp-signal-5 = %{}  
 ramp-signal-5-foreground = #C4CADA
-ramp-signal-background = #212E3A
 
 animation-packetloss-0 = 
 animation-packetloss-0-foreground = #FF6A6A
@@ -426,8 +408,8 @@ modules-right = placeholder
 tray-position = left
 tray-maxsize = 16
 tray-padding = 8
-tray-transparent = false
-tray-background = #212E3A
+tray-transparent = true
+tray-background = ${colors.background}
 
 [module/placeholder]
 type = custom/script
@@ -445,8 +427,7 @@ format-underline = ${colors.secondary}
 format-warn = <label-warn> <ramp>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature-c%
-;label = %temperature-c%
+label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
@@ -463,9 +444,9 @@ throttle-output-for = 10
 screenchange-reload = false
 
 compositing-background = source
-compositing-foreground = over
-compositing-overline = over
-compositing-underline = over
+compositing-foreground = xor
+compositing-overline = clear
+compositing-underline = clear
 compositing-border = over
 
 pseudo-transparency = false
