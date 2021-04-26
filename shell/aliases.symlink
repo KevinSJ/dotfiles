@@ -34,8 +34,8 @@ alias ggs='gs'
 
 # github PR master
 alias prstaging='hub pull-request -b staging --push -c'
-alias prmaster='hub pull-request -b $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') --push -c'
-alias gsmaster='git switch $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')'
+#alias prmaster=hub pull-request -b $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') --push -c
+#alias gsmaster=git switch $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
 # Bundler
 alias b="bundle"
