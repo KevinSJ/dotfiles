@@ -1,4 +1,7 @@
-" Toggle nerdtree with F10
-map <F10> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
+let NERDTreeShowLineNumbers = 1
+
+" Searching the file system
+map <leader>' :NERDTreeToggle<CR>
 " Current file in nerdtree
-map <F9> :NERDTreeFind<CR>
+map <leader>F :NERDTreeFind<CR>
