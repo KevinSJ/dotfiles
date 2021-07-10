@@ -1,9 +1,10 @@
 {
   "npm.binPath": "yarn",
-  "coc.preferences.hoverTarget": "float",
+  "hover.target": "float",
   /* "coc.preferences.hoverTarget": "echo", */
   "coc.preferences.formatOnInsertLeave": true,
   /* "coc.preferences.enableFloatHighlight": false, */
+  "coc.preferences.jumpCommand": "vsplit",
   "coc.preferences.enableFloatHighlight": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",
   "coc.preferences.extensionUpdateCheck": "weekly",
@@ -52,14 +53,14 @@
     "value": "\uf89f",
     "variable": "\ue71b"
   },
-  "diagnostic.signOffset": 3,
+  "diagnostic.highlightOffset": 3,
   "diagnostic.errorSign": "×",
   "diagnostic.warningSign": "»",
   "diagnostic.infoSign": "!",
   "diagnostic.hintSign": "?",
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": true,
-  "diagnostic.refreshAfterSave": false,
+  "diagnostic.showUnused": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": "           => ",
   "diagnostic.virtualText": false,
@@ -79,6 +80,7 @@
     "vue",
     "scss"
   ],
+  "prettier.printWidth": 80,
   "prettier.eslintIntegration": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
@@ -179,7 +181,7 @@
   "tslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
   "eslint.autoFixOnSave": true,
-  "eslint.autoFix": true,
+  "eslint.format.enable": false,
   "python.autoComplete.addBrackets": true,
   "python.jediEnabled": false,
   "html.format.enable": true,
@@ -263,5 +265,6 @@
   "coc-actions.useCursorLine": true,
   "sourcekit.commandPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
   "cSpell.userWords": ["Innei", "Typegoose", "consola"],
-  "smartf.timeout": 5000
+  "smartf.timeout": 5000,
+  "java.format.settings.url": "/home/ksjiang/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
 }
