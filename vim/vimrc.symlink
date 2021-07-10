@@ -9,10 +9,6 @@ let g:echodoc#type = "floating"
 " vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-" GitGutter
-" Performance optimization
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
 " Golang specific settings
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -150,10 +146,6 @@ let g:gist_open_browser_after_post = 1
 " HTML generation using 'emmet-vim'
 " NORMAL mode Ctrl+y then , <C-y,>
 
-" Git gutter
-let g:gitgutter_enabled = 1
-let g:gitgutter_eager = 0
-let g:gitgutter_sign_column_always = 1
 highlight clear SignColumn
 
 
@@ -254,6 +246,8 @@ autocmd FileType sh,cucumber,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 e
 
 " specify syntax highlighting for specific files
 autocmd Bufread,BufNewFile *.spv set filetype=php
+
+autocmd VimEnter * if !argc() | NERDTree | endif
 
 " Highlight words to avoid in tech writing
 " http://css-tricks.com/words-avoid-educational-writing/
