@@ -10,6 +10,8 @@ Plug 'blarghmatey/split-expander'
 Plug 'farmergreg/vim-lastplace'
 Plug '907th/vim-auto-save'
 " Added 2021年04月15日
+Plug 'ryanoasis/vim-devicons'
+" Added 2021年07月26日
 "Plug 'sheerun/vim-polyglot'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
