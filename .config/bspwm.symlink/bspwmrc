@@ -86,3 +86,11 @@ wal -i Pictures/bg.png
 
 # Remap Caps key to control
 setxkbmap -option ctrl:nocaps
+
+systemd-detect-virt 1> /dev/null
+if [ $? == 0 ];
+then
+  # Run virtualbox-tools
+  VboxClient-all
+fi
+
