@@ -1,11 +1,9 @@
 source ~/.config/nvim/plugin/plugins.vim
 
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-stylelint', 'coc-styled-components', 'coc-rls', 'coc-rust-analyzer', 'coc-java']
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-stylelint', 'coc-styled-components', 'coc-rls', 'coc-java']
 let g:jsx_ext_required = 0
 let g:echodoc#enable_at_startup = 1
-"let g:echodoc#type = 'virtual'
 let g:echodoc#type = "floating"
-"let g:deoplete#enable_at_startup = 1
 " vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -26,7 +24,7 @@ let g:go_fmt_command = "goimports"
 " Solarized theme
 set background=dark
 colorscheme onedark
-syntax on
+syntax off
 
 source ~/.config/nvim/settings.vim
 
@@ -280,14 +278,6 @@ function! s:RunShellCommand(cmdline)
   setlocal nomodifiable
   1
 endfunction
-
-" Rainbow parenthesis always on!
-if exists(':RainbowParenthesesToggle')
-  autocmd VimEnter * RainbowParenthesesToggle
-  autocmd Syntax * RainbowParenthesesLoadRound
-  autocmd Syntax * RainbowParenthesesLoadSquare
-  autocmd Syntax * RainbowParenthesesLoadBraces
-endif
 
 " Reset spelling colours when reading a new buffer
 " This works around an issue where the colorscheme is changed by .local.vimrc

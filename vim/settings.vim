@@ -138,3 +138,11 @@ set textwidth=80
 set colorcolumn=+1
 set ttyfast                           " Send more characters in fast terminals
 set noerrorbells novisualbell         " Turn off visual and audible bells
+
+" Use new regular expression engine
+" https://jameschambers.co.uk/vim-typescript-slow
+set re=0
+"let g:deoplete#enable_at_startup = 1
+
+" Unlimited memory for vim
+set maxmempattern=2000000
