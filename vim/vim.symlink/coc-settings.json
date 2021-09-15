@@ -191,7 +191,9 @@
   "javascript.suggest.names": true,
   "javascript.suggestionActions.enabled": true,
   "javascript.format.enabled": true,
+  "javascript.suggest.includeCompletionsForImportStatements": true,
   "tsserver.formatOnType": false,
+  "tsserver.enableJavascript": true,
   /* "tsserver.locale": "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript-language-features", */
   "snippets.priority": 3,
   "snippets.autoTrigger": false,
