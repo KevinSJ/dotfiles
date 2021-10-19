@@ -1,0 +1,13 @@
+customization:
+  distribution_code_name: ""
+  distribution_version: ""
+  generator: "Rime-JNI"
+  modified_time: "Sat Jul 28 16:31:46 2018"
+  rime_version: 1.2.9
+patch:
+  "preset_keyboards/double_pinyin_flypy/import_preset": qwerty0
+  "style/color_scheme": android
+  "style/comment_height": 10
+  "style/comment_text_size": 12
+  "style/inline_preedit": input
+  "style/show_window": false
