@@ -1,15 +1,43 @@
+﻿# double_pinyin.custom.yaml
+#
+# 補靪功能：將自然碼雙拼的詞庫修改爲朙月拼音擴充詞庫
+#
+# 作者：瑾昀 <cokunhui@gmail.com>
+#
+# 部署位置：
+# ~/.config/ibus/rime  (Linux)
+# ~/Library/Rime  (Mac OS)
+# %APPDATA%\Rime  (Windows)
+#
+# 於重新部署後生效
+#
+#
+# 注意：本補靪適用於所有雙拼方案（「自然碼雙拼」、「智能ABC雙拼」、「小鶴雙拼」、「MSPY雙拼」）。
+# 只須將本 custom.yaml 的前面名字改爲對應的輸入方案名字然後放入用戶文件夾重新部署即可。如 double_pinyin_abc.custom.yaml。
+# 朙月拼音用戶請使用 luna_pinyin.custom.yaml。
+#
+#
+# 附雙拼方案與其對應的 id 一覽表：
+# 輸入方案	id
+# 自然碼雙拼	double_pinyin
+# 智能ABC雙拼	double_pinyin_abc
+# 小鶴雙拼	double_pinyin_flypy
+# MSPY雙拼	double_pinyin_mspy
+#
+
 patch:
   #載入朙月拼音擴充詞庫
   "translator/dictionary": luna_pinyin.extended
   #標點
   'punctuator/import_preset': mysymbols
   'recognizer/patterns/punct': "^/([a-z]+|[0-9])$"
-  switches:                   # 注意缩进
-    - name: ascii_mode
-      reset: 0                # reset 0 的作用是当从其他输入法切换到本输入法重设为指定状态
-      states: [ 中文, 西文 ]   # 选择输入方案后通常需要立即输入中文，故重设 ascii_mode = 0
-    - name: full_shape
-      states: [ 半角, 全角 ]   # 而全／半角则可沿用之前方案的用法。
-    - name: simplification
-      reset: 1                # 增加这一行：默认启用「繁→簡」转换。
-      states: [ 漢字, 汉字 ]
+  switches/@next:
+    name: emoji_suggestion
+    reset: 1
+    states: [ "🈚️️\uFE0E", "🈶️️\uFE0F" ]
+  'engine/filters/@before 0':
+    simplifier@emoji_suggestion
+  emoji_suggestion:
+    opencc_config: emoji.json
+    option_name: emoji_suggestion
+    tips: all

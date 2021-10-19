@@ -1,7 +1,14 @@
 var:
-  last_build_time: 1616912077
+  last_build_time: 1633137044
   option:
-    simplification: false
-  previously_selected_schema: double_pinyin_flypy
+    ascii_punct: false
+    full_shape: false
+    simplification: true
+  previously_selected_schema: placeless_flypy
+  previously_selected_theme: sougou
   schema_access_time:
-    double_pinyin_flypy: 1616911384
+    double_pinyin_flypy: 1633135716
+    emoji: 1633135711
+    luna_pinyin: 1532814264
+    placeless_flypy: 1633136882
+    terra_pinyin: 1498657186

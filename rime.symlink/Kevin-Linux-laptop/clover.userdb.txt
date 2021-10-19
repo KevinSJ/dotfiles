@@ -1,6 +1,7 @@
 # Rime user dictionary
-#@/db_name	emoji
+#@/db_name	clover
 #@/db_type	userdb
 #@/rime_version	1.7.3
-#@/tick	0
+#@/tick	2
 #@/user_id	Kevin-Linux-laptop
+niao 	鸟	c=2 d=1.99501 t=2

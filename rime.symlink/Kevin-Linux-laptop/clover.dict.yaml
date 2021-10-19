@@ -1,0 +1,22 @@
+
+name: clover
+version: "1"
+sort: by_weight
+
+import_tables:
+  - dicts/clover.base
+  - dicts/clover.phrase
+  - dicts/THUOCL_animal
+  - dicts/THUOCL_caijing
+  - dicts/THUOCL_car
+  - dicts/THUOCL_chengyu
+  - dicts/THUOCL_diming
+  - dicts/THUOCL_food
+  - dicts/THUOCL_IT
+  - dicts/THUOCL_law
+  - dicts/THUOCL_lishimingren
+  - dicts/THUOCL_medical
+  - dicts/THUOCL_poem
+  - dicts/sogou_new_words
+  - dicts/luna_pinyin.cn_en
+

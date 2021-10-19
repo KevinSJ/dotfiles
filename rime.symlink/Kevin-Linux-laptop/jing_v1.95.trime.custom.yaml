@@ -1,0 +1,65 @@
+patch:
+  "style/layout/max_entries": 8
+  "style/layout/all_phrases": false
+  "style/color_scheme": guge
+  "style/comment_height": 10
+  "style/comment_text_size": 12
+  "style/inline_preedit": input
+  "style/show_window": false
+  "preset_keyboards/qwerty/keys/@2/click": Knumber
+  "preset_keyboards/qwerty/keys/@8/long_click": '1'  #q
+  "preset_keyboards/qwerty/keys/@9/long_click": '2'  #w
+  "preset_keyboards/qwerty/keys/@10/long_click": '3' #e
+  "preset_keyboards/qwerty/keys/@11/long_click": '4' #r
+  "preset_keyboards/qwerty/keys/@12/long_click": '5' #t
+  "preset_keyboards/qwerty/keys/@13/long_click": '6' #y
+  "preset_keyboards/qwerty/keys/@14/long_click": '7' #u
+  "preset_keyboards/qwerty/keys/@15/long_click": '8' #i
+  "preset_keyboards/qwerty/keys/@16/long_click": '9' #o
+  "preset_keyboards/qwerty/keys/@17/long_click": '0' #p
+  "preset_keyboards/qwerty/keys/@21/long_click": '@' #s
+  "preset_keyboards/qwerty/keys/@22/long_click": '#' #d
+  "preset_keyboards/qwerty/keys/@23/long_click": '&' #f
+  "preset_keyboards/qwerty/keys/@24/long_click": '%' #g
+  "preset_keyboards/qwerty/keys/@25/long_click": '!' #h
+  "preset_keyboards/qwerty/keys/@28/long_click": '(){Left}' #l
+  "preset_keyboards/qwerty/keys/@31/long_click": "'" #z
+  "preset_keyboards/qwerty/keys/@35/long_click": ';' #b
+  "preset_keyboards/qwerty/keys/@36/long_click": ':' #n
+  "preset_keyboards/qwerty/keys/@37/long_click": '?' #m
+  "preset_keyboards/qwerty/keys/@40/click": Knumber
+  "preset_keyboards/qwerty/keys/@41/click": Ksymbols
+  "preset_keyboards/qwerty/keys/@42/long_click": '<>{Left}' #,
+  "preset_keyboards/qwerty/keys/@44/long_click": '{}{Left}' #,
+
+  "preset_keyboards/letter/keys/@2/click": Knumber
+  "preset_keyboards/letter/keys/@8/long_click": '1'  #q
+  "preset_keyboards/letter/keys/@9/long_click": '2'  #w
+  "preset_keyboards/letter/keys/@10/long_click": '3' #e
+  "preset_keyboards/letter/keys/@11/long_click": '4' #r
+  "preset_keyboards/letter/keys/@12/long_click": '5' #t
+  "preset_keyboards/letter/keys/@13/long_click": '6' #y
+  "preset_keyboards/letter/keys/@14/long_click": '7' #u
+  "preset_keyboards/letter/keys/@15/long_click": '8' #i
+  "preset_keyboards/letter/keys/@16/long_click": '9' #o
+  "preset_keyboards/letter/keys/@17/long_click": '0' #p
+  "preset_keyboards/letter/keys/@21/long_click": '@' #s
+  "preset_keyboards/letter/keys/@22/long_click": '#' #d
+  "preset_keyboards/letter/keys/@23/long_click": '&' #f
+  "preset_keyboards/letter/keys/@24/long_click": '%' #g
+  "preset_keyboards/letter/keys/@25/long_click": '!' #h
+  "preset_keyboards/letter/keys/@28/long_click": '(){Left}' #l
+  "preset_keyboards/letter/keys/@31/long_click": "'" #z
+  "preset_keyboards/letter/keys/@35/long_click": ';' #b
+  "preset_keyboards/letter/keys/@36/long_click": ':' #n
+  "preset_keyboards/letter/keys/@37/long_click": '?' #m
+  "preset_keyboards/letter/keys/@40/click": Ksymbols
+  "preset_keyboards/letter/keys/@41/click": Knumber
+  "preset_keyboards/letter/keys/@42/long_click": '<>{Left}' #,
+  "preset_keyboards/letter/keys/@44/long_click": '{}{Left}' #,
+
+  "preset_keyboards/number/keys/@23/long_click": copy #7
+  "preset_keyboards/number/keys/@24/long_click": select_all #8
+  "preset_keyboards/number/keys/@25/long_click": paste #9
+  "preset_keyboards/number/keys/@30/click": .
+  "preset_keyboards/number/keys/@32/click": space

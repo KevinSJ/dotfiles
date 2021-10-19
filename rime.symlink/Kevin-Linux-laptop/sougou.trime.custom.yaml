@@ -1,0 +1,81 @@
+patch:
+  "style/layout/max_entries": 10
+  "style/layout/all_phrases": true
+  "style/color_scheme": default
+  "style/comment_height": 10
+  "style/comment_text_size": 12
+  "style/inline_preedit": input
+  "style/show_window": false
+  "preset_keyboards/default":
+    ascii_mode: 0
+    author: "kevin"
+    keys: 
+     - {click: q, key_back_color: bh1, key_text_color: th1, long_click: 1, hint: "iu"}
+     - {click: w, key_back_color: bh1, key_text_color: th1, long_click: 2, hint: "ei"}
+     - {click: e, key_back_color: bh1, key_text_color: th1, long_click: 3}
+     - {click: r, key_back_color: bh1, key_text_color: th1, long_click: 4, hint: "uan"} 
+     - {click: t, key_back_color: bh1, key_text_color: th1, long_click: 5, hint: "ue,üe"}
+     - {click: y, key_back_color: bh1, key_text_color: th1, long_click: 6, hint: "un"}
+     - {click: u, key_back_color: bh1, key_text_color: th1, long_click: 7}
+     - {click: i, key_back_color: bh1, key_text_color: th1, long_click: 8}
+     - {click: o, key_back_color: bh1, key_text_color: th1, long_click: 9, hint: "uo,o"}
+     - {click: p, key_back_color: bh1, key_text_color: th1, long_click: 0, hint: "ie"}
+     - {key_back_color: bh2, key_text_color: th2, width: 5}
+     - {click: a, key_back_color: bh2, key_text_color: th2, long_click: select_all}
+     - {click: s, key_back_color: bh2, key_text_color: th2, long_click: "@", hint: "song,iong"}
+     - {click: d, key_back_color: bh2, key_text_color: th2, long_click: "#", hint: "ai"}
+     - {click: f, key_back_color: bh2, key_text_color: th2, long_click: "&", hint: "en"}
+     - {click: g, key_back_color: bh2, key_text_color: th2, long_click: "%", swipe_down: date_time, hint: "eng"}
+     - {click: h, key_back_color: bh2, key_text_color: th2, long_click: "!", swipe_down: "+", hint: "ang"}
+     - {click: j, key_back_color: bh2, key_text_color: th2, long_click: "&", swipe_down: "-", hint: "an"}
+     - {click: k, key_back_color: bh2, key_text_color: th2, long_click: "*", swipe_down: _, hint: "uai,ing"}
+     - {click: l, key_back_color: bh2, key_text_color: th2, long_click: "(){Left}", swipe_down: "=", hint: "uang,iang"}
+     - {key_back_color: bh2, key_text_color: th2, width: 5}
+     - {click: Shift_L, composing: delimiter, hilited_key_back_color: benter, key_back_color: bbs, key_text_color: tbs, width: 15}
+     - {click: z, key_back_color: bh3, key_text_color: th3, long_click: "'", swipe_down: "[]{Left}", hint: "ou"}
+     - {click: x, key_back_color: bh3, key_text_color: th3, long_click: cut, swipe_down: "{}{Left}", hint: "ua,ia"}
+     - {click: c, key_back_color: bh3, key_text_color: th3, long_click: copy, swipe_down: " ", hint: "ao"}
+     - {click: v, key_back_color: bh3, key_text_color: th3, long_click: paste, swipe_down: "\\", hint: "ui,ü"}
+     - {click: b, key_back_color: bh3, key_text_color: th3, long_click: ";", hint: "in"}
+     - {click: n, key_back_color: bh3, key_text_color: th3, long_click: ":", hint: "iao"}
+     - {click: m, key_back_color: bh3, key_text_color: th3, long_click: "?", swipe_down: "|", hint: "ian"}
+     - {click: BackSpace, key_back_color: bbs, key_text_color: tbs, width: 15}
+     - {click: Keyboard_number, key_back_color: bgn, key_text_color: tgn, long_click: Menu, width: 12.5}
+     - {click: Keyboard_bqrw, key_back_color: bgn, key_text_color: tgn, long_click: Theme_settings, width: 12.5}
+     - {click: ",", key_back_color: bh4, key_text_color: th4, label: ",", long_click: "<>{Left}"}
+     - {click: space, key_back_color: bkg, key_text_color: tkg, long_click: Mode_switch, swipe_left: Left, swipe_right: Right, swipe_up: Schema_switchcn, width: 30}
+     - {click: ., key_back_color: bh4, key_text_color: th4, label: ".", long_click: Keyboard_kao}
+     - {click: Return, key_back_color: benter, key_text_color: tenter, swipe_up: Escape, width: 25}
+    name: "預設26鍵"
+    width: 10
+  "preset_keyboards/number":
+    ascii_mode: 1
+    author: "kevin"
+    keys: 
+     - {click: "{}{Left}", key_back_color: bgn, key_text_color: tgn, long_click: "【】{Left}"}
+     - {click: "+", key_back_color: bgn, key_text_color: tgn, long_click: "~"}
+     - {click: 1,long_click: "<"}
+     - {click: 2, long_click: "|"}
+     - {click: 3, long_click: ">"}
+     - {click: space1, key_back_color: bgn, key_text_color: tgn}
+     - {click: _, key_back_color: bgn, key_text_color: tgn, long_click: "[]{Left}"}
+     - {click: "-", key_back_color: bgn, key_text_color: tgn, long_click: "%"}
+     - {click: 4}
+     - {click: 5}
+     - {click: 6}
+     - {click: Return, key_back_color: bgn, key_text_color: tgn}
+     - {click: "「」{Left}{Keyboard_default}", key_back_color: bgn, key_text_color: tgn, long_click: "『』{Left}"}
+     - {click: "*", key_back_color: bgn, key_text_color: tgn, long_click: "±"}
+     - {click: 7, long_click: select_all}
+     - {click: 8, long_click: copy}
+     - {click: 9, long_click: paste}
+     - {click: BackSpace, key_back_color: bbs, key_text_color: tbs}
+     - {click: "=", key_back_color: bgn, key_text_color: tgn, long_click: "≠"}
+     - {click: "/", key_back_color: bgn, key_text_color: tgn, long_click: "\\"}
+     - {click: ., key_back_color: bgn, key_text_color: tgn, long_click: Keyboard_bqrw}
+     - {click: 0, long_click: cut}
+     - {click: Schema_switchen, key_back_color: bgn, key_text_color: tgn}
+     - {click: Keyboard_default, key_back_color: benter, key_text_color: tenter, long_click: Menu}
+    name: "数字+"
+    width: 16.6
+  "preset_keyboards/double_pinyin_flypy/import_preset": qwerty
