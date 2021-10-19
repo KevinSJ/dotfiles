@@ -1,7 +1,6 @@
 source ~/.config/nvim/plugin/plugins.vim
 
 "let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-stylelint', 'coc-styled-components', 'coc-rls', 'coc-java']
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-yaml', 'coc-stylelint', 'coc-styled-components', 'coc-java', 'coc-docthis']
 let g:jsx_ext_required = 0
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = "floating"
@@ -75,12 +74,6 @@ function! s:show_documentation()
 endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup vimrcex
   autocmd!
@@ -102,12 +95,6 @@ augroup vimrcex
   autocmd bufread,bufnewfile vimrc.local set filetype=vim
 augroup end
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
@@ -184,6 +171,7 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+map <leader>bn :r !git rev-parse --abbrev-ref HEAD<cr>A:
 
 " Command to use sudo when needed
 cmap w!! %!sudo tee > /dev/null %
@@ -240,7 +228,7 @@ autocmd Bufread,BufNewFile *.md set filetype=markdown
 " file formats
 autocmd Filetype gitcommit setlocal spell textwidth=72
 autocmd Filetype markdown setlocal spell wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-autocmd FileType sh,cucumber,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType sh,cucumber,ruby,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 "
 
 " specify syntax highlighting for specific files

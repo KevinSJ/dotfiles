@@ -19,6 +19,10 @@ Plug 'godlygeek/tabular'
 " Added 2021年08月26日
 Plug 'eliba2/vim-node-inspect'
 
+" Added 2021年09月30日
+Plug 'honza/vim-snippets'
+
+
 " Plugs to install
 " General
 

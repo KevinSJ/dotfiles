@@ -7,6 +7,7 @@ set undodir=~/.vim/undo/
 set undofile
 set undolevels=1000
 set undoreload=10000
+set updatetime=300
 
 " Ignored files/directories from autocomplete (and CtrlP)
 set wildignore+=*/tmp/*
