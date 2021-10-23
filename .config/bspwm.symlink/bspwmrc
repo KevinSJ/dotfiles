@@ -1,12 +1,21 @@
 #! /bin/sh
+xgetmons() {
+    xrandr | grep \ connected | awk {'print $1'}
+}
+
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 DISP_NUM=`xrandr -d :0 -q | grep ' connected' | wc -l`
 RESOLUTION=`xrandr | grep \* | cut -d' ' -f4`
+INTERNAL=$(xgetmons | grep eDP)
+EXTERNAL=$(xgetmons | grep -v eDP)
+
 if [ $DISP_NUM -eq 2 ];
 then
-        bspc monitor DP-0 -d web code chat
-        bspc monitor DP-2 -d video game torrent
+        bspc monitor $INTERNAL -d web code chat
+        for mons in $EXTERNAL ; do
+          bspc monitor $EXTERNAL -d video game torrent
+        done
         #polybar top_ext > /dev/null 2>&1 &
         mons -e top
 else
@@ -29,6 +38,8 @@ picom &
 remmina -i &
 pkill keepassxc
 /usr/bin/keepassxc &
+
+pkill xscreensaver
 xscreensaver -no-splash &
 #caffeine &
 #polybar example &
@@ -42,15 +53,12 @@ pkill guake
 guake &
 
 /usr/bin/lxqt-policykit-agent &
-octopi-notifier &
+/usr/bin/octopi-notifier &
 
 pkill dunst
 dunst &
 
 
-#bspc monitor -d I II III IV V VI VII VIII IX X
-#bspc monitor eDP1 -d tty www dev opt
-#bspc monitor HDMI1 -d tty www dev opt
 
 bspc config border_width        0.5
 bspc config window_gap          1
