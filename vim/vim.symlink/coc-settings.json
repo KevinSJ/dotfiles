@@ -81,8 +81,8 @@
     "scss"
   ],
   "prettier.printWidth": 80,
-  "prettier.eslintIntegration": true,
-  "prettier.semi": false,
+  "prettier.eslintIntegration": false,
+  "prettier.semi": true,
   "prettier.singleQuote": true,
   "signature.target": "float",
   /* "signature.target": "float", */
@@ -181,7 +181,7 @@
   "tslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
   "eslint.autoFixOnSave": true,
-  "eslint.format.enable": false,
+  "eslint.format.enable": true,
   "python.autoComplete.addBrackets": true,
   "python.jediEnabled": false,
   "html.format.enable": true,
@@ -193,6 +193,7 @@
   "javascript.format.enabled": true,
   "javascript.suggest.includeCompletionsForImportStatements": true,
   "tsserver.formatOnType": false,
+  "tsserver.implicitProjectConfig.checkJs": true,
   "tsserver.enableJavascript": true,
   /* "tsserver.locale": "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript-language-features", */
   "snippets.priority": 3,
