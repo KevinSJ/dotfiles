@@ -227,6 +227,42 @@
         "lintTool": "golint"
       }
     },
+    "lua":{
+      "command": "/home/kevin/lua-language-server/bin/Linux/lua-language-server",
+      "args": ["-E", "/home/kevin/lua-language-server/bin/Linux/main.lua"],
+      "filetypes": ["lua"],
+      "rootPatterns": [".git/"],
+      "settings": {
+        "Lua": {
+          "workspace": {
+            "library": {
+              "/usr/share/nvim/runtime/lua": true,
+              "/usr/share/nvim/runtime/lua/vim/lsp": true
+            },
+            "maxPreload": 2000,
+            "preloadFileSize": 1000
+          },
+          "runtime": {
+            "version": "Lua 5.4.3"
+          },
+          "diagnostics": {
+            "enable": true,
+            "globals": [
+              "hs",
+              "vim",
+              "it",
+              "describe",
+              "before_each",
+              "after_each"
+            ],
+            "disable": ["lowercase-global"]
+          },
+          "completion": {
+            "keywordSnippet": "Disable"
+          }
+        }
+      }
+    },
     "bash": {
       "command": "bash-language-server",
       "args": ["start"],
