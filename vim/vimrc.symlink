@@ -1,6 +1,5 @@
 source ~/.config/nvim/plugin/plugins.vim
 
-"let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-stylelint', 'coc-styled-components', 'coc-rls', 'coc-java']
 let g:jsx_ext_required = 0
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = "floating"
@@ -18,18 +17,29 @@ let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_auto_type_info = 1
 " let g:coc_filetype_map
+" Ack (uses Ag behind the scenes)
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Airline (status line)
+let g:airline_powerline_fonts = 1
+
+" Gist authorisation settings
+let g:github_user = $GITHUB_USER
+let g:github_token = $GITHUB_TOKEN
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
 
 let g:go_fmt_command = "goimports"
 
-" Solarized theme
-set background=dark
-colorscheme onedark
-syntax off
-
-source ~/.config/nvim/settings.vim
 
 " Set built-in file system explorer to use layout similar to the NERDTree plugin
 let g:netrw_liststyle=3
+
+:luafile ~/.config/nvim/settings.lua
+" Solarized theme
+colorscheme onedark
+syntax off
+
 
 " Always highlight column 80 so it's easier to see where
 " cutoff appears on longer screens
@@ -62,7 +72,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent><leader>k :call <SID>show_documentation()<CR>
 " Find/replace
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -113,17 +123,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Ack (uses Ag behind the scenes)
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Airline (status line)
-let g:airline_powerline_fonts = 1
-
-" Gist authorisation settings
-let g:github_user = $GITHUB_USER
-let g:github_token = $GITHUB_TOKEN
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
 " Related plugins:
 " https://github.com/mattn/webapi-vim
 " https://github.com/vim-scripts/Gist.vim
@@ -141,21 +141,6 @@ map <Leader>c :Tabularize /:<cr>
 map <Leader>es :Tabularize /=\zs<cr>
 map <Leader>cs :Tabularize /:\zs<cr>
 
-" }}}
-
-" Mappings {{{
-" Notes...
-"
-" :map     j gg (j will be mapped to gg)
-" :map     Q j  (Q will also be mapped to gg, because j will be expanded -> recursive mapping)
-" :noremap W j  (W will be mapped to j not to gg, because j will not be expanded -> non recursive)
-"
-" These mappings work in all modes. To have mappings work in only specific
-" modes then denote the mapping with the mode character.
-"
-" e.g.
-" to map something in just NORMAL mode use :nmap or :nnoremap
-" to map something in just VISUAL mode use :vmap or :vnoremap
 
 " Clear search buffer
 :nnoremap § :nohlsearch<cr>
@@ -165,19 +150,23 @@ map <Leader>cs :Tabularize /:\zs<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+"nmap <leader><tab> <plug>(fzf-maps-n)
+"xmap <leader><tab> <plug>(fzf-maps-x)
+"omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+"imap <c-x><c-k> <plug>(fzf-complete-word)
+"imap <c-x><c-f> <plug>(fzf-complete-path)
+"imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+"imap <c-x><c-l> <plug>(fzf-complete-line)
 map <leader>bn :r !git rev-parse --abbrev-ref HEAD<cr>A:
 
 " Command to use sudo when needed
 cmap w!! %!sudo tee > /dev/null %
-
-    " File System Explorer (in horizontal split)
-map <leader>. :Sexplore<cr>
 
 " Buffers
 map <leader>yt :ls<cr>
