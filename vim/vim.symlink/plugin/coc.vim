@@ -1,8 +1,5 @@
-let g:coc_node_path = $NVM_BIN. "/node"
-let g:python3_host_prog = "/usr/bin/python3"
-"let g:coc_node_path = "/opt/homebrew/bin/node"
-"let g:coc_global_extensions = [ 'coc-snippets', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-stylelint', 'coc-styled-components', 'coc-java', 'coc-docthis','coc-git']
-let g:coc_global_extensions = [ 'coc-snippets', 'coc-tsserver', 'coc-tslint-plugin',  'coc-json', 'coc-docthis','coc-git']
+"let g:coc_node_path = '~/.nvm/versions/node/v14.16.1/bin/node'
+let g:coc_global_extensions = [ 'coc-snippets', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-stylelint', 'coc-styled-components', 'coc-java', 'coc-docthis']
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 

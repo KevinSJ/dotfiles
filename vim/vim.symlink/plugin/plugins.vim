@@ -13,7 +13,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'github/copilot.vim'
 " Added 15/03/2021
 Plug 'jlanzarotta/bufexplorer'
-Plug 'roman/golden-ratio'
+"Plug 'roman/golden-ratio'
 " Added 2021年04月01日
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 "Plug 'tpope/vim-eunuch'
@@ -34,13 +34,13 @@ Plug 'eliba2/vim-node-inspect'
 " Added 2021年09月30日
 Plug 'honza/vim-snippets'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'nvim-treesitter/nvim-treesitter-context'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
-  \ 'do': 'make install'
-\}
+" Added 2021-10-31
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': ':TSUpdate'}  " We recommend updating the parsers on update
+"Plug 'rafcamlet/coc-nvim-lua'
+
+
 " Plugs to install
 " General
 
@@ -62,8 +62,8 @@ Plug 'christoomey/vim-tmux-navigator'
 "Plug 'tpope/vim-rhubarb'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
 "Plug 'joshdick/onedark.vim'
 
