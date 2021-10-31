@@ -36,7 +36,7 @@ vim.g.loaded_netrwFileHandlers = 1
 
 -- Persistent undo
 vim.opt.background = 'dark'
-vim.opt.undodir = '~/.vim/undo/'
+vim.opt.undodir = '~/.vim/undo'
 vim.opt.undofile = true
 vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000
@@ -86,11 +86,8 @@ vim.opt.ignorecase = true
 vim.opt.wrap = false
 
 -- Allow backspace to delete end of line, indent and start of line characters
-vim.opt.backspace={
-    indent,
-    eol,
-    start
-}
+vim.cmd('set backspace = "indent,eol,start"')
+vim.cmd('set backspace = "indent,eol,start"')
 
 -- Convert tabs to spaces
 vim.opt.expandtab = true
