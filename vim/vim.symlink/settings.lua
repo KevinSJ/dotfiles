@@ -1,3 +1,5 @@
+local home    = os.getenv("HOME")
+
 -- TO BE MIGRATED TO SEPARATE FILE
 require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -33,10 +35,9 @@ vim.g.loaded_netrwFileHandlers = 1
 
 -- Some settings copied from:
 -- https://github.com/ahmedelgabri/dotfiles/blob/main/config/nvim/init.lua
-
 -- Persistent undo
 vim.opt.background = 'dark'
-vim.opt.undodir = '~/.vim/undo'
+vim.opt.undodir = home .. '/.vim/undo'
 vim.opt.undofile = true
 vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000
@@ -86,8 +87,7 @@ vim.opt.ignorecase = true
 vim.opt.wrap = false
 
 -- Allow backspace to delete end of line, indent and start of line characters
-vim.cmd('set backspace = "indent,eol,start"')
-vim.cmd('set backspace = "indent,eol,start"')
+vim.o.backspace = "indent,eol,start"
 
 -- Convert tabs to spaces
 vim.opt.expandtab = true
