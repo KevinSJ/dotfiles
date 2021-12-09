@@ -1,3 +1,5 @@
+# Disable M$ telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -108,3 +110,4 @@ fi
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
+source <("/usr/bin/starship" init zsh --print-full-init)
