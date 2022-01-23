@@ -1,136 +1,31 @@
 source ~/.config/nvim/plugin/plugins.vim
+:luafile ~/.config/nvim/lua/options.lua
+:luafile ~/.config/nvim/lua/mappings.lua
+:luafile ~/.config/nvim/settings.lua
 
-let g:jsx_ext_required = 0
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = "floating"
-" vim-airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-" Golang specific settings
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_auto_type_info = 1
-" let g:coc_filetype_map
 " Ack (uses Ag behind the scenes)
 let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" Airline (status line)
-let g:airline_powerline_fonts = 1
-
-" Gist authorisation settings
-let g:github_user = $GITHUB_USER
-let g:github_token = $GITHUB_TOKEN
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-
-let g:go_fmt_command = "goimports"
-
-
-" Set built-in file system explorer to use layout similar to the NERDTree plugin
-let g:netrw_liststyle=3
-
-:luafile ~/.config/nvim/settings.lua
-" Solarized theme
-colorscheme onedark
-syntax off
-
 
 " Always highlight column 80 so it's easier to see where
 " cutoff appears on longer screens
 autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
-" }}}
-"autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 
-" Change leader key from \ to space.
-map <Space> <leader>
-map <Leader>w :update<CR>
-map <Leader>q :qall<CR>
-map <Leader>gs :Gstatus<CR>
-map <leader>1 :1tabn<cr>
-map <leader>2 :2tabn<cr>
-map <leader>3 :3tabn<cr>
-map <leader>4 :4tabn<cr>
-map <leader>5 :5tabn<cr>
-map <leader>6 :6tabn<cr>
-map <leader>7 :7tabn<cr>
-map <leader>8 :8tabn<cr>
-map <leader>9 :9tabn<cr>
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent><leader>k :call <SID>show_documentation()<CR>
 " Find/replace
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+"vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-augroup vimrcex
-  autocmd!
-
-  " when editing a file, always jump to the last known cursor position.
-  " don't do it for commit messages, when the position is invalid, or when
-  " inside an event handler (happens when dropping a file on gvim).
-  autocmd bufreadpost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  " set syntax highlighting for specific file types
-  autocmd bufread,bufnewfile *.md set filetype=markdown
-  autocmd bufread,bufnewfile .{jscs,jshint,eslint}rc set filetype=json
-  autocmd bufread,bufnewfile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
-  autocmd bufread,bufnewfile gitconfig.local set filetype=gitconfig
-  autocmd bufread,bufnewfile tmux.conf.local set filetype=tmux
-  autocmd bufread,bufnewfile vimrc.local set filetype=vim
-augroup end
-
-
-" Easy tab navigation
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
-
-" Related plugins:
-" https://github.com/mattn/webapi-vim
-" https://github.com/vim-scripts/Gist.vim
-" https://github.com/tpope/vim-fugitive
-
-" HTML generation using 'emmet-vim'
-" NORMAL mode Ctrl+y then , <C-y,>
-
 highlight clear SignColumn
-
-
-" Tabularize
-map <Leader>e :Tabularize /=<cr>
-map <Leader>c :Tabularize /:<cr>
-map <Leader>es :Tabularize /=\zs<cr>
-map <Leader>cs :Tabularize /:\zs<cr>
-
-
-" Clear search buffer
-:nnoremap § :nohlsearch<cr>
 
 
 " Mapping selecting mappings
@@ -145,15 +40,6 @@ map <Leader>cs :Tabularize /:\zs<cr>
 "imap <c-x><c-l> <plug>(fzf-complete-line)
 map <leader>bn :r !git rev-parse --abbrev-ref HEAD<cr>A:
 
-" Command to use sudo when needed
-cmap w!! %!sudo tee > /dev/null %
-
-" Buffers
-map <leader>yt :ls<cr>
-
-" Buffers (runs the delete buffer command on all open buffers)
-map <leader>yd :bufdo bd<cr>
-
 " Make handling vertical/linear Vim windows easier
 map <leader>w- <C-W>- " decrement height
 map <leader>w+ <C-W>+ " increment height
@@ -161,32 +47,10 @@ map <leader>w] <C-W>_ " maximize height
 map <leader>w<SPACE> <C-W>\| " maximize width
 map <leader>w[ <C-W>= " equalize all windows
 
-" Handling horizontal Vim windows doesn't appear to be possible.
-" Attempting to map <C-W> < and > didn't work
-" Same with mapping <C-W>|
-
-" Make splitting Vim windows easier
-map <leader>; <C-W>s
-map <leader>` <C-W>v
 " Make saving easier
 " map <leader>w :update<CR>
 map <leader>sv :source ~/.vimrc<CR>
 
-" Commands {{{
-" jump to last cursor
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
-
-fun! StripTrailingWhitespace()
-  " don't strip on these filetypes
-  if &ft =~ 'markdown'
-    return
-  endif
-  %s/\s\+$//e
-endfun
-autocmd BufWritePre * call StripTrailingWhitespace()
 "
 " specify syntax highlighting for specific files
 autocmd Bufread,BufNewFile *.md set filetype=markdown
@@ -212,6 +76,7 @@ autocmd BufWinEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of
 autocmd InsertEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
 autocmd InsertLeave * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
 autocmd BufWinLeave * call clearmatches()
+autocmd FilterWritePre * call SetDiffColors()
 
 command! -nargs=0 Ns call Newscratch()
 fun! Newscratch()
@@ -261,4 +126,22 @@ fun! SetDiffColors()
   highlight DiffChange cterm=bold ctermfg=white ctermbg=DarkBlue
   highlight DiffText   cterm=bold ctermfg=white ctermbg=DarkRed
 endfun
-autocmd FilterWritePre * call SetDiffColors()
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+fun! StripTrailingWhitespace()
+  " don't strip on these filetypes
+  if &ft =~ 'markdown'
+    return
+  endif
+  %s/\s\+$//e
+endfun
+autocmd BufWritePre * call StripTrailingWhitespace()
