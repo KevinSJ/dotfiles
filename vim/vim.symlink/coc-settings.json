@@ -200,22 +200,6 @@
   "snippets.autoTrigger": false,
   "snippets.userSnippetsDirectory": "~/.config/nvim/Ultisnips",
   "json.format.enable": true,
-  "zi.enable": true,
-  "zi.patterns": {
-    "": [],
-    "javascript": ["^\\s*\\/\\/", "^\\s*\\/\\*", "^\\s*\\*", "const \\s*"],
-    "typescript": ["^\\s*\\/\\/", "^\\s*\\/\\*", "^\\s*\\*"],
-    "markdown": [],
-    "vim": ["^\\s*\\\""],
-    "gitcommit": []
-  },
-  "zi.syntaxKinds.javascript": [
-    "StringLiteral",
-    "NoSubstitutionTemplateLiteral",
-    "TemplateHead",
-    "TemplateTail",
-    "TemplateMiddle"
-  ],
   "languageserver": {
     "golang": {
       "command": "gopls",
