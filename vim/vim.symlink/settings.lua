@@ -19,7 +19,19 @@ vim.g.loaded_netrw             = 1
 vim.g.loaded_netrwPlugin       = 1
 vim.g.loaded_netrwSettings     = 1
 vim.g.loaded_netrwFileHandlers = 1
--- TO BE MIGRATED TO SEPARATE FILE
+-- BEGIN custom config
+--vim.g.jsx_ext_required          =  0
+--vim.g.airline_powerline_fonts   =  1
+--vim.g.go_highlight_extra_types  =  1
+--vim.g.go_highlight_fields       =  1
+--vim.g.go_highlight_functions    =  1
+--vim.g.go_highlight_methods      =  1
+--vim.g.go_highlight_operators    =  1
+--vim.g.go_highlight_structs      =  1
+--vim.g.go_highlight_types        =  1
+--vim.g.go_auto_type_info         =  1
+--vim.g.ackprg                    =  'ag --nogroup  --nocolor  --column'
+--vim.g.go_fmt_command            =  "goimports"
 
 -- Some settings copied from:
 -- https://github.com/ahmedelgabri/dotfiles/blob/main/config/nvim/init.lua
