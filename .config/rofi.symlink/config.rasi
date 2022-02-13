@@ -1,7 +1,6 @@
 configuration {
-	theme: "/usr/share/rofi/themes/Paper.rasi";
 	modi: "window,drun,ssh,combi";
 	font: "hack 10";
 	show-icons: true;
-
 }
+@theme "/usr/share/rofi/themes/Paper.rasi"
