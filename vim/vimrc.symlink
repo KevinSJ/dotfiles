@@ -22,6 +22,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Airline (status line)
 let g:airline_powerline_fonts = 1
+let g:snips_author='Kevin J'
 
 " Gist authorisation settings
 let g:github_user = $GITHUB_USER
@@ -55,18 +56,20 @@ map <Leader>q :qall<CR>
 map <Leader>gs :Gstatus<CR>
 "vim fzf config
 nnoremap <C-P> :GFiles --exclude-standard --cached --others<CR>
-map <leader>t :Files<cr>
-map <leader>1 :1tabn<cr>
-map <leader>2 :2tabn<cr>
-map <leader>3 :3tabn<cr>
-map <leader>4 :4tabn<cr>
-map <leader>5 :5tabn<cr>
-map <leader>6 :6tabn<cr>
-map <leader>7 :7tabn<cr>
-map <leader>8 :8tabn<cr>
-map <leader>9 :9tabn<cr>
+nnoremap <leader>b :Buffers<CR>
+map <silent> <leader>t :Files<cr>
+map <silent> <leader>1 :1tabn<cr>
+map <silent> <leader>2 :2tabn<cr>
+map <silent> <leader>3 :3tabn<cr>
+map <silent> <leader>4 :4tabn<cr>
+map <silent> <leader>5 :5tabn<cr>
+map <silent> <leader>6 :6tabn<cr>
+map <silent> <leader>7 :7tabn<cr>
+map <silent> <leader>8 :8tabn<cr>
+map <silent> <leader>9 :9tabn<cr>
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD :call CocAction('jumpDefinition', 'drop')<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -173,6 +176,7 @@ map <leader>yt :ls<cr>
 
 " Buffers (runs the delete buffer command on all open buffers)
 map <leader>yd :bufdo bd<cr>
+tnoremap <Esc> <C-\><C-n>
 
 " Make handling vertical/linear Vim windows easier
 map <leader>w- <C-W>- " decrement height
@@ -186,14 +190,14 @@ map <leader>w[ <C-W>= " equalize all windows
 " Same with mapping <C-W>|
 
 " Make splitting Vim windows easier
-map <leader>; <C-W>s
-map <leader>` <C-W>v
+map <leader>] <C-W>s
+map <leader>[ <C-W>v
 " Make saving easier
 " map <leader>w :update<CR>
 map <leader>sv :source ~/.vimrc<CR>
 " Recently edited files
-map <Leader>h :History<CR>
-
+map <silent> <Leader>h :History<CR>
+map <silent> <Leader>n :Ns<CR>
 " Commands {{{
 " jump to last cursor
 autocmd BufReadPost *
@@ -276,6 +280,7 @@ autocmd BufNewFile * call SetSpellingColors()
 autocmd InsertEnter * call SetSpellingColors()
 autocmd InsertLeave * call SetSpellingColors()
 
+autocmd BufWritePre *.ts :call CocAction('runCommand', 'tsserver.executeAutofix')
 " Change colourscheme when diffing
 fun! SetDiffColors()
   highlight DiffAdd    cterm=bold ctermfg=white ctermbg=DarkGreen
