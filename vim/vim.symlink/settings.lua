@@ -2,7 +2,7 @@ local home    = os.getenv("HOME")
 
 -- TO BE MIGRATED TO SEPARATE FILE
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
         enable = true,              -- false will disable the whole extension
         disable = { "c", "rust", "go", "c_sharp" },  -- list of language that will be disabled
@@ -12,6 +12,15 @@ require'nvim-treesitter.configs'.setup {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
     },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "<CR>",
+            scope_incremental = "<CR>",
+            node_incremental = "<TAB>",
+            node_decremental = "<S-TAB>"
+        }
+    }
 }
 vim.g.loaded_gzip              = 1
 vim.g.loaded_tar               = 1
