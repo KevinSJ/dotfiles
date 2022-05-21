@@ -198,6 +198,7 @@ map <leader>sv :source ~/.vimrc<CR>
 " Recently edited files
 map <silent> <Leader>h :History<CR>
 map <silent> <Leader>n :Ns<CR>
+map <silent> <Leader><space> :M<CR>
 " Commands {{{
 " jump to last cursor
 autocmd BufReadPost *
@@ -247,6 +248,13 @@ fun! Newscratch()
   setlocal noswapfile
 endfun
 
+command! -nargs=0 M call Maximize()
+fun! Maximize()
+  wincmd _
+  wincmd |
+endfun
+
+
 " Create a 'scratch buffer' which is a temporary buffer Vim wont ask to save
 " http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
@@ -279,7 +287,6 @@ autocmd BufWinEnter * call SetSpellingColors()
 autocmd BufNewFile * call SetSpellingColors()
 autocmd InsertEnter * call SetSpellingColors()
 autocmd InsertLeave * call SetSpellingColors()
-
 autocmd BufWritePre *.ts :call CocAction('runCommand', 'tsserver.executeAutofix')
 " Change colourscheme when diffing
 fun! SetDiffColors()
