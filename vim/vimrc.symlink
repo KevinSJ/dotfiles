@@ -1,7 +1,7 @@
 source ~/.config/nvim/plugin/plugins.vim
 :luafile ~/.config/nvim/lua/options.lua
 :luafile ~/.config/nvim/lua/mappings.lua
-:luafile ~/.config/nvim/settings.lua
+:luafile ~/.config/nvim/lua/settings.lua
 
 " Ack (uses Ag behind the scenes)
 let g:ackprg = 'ag --nogroup --nocolor --column'
