@@ -63,6 +63,8 @@ vim.opt.expandtab = true
 -- Set tab size in spaces (this is for manual indenting)
 vim.opt.tabstop=4
 
+vim.opt.softtabstop=4
+
 -- The number of spaces inserted for a tab (used for auto indenting)
 vim.opt.shiftwidth=4
 
