@@ -11,13 +11,6 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
 
 
-" GoTo code navigation.
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent><leader>k :call <SID>show_documentation()<CR>
-" Find/replace
 "vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -138,16 +131,6 @@ fun! SetDiffColors()
   highlight DiffChange cterm=bold ctermfg=white ctermbg=DarkBlue
   highlight DiffText   cterm=bold ctermfg=white ctermbg=DarkRed
 endfun
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
 
 fun! StripTrailingWhitespace()
   " don't strip on these filetypes
