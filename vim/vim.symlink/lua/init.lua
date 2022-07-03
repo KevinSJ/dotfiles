@@ -12,3 +12,9 @@ require('ufo').setup({
         return {'treesitter', 'indent'}
     end
 })
+require('plugins')
+require('pluginconfig')
+require('options')
+require('commands')
+require('settings')
+require('mappings')
