@@ -1,3 +1,4 @@
+
 !bin
 vim/bundle/
 .DS_Store
@@ -14,9 +15,9 @@ vim/vim.symlink/undo
 .config/fcitx.symlink/profile
 .config/fcitx.symlink/rime/.place_holder
 .config/fcitx.symlink/rime/build
-.config/fcitx.symlink/rime/luna_pinyin.userdb
-.config/fcitx.symlink/rime/clover.userdb
-.config/fcitx.symlink/rime/emoji.userdb
+.config/fcitx.symlink/rime/*.userdb
 .config/fcitx.symlink/rime/trash
 .config/fcitx.symlink/log
 .config/fcitx.symlink/rime/user.yaml
+
+LOG*
