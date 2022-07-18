@@ -1,5 +1,8 @@
 "let g:coc_node_path = '~/.nvm/versions/node/v14.16.1/bin/node'
 let g:coc_global_extensions = [ 'coc-snippets', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-stylelint', 'coc-styled-components', 'coc-java', 'coc-docthis']
+let g:jsx_ext_required = 0
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = "floating"
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 

@@ -1,14 +1,11 @@
 source ~/.config/nvim/plugin/plugins.vim
-:luafile ~/.config/nvim/lua/options.lua
-:luafile ~/.config/nvim/lua/mappings.lua
-:luafile ~/.config/nvim/lua/settings.lua
+:luafile ~/.config/nvim/lua/init.lua
 
 " Ack (uses Ag behind the scenes)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Always highlight column 80 so it's easier to see where
 " cutoff appears on longer screens
-autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
 
 
 "vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
@@ -53,18 +50,13 @@ map <leader>sv :source ~/.vimrc<CR>
 autocmd TermOpen * nnoremap <buffer> <Esc><Esc> :bd!<cr>
 
 
-autocmd VimEnter * if !argc() | NERDTree | endif
 
 " Highlight words to avoid in tech writing
 " http://css-tricks.com/words-avoid-educational-writing/
-highlight Comment cterm=italic gui=italic
-highlight TechWordsToAvoid ctermbg=red ctermfg=white
 match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however\|so,\|easy/
 autocmd BufWinEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
 autocmd InsertEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
 autocmd InsertLeave * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
-autocmd BufWinLeave * call clearmatches()
-autocmd FilterWritePre * call SetDiffColors()
 
 command! -nargs=0 Ns call Newscratch()
 fun! Newscratch()
@@ -83,60 +75,3 @@ fun! Newscratch()
   setlocal noswapfile
   setlocal wrap
 endfun
-
-command! -nargs=0 M call Maximize()
-fun! Maximize()
-  wincmd _
-  wincmd |
-endfun
-
-
-" Create a 'scratch buffer' which is a temporary buffer Vim wont ask to save
-" http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
-command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
-fun! s:RunShellCommand(cmdline)
-  echo a:cmdline
-  let expanded_cmdline = a:cmdline
-  for part in split(a:cmdline, ' ')
-    if part[0] =~ '\v[%#<]'
-      let expanded_part = fnameescape(expand(part))
-      let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
-    endif
-  endfor
-  botright new
-  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  call setline(1, 'You entered:    ' . a:cmdline)
-  call setline(2, 'Expanded Form:  ' .expanded_cmdline)
-  call setline(3,substitute(getline(2),'.','=','g'))
-  execute '$read !'. expanded_cmdline
-  setlocal nomodifiable
-  1
-endfunction
-
-" Reset spelling colours when reading a new buffer
-" This works around an issue where the colorscheme is changed by .local.vimrc
-fun! SetSpellingColors()
-  highlight SpellBad cterm=bold ctermfg=white ctermbg=red
-  highlight SpellCap cterm=bold ctermfg=red ctermbg=white
-endfun
-autocmd BufWinEnter * call SetSpellingColors()
-autocmd BufNewFile * call SetSpellingColors()
-autocmd InsertEnter * call SetSpellingColors()
-autocmd InsertLeave * call SetSpellingColors()
-autocmd BufWritePre *.{t,j}s :call CocAction('runCommand', 'tsserver.executeAutofix')
-" Change colourscheme when diffing
-fun! SetDiffColors()
-  highlight DiffAdd    cterm=bold ctermfg=white ctermbg=DarkGreen
-  highlight DiffDelete cterm=bold ctermfg=white ctermbg=DarkGrey
-  highlight DiffChange cterm=bold ctermfg=white ctermbg=DarkBlue
-  highlight DiffText   cterm=bold ctermfg=white ctermbg=DarkRed
-endfun
-
-fun! StripTrailingWhitespace()
-  " don't strip on these filetypes
-  if &ft =~ 'markdown'
-    return
-  endif
-  %s/\s\+$//e
-endfun
-autocmd BufWritePre * call StripTrailingWhitespace()

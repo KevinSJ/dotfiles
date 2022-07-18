@@ -1,5 +1,14 @@
+local M = require('utils')
+
+
 vim.cmd('command! -nargs=0 Format :call CocAction(\'format\') ')
 vim.cmd('command! -nargs=0 OR :call CocAction(\'runCommand\', \'editor.action.organizeImport\')')
+
+vim.cmd[[
+    highlight clear SignColumn
+    highlight Comment cterm=italic gui=italic
+    highlight TechWordsToAvoid ctermbg=red ctermfg=white
+]]
 
 --[[
     [Reset spelling colours when reading a new buffer
@@ -29,6 +38,8 @@ vim.cmd[[
       highlight DiffText   cterm=bold ctermfg=white ctermbg=DarkRed
     endfun
 ]]
+
+M.autocmd('FilterWritePre', 'call SetDiffColors()')
 
 vim.cmd[[
     fun! StripTrailingWhitespace()
@@ -68,17 +79,39 @@ vim.cmd[[
 ]]
 
 
-vim.cmd[[
-    command! -nargs=0 Ns call Newscratch()
-    fun! Newscratch()
-      execute 'tabnew '
-      setlocal buftype=nofile
-      setlocal bufhidden=hide
-      setlocal noswapfile
-    endfun
-]]
+--vim.cmd[[
+    --command! -nargs=0 Ns call Newscratch()
+    --fun! Newscratch()
+      --execute 'tabnew '
+      --setlocal buftype=nofile
+      --setlocal bufhidden=hide
+      --setlocal noswapfile
+    --endfun
+--]]
 
 function new_scratch()
-    vim.api.nvim_create_buf()
-
+    vim.api.nvim_command('tabnew')
+    vim.api.nvim_create_buf(false, true)
+    vim.opt_local.buftype = 'nofile'
+    vim.opt_local.bufhidden = 'hide'
+    vim.opt_local.swapfile = false
+    M.mapBuf(vim.api.nvim_get_current_buf(), 'n', '<leader>s', ':file note_' .. os.time() ..'| set buftype= swapfile | w <cr>')
 end
+
+
+
+-- Always highlight column 80 so it's easier to see where
+-- cutoff appears on longer screens
+--autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
+M.autocmd('BufWinEnter', 'highlight ColorColumn ctermbg=darkred', nil)
+
+-- Map double Esc to wipebuffer in terminals
+M.autocmd('TermOpen', 'nmap <buffer><silent> <Esc><Esc> :bd!<cr>', nil)
+
+
+--Open NERDTree if start with no args
+--autocmd VimEnter * if !argc() | NERDTree | endif
+M.autocmd('VimEnter', 'if !argc() | NERDTree | endif', nil)
+
+M.autocmd('CursorHold', 'silent call CocActionAsync(\'highlight\')')
+
