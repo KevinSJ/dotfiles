@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 xgetmons() {
     xrandr | grep \ connected | awk {'print $1'}
 }
@@ -12,52 +12,20 @@ EXTERNAL=$(xgetmons | grep -v eDP)
 
 if [ $DISP_NUM -eq 2 ];
 then
+        dunstify "Using dual monitor setup"
         bspc monitor $INTERNAL -d web code chat
         for mons in $EXTERNAL ; do
           bspc monitor $EXTERNAL -d video game torrent
         done
-        #polybar top_ext > /dev/null 2>&1 &
-        mons -e top
 else
         if [ $RESOLUTION = '1080x1920' ];
         then
           bspc monitor -d web code server
         else
-          bspc monitor -d web code chat video game torrent server
+          dunstify "Using single monitor setup"
+          bspc monitor $INTERNAL -d web code chat video game torrent server
         fi
-        #bspc monitor DP-0 -d web code chat video game torrent server
 fi
-
-pkill polybar
-
-$HOME/.config/polybar/launch.sh
-
-pkill picom
-picom &
-#fcitx-autostart &
-remmina -i &
-pkill keepassxc
-/usr/bin/keepassxc &
-
-pkill xscreensaver
-xscreensaver -no-splash &
-#caffeine &
-#polybar example &
-blueman-applet &
-#solaar &
-
-pkill plank
-plank &
-
-pkill guake
-guake &
-
-/usr/bin/lxqt-policykit-agent &
-/usr/bin/octopi-notifier &
-
-pkill dunst
-dunst &
-
 
 
 bspc config border_width        0.5
@@ -71,8 +39,6 @@ bspc config gapless_monocle      true
 
 #Focusing behavior
 bspc config focus_follows_pointer     true
-bspc config history_aware_focus     true
-bspc config focus_by_distance     true
 
 #Multihead behavior
 bspc config remove_disabled_monitors  true
@@ -88,17 +54,43 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a firefox desktop='^1' follow=on
 
+#remmina -i &
+#pkill keepassxc
+#/usr/bin/keepassxc &
 
+pkill xscreensaver
+xscreensaver -no-splash &
+
+#blueman-applet &
+
+/usr/bin/lxqt-policykit-agent &
+
+AUTO_START=(caffeine picom plank dunst guake keepassxc blueman-applet)
+for p in ${AUTO_START[@]}; do
+  pgrep -x $p > /dev/null || $p & disown
+done
+
+#pgrep -x picom > /dev/null || picom&
+#pgrep -x plank > /dev/null || plank&
+#pgrep -x dunst > /dev/null || dunst&
+#pgrep -x guake > /dev/null || guake&
+#pgrep -x caffeine > /dev/null || caffeine&
+
+pgrep -x fcitx > /dev/null || fcitx -u fcitx-light-ui&
 
 wal -i Pictures/bg.png
+
+$HOME/.config/polybar/launch.sh
 
 # Remap Caps key to control
 setxkbmap -option ctrl:nocaps
 
 systemd-detect-virt 1> /dev/null
+
 if [ $? == 0 ];
 then
   # Run virtualbox-tools
   VboxClient-all
 fi
 
+notify-send "Desktop loaded successfully" "$(date +'%c')"

@@ -1,0 +1,13 @@
+#! /usr/bin/bash
+
+function connect(){
+  xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+}
+
+function disconnect(){
+  xrandr --output HDMI1 --off
+}
+
+xrandr | grep "HDMI1 connected" &> /dev/null && connect || disconnect
+
+/bin/bspc wm -r & disown
