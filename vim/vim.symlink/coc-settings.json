@@ -201,16 +201,6 @@
   "snippets.userSnippetsDirectory": "~/.config/nvim/Ultisnips",
   "json.format.enable": true,
   "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "gocodeCompletionEnabled": true,
-        "diagnosticsEnabled": true,
-        "lintTool": "golint"
-      }
-    },
     "lua":{
       "command": "/home/kevin/lua-language-server/bin/Linux/lua-language-server",
       "args": ["-E", "/home/kevin/lua-language-server/bin/Linux/main.lua"],
@@ -289,5 +279,6 @@
   "sourcekit.commandPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
   "cSpell.userWords": ["Innei", "Typegoose", "consola"],
   "smartf.timeout": 5000,
-  "java.format.settings.url": "/home/ksjiang/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
+  "java.format.settings.url": "/home/ksjiang/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd"
 }
