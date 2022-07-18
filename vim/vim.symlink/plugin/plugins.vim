@@ -35,11 +35,10 @@ Plug 'eliba2/vim-node-inspect'
 Plug 'honza/vim-snippets'
 
 " Added 2021-10-31
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': ':TSUpdate'}  " We recommend updating the parsers on update
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope.nvim'
+"Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': ':TSUpdate'}  " We recommend updating the parsers on update
 "Plug 'rafcamlet/coc-nvim-lua'
-
 
 " Plugs to install
 " General

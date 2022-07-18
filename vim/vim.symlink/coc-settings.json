@@ -96,16 +96,6 @@
   "snippets.textmateSnippetsRoots":[ "/Users/t829332/.config/nvim/snippets" ],
   "json.format.enable": true,
   "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "gocodeCompletionEnabled": true,
-        "diagnosticsEnabled": true,
-        "lintTool": "golint"
-      }
-    },
     "lua":{
       "command": "/home/kevin/lua-language-server/bin/Linux/lua-language-server",
       "args": ["-E", "/home/kevin/lua-language-server/bin/Linux/main.lua"],
