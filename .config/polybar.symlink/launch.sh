@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-killall -q polybar
+#killall -q polybar
+# Terminate already running bar instances
+# If all your bars have ipc enabled, you can use
+polybar-msg cmd quit
 
 export BAT=$(ls -A1 /sys/class/power_supply|grep -E 'BAT')
 export AC=$(ls -A1 /sys/class/power_supply|grep -v 'BAT')
@@ -18,4 +21,5 @@ else
 fi
 
 
-echo "Bar launched..."
+notify-send "Polybar" "Polybar reloaded successfully"
+
