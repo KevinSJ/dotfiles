@@ -1,24 +1,7 @@
 require('pluginconfig/coc-config')
+require('commands')
+local M = require('utils')
 
-local vim = vim
-local api = vim.api
-local M = {}
-
-function M.map(mode, lhs, rhs, opts)
-  local options = {noremap = true, silent = true}
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-function M.mapBuf(buf, mode, lhs, rhs, opts)
-  local options = {noremap = true, silent = true}
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
-end
 
 -- Change leader key from \ to space.
 M.map('','<Space>','<leader>')
@@ -37,8 +20,10 @@ M.map('','<leader>e',':Tabularize /=<cr>')
 M.map('','<leader>c',':Tabularize /:<cr>')
 M.map('','<leader>es',':Tabularize /=\zs<cr>')
 M.map('','<leader>cs',':Tabularize /:\zs<cr>')
+M.map('','<Esc><Esc>',':q<cr>', {noremap = false, silent = true} )
 
 M.map('n','<leader>k',':lua show_documentation()<CR>')
+M.map('n','<leader>n',':lua new_scratch()<CR>')
 M.map('n','gd','<Plug>(coc-definition)',{noremap = false, silent = true})
 M.map('n','gy','<Plug>(coc-type-definition)',{noremap = false, silent = true})
 M.map('n','gi','<Plug>(coc-implementation)',{noremap = false, silent = true})
@@ -49,7 +34,7 @@ M.map('v','<C-r>','"hy:%s/<C-r>h//g<left><left>')
 
 M.map('c','w!!','%!sudo tee > /dev/null %' )
 
-
+M.map('t','<Esc>','<C-\\><C-n>' )
 
 for i = 1, 9 do
   local leader = '<Leader>' .. i
@@ -57,5 +42,3 @@ for i = 1, 9 do
   M.map('n', leader, tab)
 end
 
-
-return M
