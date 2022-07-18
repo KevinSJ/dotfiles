@@ -70,12 +70,17 @@ for p in ${AUTO_START[@]}; do
   pgrep -x $p > /dev/null || $p & disown
 done
 
+#pgrep -x picom > /dev/null || picom&
+#pgrep -x plank > /dev/null || plank&
+#pgrep -x dunst > /dev/null || dunst&
+#pgrep -x guake > /dev/null || guake&
+#pgrep -x caffeine > /dev/null || caffeine&
 
 pgrep -x fcitx > /dev/null || fcitx -u fcitx-light-ui&
 
 wal -i Pictures/bg.png
 
-$HOME/.config/polybar/launch.sh & disown
+$HOME/.config/polybar/launch.sh
 
 # Remap Caps key to control
 setxkbmap -option ctrl:nocaps
