@@ -55,6 +55,7 @@ autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
 map <Space> <leader>
 map <Leader>w :update<CR>
 map <Leader>q :qall<CR>
+map <silent><silent><Esc><Esc> :q<CR>
 map <Leader>gs :Gstatus<CR>
 "vim fzf config
 nnoremap <C-P> :GFiles --exclude-standard --cached --others<CR>
@@ -71,6 +72,7 @@ map <silent> <leader>8 :8tabn<cr>
 map <silent> <leader>9 :9tabn<cr>
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gx :call CocAction('jumpDefinition', 'split')<CR>
 nmap <silent> gD :call CocAction('jumpDefinition', 'drop')<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -103,6 +105,7 @@ augroup vimrcex
 
   " set syntax highlighting for specific file types
   autocmd bufread,bufnewfile *.md set filetype=markdown
+  autocmd bufread,bufnewfile *.{js,ts}.snap set filetype=json
   autocmd bufread,bufnewfile .{jscs,jshint,eslint}rc set filetype=json
   autocmd bufread,bufnewfile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
   autocmd bufread,bufnewfile gitconfig.local set filetype=gitconfig
@@ -114,6 +117,7 @@ augroup end
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+
 
 " Easy tab navigation
 nnoremap <C-Left> :tabprevious<CR>
@@ -170,6 +174,10 @@ map <leader>yt :ls<cr>
 
 " Buffers (runs the delete buffer command on all open buffers)
 map <leader>yd :bufdo bd<cr>
+
+"nmap <silent> <Esc><Esc> :q<cr>
+
+" Terminal mode, esc for exit to normal mode
 tnoremap <Esc> <C-\><C-n>
 
 " Make handling vertical/linear Vim windows easier
@@ -193,12 +201,6 @@ map <leader>sv :source ~/.vimrc<CR>
 map <silent> <Leader>h :History<CR>
 map <silent> <Leader>n :Ns<CR>
 map <silent> <Leader><space> :M<CR>
-" Commands {{{
-" jump to last cursor
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
 
 fun! StripTrailingWhitespace()
   " don't strip on these filetypes
@@ -218,6 +220,8 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 autocmd Filetype markdown setlocal spell wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
 autocmd FileType sh,cucumber,ruby,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 "
+"autocmd BufWinEnter terminal nmap <Esc><Esc> :bd!<cr>
+autocmd TermOpen * nnoremap <buffer> <Esc><Esc> :bd!<cr>
 
 " specify syntax highlighting for specific files
 autocmd Bufread,BufNewFile *.spv set filetype=php
@@ -237,9 +241,15 @@ autocmd BufWinLeave * call clearmatches()
 command! -nargs=0 Ns call Newscratch()
 fun! Newscratch()
   execute 'tabnew '
+  map <silent> <buffer> <Leader>ff :%!jq .<CR>
+  "execute 'map <silent> <buffer> <Leader>ff :set filetype=json|%!jq .<CR>'
+  nnoremap <silent> <buffer> ,ff :%!jq . <cr><bar>:setf json<bar>:redraw!
+  vmap <silent> <buffer> ,dc :!base64 -d <cr>
+  "execute 'vmap <silent> <buffer> <Leader>dc :!base64 -d <CR>'
   setlocal buftype=nofile
   setlocal bufhidden=hide
   setlocal noswapfile
+  setlocal wrap
 endfun
 
 command! -nargs=0 M call Maximize()
@@ -281,7 +291,7 @@ autocmd BufWinEnter * call SetSpellingColors()
 autocmd BufNewFile * call SetSpellingColors()
 autocmd InsertEnter * call SetSpellingColors()
 autocmd InsertLeave * call SetSpellingColors()
-autocmd BufWritePre *.ts :call CocAction('runCommand', 'tsserver.executeAutofix')
+autocmd BufWritePre *.{t,j}s :call CocAction('runCommand', 'tsserver.executeAutofix')
 " Change colourscheme when diffing
 fun! SetDiffColors()
   highlight DiffAdd    cterm=bold ctermfg=white ctermbg=DarkGreen
