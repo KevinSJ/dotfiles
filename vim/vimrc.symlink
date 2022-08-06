@@ -3,6 +3,8 @@ source ~/.config/nvim/plugin/plugins.vim
 let g:jsx_ext_required = 0
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = "floating"
+let g:lexima_enable_newline_rules = 0
+let g:lexima_enable_endwise_rules = 0
 " vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -119,6 +121,7 @@ nnoremap <C-Right> :tabnext<CR>
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 CocAction :call CocActionAsync('codeAction','')<CR>
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -136,8 +139,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " NORMAL mode Ctrl+y then , <C-y,>
 
 highlight clear SignColumn
-
-
 " Tabularize
 map <Leader>e :Tabularize /=<cr>
 map <Leader>c :Tabularize /:<cr>
@@ -153,19 +154,12 @@ map <Leader>cs :Tabularize /:\zs<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-"nmap <leader><tab> <plug>(fzf-maps-n)
-"xmap <leader><tab> <plug>(fzf-maps-x)
-"omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-"imap <c-x><c-k> <plug>(fzf-complete-word)
-"imap <c-x><c-f> <plug>(fzf-complete-path)
-"imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-"imap <c-x><c-l> <plug>(fzf-complete-line)
 map <leader>bn :r !git rev-parse --abbrev-ref HEAD<cr>A:
 
 " Command to use sudo when needed

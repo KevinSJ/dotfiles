@@ -4,7 +4,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'roman/golden-ratio'
 " Added 2021年04月01日
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'tpope/vim-eunuch'
+"Plug 'tpope/vim-eunuch'
 "Plug 'ervandew/supertab'
 Plug 'blarghmatey/split-expander'
 Plug 'farmergreg/vim-lastplace'
