@@ -2,14 +2,14 @@
   "npm.binPath": "yarn",
   "hover.target": "float",
   /* "coc.preferences.hoverTarget": "echo", */
-  "coc.preferences.formatOnInsertLeave": true,
   /* "coc.preferences.enableFloatHighlight": false, */
   "coc.preferences.jumpCommand": "vsplit",
   "coc.preferences.enableFloatHighlight": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",
-  "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.extensionUpdateCheck": "never",
   /* "coc.preferences.currentFunctionSymbolAutoUpdate": true, */
   "coc.preferences.rootPatterns": [
+    ".vscode",
     ".git",
     ".hg",
     ".projections.json",
@@ -22,6 +22,7 @@
   "suggest.timeout": 5000,
   "suggest.enablePreview": true,
   "suggest.floatEnable": true,
+  "tsserver.ignoreLocalTsserver": true,
   "suggest.detailField": "menu",
   "suggest.snippetIndicator": "*",
   "suggest.triggerCompletionWait": 100,
@@ -81,7 +82,7 @@
     "scss"
   ],
   "prettier.printWidth": 80,
-  "prettier.eslintIntegration": false,
+  "prettier.onlyUseLocalVersion": true,
   "prettier.semi": true,
   "prettier.singleQuote": true,
   "signature.target": "float",
@@ -199,6 +200,8 @@
   "snippets.priority": 3,
   "snippets.autoTrigger": false,
   "snippets.userSnippetsDirectory": "~/.config/nvim/Ultisnips",
+  "snippets.loadFromExtensions": false,
+  "snippets.textmateSnippetsRoots":[ "/Users/t829332/.config/nvim/snippets" ],
   "json.format.enable": true,
   "zi.enable": true,
   "zi.patterns": {
@@ -234,8 +237,8 @@
       "ignoredRootPaths": []
     }
   },
-  "snippets.textmateSnippetsRoots": [],
-  "snippets.extends": [{ "vue": "javascript" }],
+  "snippets.snipmate.author": "Kevin J",
+  "snippets.extends": { "vue": [ "javascript" ], "typescript": [ "javascript" ] },
   "html.filetypes": ["html", "handlebars", "htmldjango", "vue"],
   "vetur.useWorkspaceDependencies": true,
   "vetur.format.enable": true,
@@ -264,8 +267,6 @@
     "init.vim"
   ],
   "yaml.format.enable": true,
-  "coc-actions.hideCursor": true,
-  "coc-actions.useCursorLine": true,
   "sourcekit.commandPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
   "cSpell.userWords": ["Innei", "Typegoose", "consola"],
   "smartf.timeout": 5000,
