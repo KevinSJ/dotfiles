@@ -10,4 +10,4 @@ function disconnect(){
 
 xrandr | grep "HDMI1 connected" &> /dev/null && connect || disconnect
 
-/bin/bspc wm -r & disown
+/bin/bspc wm -r & disown && killall polybar
