@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-killall -q polybar
+#killall -q polybar
+# Terminate already running bar instances
+# If all your bars have ipc enabled, you can use
+polybar-msg cmd quit
 
 export BAT=$(ls -A1 /sys/class/power_supply|grep -E 'BAT')
 export AC=$(ls -A1 /sys/class/power_supply|grep -v 'BAT')
@@ -11,11 +14,12 @@ while pgrep -u $UID -x polybar > /dev/null; do sleep 1; done
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload top &
+    MONITOR=$m polybar top &
   done
 else
   polybar --reload top &
 fi
 
 
-echo "Bar launched..."
+notify-send "Polybar" "Polybar reloaded successfully"
+
