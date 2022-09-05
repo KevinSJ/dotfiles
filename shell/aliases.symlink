@@ -35,9 +35,6 @@ alias ggs='gs'
 # github PR master
 alias prstaging='hub pull-request -b staging --push -c'
 #alias prmaster=hub pull-request -b $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') --push -c
-alias prmaster='glab mr create -b master --wip -d "$(cat ~/.gitlab_mr_template)"'
-alias exclusiveTests='sed -i "s/describe/describe.only/"  $(find . -type f -name "*.spec.js")'
-alias disExclusiveTests='sed -i "s/\.only//g"  $(find . -type f -name "*.spec.js")'
 #alias gsmaster=git switch $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
 # Bundler
@@ -58,3 +55,5 @@ alias rc="NO_RENDERER=true bin/rails c"
 alias vimrc="vim ~/.vimrc"
 alias vimplugins="vim ~/.dotfiles/vim/vim.symlink/plugin/plugins.vim"
 alias zshrc="vim ~/.zshrc"
+
+# vim:ft=sh
