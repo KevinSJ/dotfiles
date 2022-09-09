@@ -1,6 +1,7 @@
 source ~/.config/nvim/plugin/plugins.vim
 :luafile ~/.config/nvim/lua/init.lua
-
+let g:lexima_enable_newline_rules = 0
+let g:lexima_enable_endwise_rules = 0
 " Ack (uses Ag behind the scenes)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -31,6 +32,8 @@ autocmd InsertLeave * match TechWordsToAvoid /\cobviously\|basically\|simply\|of
 command! -nargs=0 Ns call Newscratch()
 fun! Newscratch()
   execute 'tabnew '
+  nnoremap <buffer> <silent> ,ff :%!jq . <cr><bar>:setf json<bar>:redraw!
+  nnoremap <buffer> <silent> <leader>s :file note_ . strftime('%c') | set buftype= swapfile | w <cr>
   setlocal buftype=nofile
   setlocal bufhidden=hide
   setlocal noswapfile

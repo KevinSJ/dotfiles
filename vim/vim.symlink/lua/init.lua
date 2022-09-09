@@ -1,5 +1,5 @@
-require('plugins')
 require('pluginconfig')
+require('plugins')
 require('options')
 require('commands')
 require('settings')

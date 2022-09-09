@@ -25,7 +25,6 @@
   "suggest.detailField": "menu",
   "suggest.snippetIndicator": "*",
   "suggest.triggerCompletionWait": 100,
-  "suggest.echodocSupport": true,
   "suggest.completionItemKindLabels": {
     "class": "\uf0e8",
     "color": "\ue22b",
@@ -245,7 +244,7 @@
     }
   },
   "snippets.textmateSnippetsRoots": [],
-  "snippets.extends": [{ "vue": "javascript" }],
+  "snippets.extends": { "vue": "javascript" },
   "html.filetypes": ["html", "handlebars", "htmldjango", "vue"],
   "vetur.useWorkspaceDependencies": true,
   "vetur.format.enable": true,
