@@ -2,7 +2,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "all", -- one of 'all', 'language', or a list of languages
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = {}, -- list of language that will be disabled
+		disable = {'markdown'}, -- list of language that will be disabled
         additional_vim_regex_highlighting = false,
 	},
 	incremental_selection = {
@@ -19,18 +19,18 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 	refactor = {
-		highlight_definitions = { enable = false },
-		highlight_current_scope = { enable = false },
+		highlight_definitions = { enable = true },
+		highlight_current_scope = { enable = true },
 		smart_rename = {
 			enable = true,
 			keymaps = {
-				smart_rename = "Gr", -- mapping to rename reference under cursor
+				smart_rename = "<leader>r", -- mapping to rename reference under cursor
 			},
 		},
 		navigation = {
 			enable = true,
 			keymaps = {
-				goto_definition = "Gd", -- mapping to go to definition of symbol under cursor
+				goto_definition = "gnd", -- mapping to go to definition of symbol under cursor
 				list_definitions = "GD", -- mapping to list all definitions in current file
 			},
 		},

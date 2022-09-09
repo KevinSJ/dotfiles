@@ -13,7 +13,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'github/copilot.vim'
 " Added 15/03/2021
 Plug 'jlanzarotta/bufexplorer'
-"Plug 'roman/golden-ratio'
+Plug 'roman/golden-ratio'
 " Added 2021年04月01日
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 "Plug 'tpope/vim-eunuch'

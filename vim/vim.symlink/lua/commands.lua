@@ -96,8 +96,45 @@ function new_scratch()
     vim.opt_local.bufhidden = 'hide'
     vim.opt_local.swapfile = false
     M.mapBuf(vim.api.nvim_get_current_buf(), 'n', '<leader>s', ':file note_' .. os.time() ..'| set buftype= swapfile | w <cr>')
+    M.mapBuf(vim.api.nvim_get_current_buf(), 'n', ',ff', ':%!jq . <cr><bar>:setf json')
 end
 
+function node_execute(command)
+    local bnr = vim.fn.bufnr('%')
+    local ns_id = vim.api.nvim_create_namespace('demo')
+
+    local selected = (vim.fn.getline('.'))
+    local handle
+
+    if command == 'js' then
+        handle = io.popen("node -e '" .. selected .. "'")
+    end
+
+    if command == 'py' then
+        handle = io.popen("python -c '" .. selected .. "'")
+    end
+
+    if command == 'rb' then
+        handle = io.popen("ruby -c '" .. selected .. "'")
+    end
+
+    --local handle = io.popen("node -e '" .. selected .. "'")
+    local result = handle:read("*a")
+    result = result:gsub("%s+", "")
+
+    local col_num,line_num = unpack(vim.fn.getpos('v'))
+
+    local opts = {
+        id = 1,
+        virt_text = {{result, "IncSearch"}},
+        virt_text_pos = 'right_align',
+    }
+    vim.api.nvim_buf_set_extmark(bnr, ns_id, line_num -1, col_num, opts)
+    --vim.api.nvim_command('o')
+
+    --vim.cmd("normal o")
+    --vim.api.nvim_buf_set_lines(cur_buf, line_end + 1, line_end + 1, false, { result })
+end
 
 
 -- Always highlight column 80 so it's easier to see where
@@ -114,4 +151,12 @@ M.autocmd('TermOpen', 'nmap <buffer><silent> <Esc><Esc> :bd!<cr>', nil)
 M.autocmd('VimEnter', 'if !argc() | NERDTree | endif', nil)
 
 M.autocmd('CursorHold', 'silent call CocActionAsync(\'highlight\')')
+M.autocmd({'BufEnter'}, ':set filetype=markdown', {"*.md"})
 
+-- TODO:  <27-07-22, yourname> convert this to lua func --
+-- This help execute the js without leaving the buffer
+M.autocmd({'Filetype'}, 'nmap <buffer><silent> ,js :lua node_execute(\'js\')<cr>', {"markdown"})
+M.autocmd({'Filetype'}, 'nmap <buffer><silent> ,py :lua node_execute(\'py\')<cr>', {"markdown"})
+M.autocmd({'Filetype'}, 'nmap <buffer><silent> ,rb :lua node_execute(\'rb\')<cr>', {"markdown"})
+--M.autocmd({'Filetype'}, 'vmap <buffer><silent> ,py :put=system(\'python\', getline(\'.\')) <cr>', {"markdown"})
+M.autocmd({'BufEnter'}, ':!pandoc %:S --to plain -o %:S', {"*.docx", "*.doc"})
