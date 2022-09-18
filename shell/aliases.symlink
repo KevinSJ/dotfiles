@@ -12,6 +12,8 @@ alias ...='../..'
 alias -g G='| grep'
 alias -g M='| less'
 alias -g ONE="| awk '{ print \$1}'"
+alias -g F="|jq 'select (.level==\"error\")|.message.payload.stackTrace'"
+alias tsTo="export TS_NODE_TRANSPILE_ONLY=1"
 alias e="$EDITOR"
 alias v="$VISUAL"
 # because typing is hard
@@ -36,6 +38,7 @@ alias ggs='gs'
 alias prstaging='hub pull-request -b staging --push -c'
 #alias prmaster=hub pull-request -b $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') --push -c
 #alias gsmaster=git switch $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+alias ranger='TERM=xterm-256color ranger'
 
 # Bundler
 alias b="bundle"
@@ -56,4 +59,6 @@ alias vimrc="vim ~/.vimrc"
 alias vimplugins="vim ~/.dotfiles/vim/vim.symlink/plugin/plugins.vim"
 alias zshrc="vim ~/.zshrc"
 
-# vim:ft=sh
+alias start_docker="docker-machine start default && docker-machine env default && eval $(docker-machine env default)"
+
+# vim:set et sw=4 ts=4 tw=80 ft=sh:
