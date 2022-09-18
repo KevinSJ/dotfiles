@@ -71,8 +71,7 @@ export NVM_AUTOLOAD=1
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast yarn docker history-substring-search vi-mode osx terraform sudo tmux)
-plugins=(git yarn docker history-substring-search vi-mode osx terraform sudo tmux)
+plugins=(git yarn docker history-substring-search vi-mode macos sudo tmux zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.aliases
