@@ -20,6 +20,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_auto_type_info = 1
+let g:coc_disable_transparent_cursor = 1
 " let g:coc_filetype_map
 " Ack (uses Ag behind the scenes)
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -245,7 +246,7 @@ fun! Newscratch()
   execute 'tabnew '
   map <silent> <buffer> <Leader>ff :%!jq .<CR>
   "execute 'map <silent> <buffer> <Leader>ff :set filetype=json|%!jq .<CR>'
-  nnoremap <silent> <buffer> ,ff :%!jq . <cr><bar>:setf json<bar>:redraw!
+  nnoremap <silent> <buffer> ,ff :%!jq . <cr><bar>:setf json<bar>:redraw!<cr>
   vmap <silent> <buffer> ,dc :!base64 -d <cr>
   "execute 'vmap <silent> <buffer> <Leader>dc :!base64 -d <CR>'
   setlocal buftype=nofile
