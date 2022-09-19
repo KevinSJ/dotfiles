@@ -72,6 +72,7 @@ export NVM_AUTOLOAD=1
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(gitfast yarn docker history-substring-search vi-mode osx terraform sudo tmux)
+plugins=(git yarn docker history-substring-search vi-mode osx terraform sudo tmux)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.aliases
