@@ -61,6 +61,14 @@ require'treesitter-context'.setup{
             'class',
             'function',
             'method',
+            'for',
+            'while',
+            'if',
+            'switch',
+            'case',
+        },
+        json = {
+            'pair',
         },
         terraform = {
             'block',
