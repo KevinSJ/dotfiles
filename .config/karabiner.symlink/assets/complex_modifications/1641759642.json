@@ -1,0 +1,79 @@
+{
+  "title": "Logitech G604",
+  "rules": [
+    {
+      "description": "Middle mouse button to mission control",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "product_id": 45092,
+                  "vendor_id": 1133,
+                  "is_keyboard": true,
+                  "is_pointing_device": true
+                }
+              ]
+            }
+          ],
+          "type": "basic",
+          "from": { "pointing_button": "button3" },
+          "to": [{ "key_code": "mission_control" }]
+        }
+      ]
+    },
+    {
+      "description": "G5 button to right arrow",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "product_id": 45092,
+                  "vendor_id": 1133,
+                  "is_pointing_device": true
+                }
+              ]
+            }
+          ],
+          "type": "basic",
+          "from": {
+            "pointing_button": "button5",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [{ "key_code": "right_arrow", "modifiers":[ "ctrl" ] }]
+        }
+      ]
+    },
+    {
+      "description": "G4 button to left arrow",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "product_id": 45092,
+                  "vendor_id": 1133,
+                  "is_pointing_device": true
+                }
+              ]
+            }
+          ],
+          "type": "basic",
+          "from": {
+            "pointing_button": "button4",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [{ "key_code": "left_arrow", "modifiers":[ "ctrl" ] }]
+        }
+      ]
+    }
+  ]
+}
+
