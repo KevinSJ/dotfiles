@@ -1,1 +1,1 @@
-fortune -e chinese ~/.fortunes|cowsay -f dragon|lolcat
+fortune -e ~/.fortunes|cowsay -f dragon|lolcat
