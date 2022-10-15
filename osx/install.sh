@@ -159,7 +159,7 @@ then
   sudo pmset -c sleep 0
 
   # Set machine sleep to 5 minutes on battery
-  sudo pmset -b sleep 5
+  sudo pmset -b sleep 25
 
   # Set standby delay to 24 hours (default is 1 hour)
   sudo pmset -a standbydelay 86400
