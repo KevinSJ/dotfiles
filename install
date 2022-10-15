@@ -152,7 +152,7 @@ then
 fi
 
 # find the installers and run them iteratively
-for installer in $(find . -name "*install.sh"); do
+for installer in $(find . -name "*install.sh" -depth 2); do
   sh -c "${installer}"
 done
 
