@@ -2,8 +2,29 @@
 
 # Inspired by: http://mths.be/osx
 
-if [ "$(uname -s)" == "Darwin" ]
-then
+user () {
+  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+}
+
+
+osxSetup () {
+  if [ "$(uname -s)" == "Darwin" ]
+  then
+    # Ask for confirmation before starting to act on system preferences
+    user "I'm about to act on your MacOS system preferences, this is potentially dangerous, do you want to continue? \n\
+      [n]o, [y]es"
+
+    read -n 1 action
+    case "$action" in
+      n )
+        # don't proceed if n
+        return ;;
+      * )
+        ;;
+    esac
+
+
+
   # Close any open System Preferences panes, to prevent them from overriding
   # settings we’re about to change
   osascript -e 'tell application "System Preferences" to quit'
@@ -420,45 +441,45 @@ then
 
     tell application "Terminal"
 
-      local allOpenedWindows
-      local initialOpenedWindows
-      local windowID
-      set themeName to "Solarized Dark xterm-256color"
+    local allOpenedWindows
+    local initialOpenedWindows
+    local windowID
+    set themeName to "Solarized Dark xterm-256color"
 
-      (* Store the IDs of all the open terminal windows. *)
-      set initialOpenedWindows to id of every window
+    (* Store the IDs of all the open terminal windows. *)
+    set initialOpenedWindows to id of every window
 
-      (* Open the custom theme so that it gets added to the list
-         of available terminal themes (note: this will open two
-         additional terminal windows). *)
-       do shell script "open '$HOME/init/" & themeName & ".terminal'"
+    (* Open the custom theme so that it gets added to the list
+    of available terminal themes (note: this will open two
+    additional terminal windows). *)
+  do shell script "open '$HOME/init/" & themeName & ".terminal'"
 
-      (* Wait a little bit to ensure that the custom theme is added. *)
-      delay 1
+    (* Wait a little bit to ensure that the custom theme is added. *)
+    delay 1
 
-      (* Set the custom theme as the default terminal theme. *)
-      set default settings to settings set themeName
+    (* Set the custom theme as the default terminal theme. *)
+    set default settings to settings set themeName
 
-      (* Get the IDs of all the currently opened terminal windows. *)
-      set allOpenedWindows to id of every window
+    (* Get the IDs of all the currently opened terminal windows. *)
+    set allOpenedWindows to id of every window
 
-      repeat with windowID in allOpenedWindows
+    repeat with windowID in allOpenedWindows
 
-        (* Close the additional windows that were opened in order
-           to add the custom theme to the list of terminal themes. *)
-        if initialOpenedWindows does not contain windowID then
-          close (every window whose id is windowID)
+    (* Close the additional windows that were opened in order
+    to add the custom theme to the list of terminal themes. *)
+    if initialOpenedWindows does not contain windowID then
+      close (every window whose id is windowID)
 
-        (* Change the theme for the initial opened terminal windows
-           to remove the need to close them in order for the custom
-           theme to be applied. *)
-         else
-          set current settings of tabs of (every window whose id is windowID) to settings set themeName
-        end if
+      (* Change the theme for the initial opened terminal windows
+      to remove the need to close them in order for the custom
+      theme to be applied. *)
+    else
+      set current settings of tabs of (every window whose id is windowID) to settings set themeName
+    end if
 
-      end repeat
+  end repeat
 
-    end tell
+end tell
 
 EOD
 
@@ -669,34 +690,39 @@ EOD
         "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
         "/System/Library/CoreServices/Menu Extras/Volume.menu" \
         "/System/Library/CoreServices/Menu Extras/User.menu";
-    done
-    defaults write com.apple.systemuiserver menuExtras -array \
-      "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-      "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-      "/System/Library/CoreServices/Menu Extras/Battery.menu" \
-      "/System/Library/CoreServices/Menu Extras/Clock.menu" \
-      "/System/Library/CoreServices/Menu Extras/User.menu" \
-      "/System/Library/CoreServices/Menu Extras/Volume.menu";
+      done
+      defaults write com.apple.systemuiserver menuExtras -array \
+        "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+        "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+        "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+        "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+        "/System/Library/CoreServices/Menu Extras/User.menu" \
+        "/System/Library/CoreServices/Menu Extras/Volume.menu";
 
-    for app in "Activity Monitor" \
-      "Address Book" \
-      "Calendar" \
-      "cfprefsd" \
-      "Contacts" \
-      "Dock" \
-      "Finder" \
-      "Google Chrome" \
-      "Mail" \
-      "Messages" \
-      "Opera" \
-      "Photos" \
-      "Safari" \
-      "SystemUIServer" \
-      "Terminal" \
-      "Transmission" \
-      "Tweetbot" \
-      "Twitter" \
-      "iCal"; do
-          killall "${app}" &> /dev/null
-        done
-        fi
+      for app in "Activity Monitor" \
+        "Address Book" \
+        "Calendar" \
+        "cfprefsd" \
+        "Contacts" \
+        "Dock" \
+        "Finder" \
+        "Google Chrome" \
+        "Mail" \
+        "Messages" \
+        "Opera" \
+        "Photos" \
+        "Safari" \
+        "SystemUIServer" \
+        "Terminal" \
+        "Transmission" \
+        "Tweetbot" \
+        "Twitter" \
+        "iCal"; do
+              killall "${app}" &> /dev/null
+            done
+    fi
+  }
+
+
+
+osxSetup;
