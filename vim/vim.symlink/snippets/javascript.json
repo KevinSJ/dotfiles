@@ -541,5 +541,15 @@
     "body": "console.log(util.inspect($0, false, null, true))",
     "description": "Log the object with inspect",
     "prefix": "ilog"
+  },
+  "mswGet": {
+    "body": "rest.get($1, async (_req, res, ctx) => { return res(ctx.status(200), ctx.json($2)); })",
+    "description": "MSW get handler",
+    "prefix": "mswG"
+  },
+  "mswPost": {
+    "body": "rest.post($1, async (_req, res, ctx) => { return res(ctx.status(200), ctx.json($2)); })",
+    "description": "MSW post handler",
+    "prefix": "mswP"
   }
 }
