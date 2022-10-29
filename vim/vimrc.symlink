@@ -244,9 +244,13 @@ autocmd BufWinLeave * call clearmatches()
 command! -nargs=0 Ns call Newscratch()
 fun! Newscratch()
   execute 'tabnew '
-  map <silent> <buffer> <Leader>ff :%!jq .<CR>
+  "map <silent> <buffer> <Leader>ff :%!jq .<CR>
   "execute 'map <silent> <buffer> <Leader>ff :set filetype=json|%!jq .<CR>'
-  nnoremap <silent> <buffer> ,ff :%!jq . <cr><bar>:setf json<bar>:redraw!<cr>
+  nnoremap <silent> <buffer> <Leader>ff :%!jq . <cr><bar>:setf json<bar> set foldmethod=expr<bar>set foldexpr=nvim_treesitter#foldexpr()<bar>:redraw!<bar>:foldopen<cr>
+  nnoremap <silent> <buffer> ,ff :%!jq . <cr><bar>:setf json<bar> set foldmethod=expr<bar>set foldexpr=nvim_treesitter#foldexpr()<bar>:redraw!<bar>:foldopen<cr>
+  nnoremap <silent> <buffer> ,xm :%!xmllint --format - <cr><bar>:setf html<bar>:set foldmethod=expr<bar>set foldexpr=nvim_treesitter#foldexpr()<bar>:redraw!<cr>
+  nnoremap <buffer> <silent> ,s :execute(':file scratch_') .. localtime() .. (&ft != '' ? '.' .. &ft : '')<cr><bar>:set buftype= swapfile<bar>:w<cr>
+  nnoremap <buffer> <silent> ,n :execute(':file ~/notes/note_') .. localtime() .. (&ft != '' ? '.' .. &ft : '')<cr><bar>:set buftype= swapfile<bar>:w<cr>
   vmap <silent> <buffer> ,dc :!base64 -d <cr>
   "execute 'vmap <silent> <buffer> <Leader>dc :!base64 -d <CR>'
   setlocal buftype=nofile
