@@ -60,6 +60,7 @@ bspc rule -a firefox desktop='^1' follow=on
 
 pkill xscreensaver
 xscreensaver -no-splash &
+nm-applet &
 
 #blueman-applet &
 
@@ -73,7 +74,7 @@ done
 
 pgrep -x fcitx > /dev/null || fcitx -u fcitx-light-ui&
 
-wal -i Pictures/bg.png
+wal -i wallpapers/pixels-d.webp
 
 $HOME/.config/polybar/launch.sh & disown
 
