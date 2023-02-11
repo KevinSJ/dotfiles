@@ -59,6 +59,6 @@ alias vimrc="vim ~/.vimrc"
 alias vimplugins="vim ~/.dotfiles/vim/vim.symlink/plugin/plugins.vim"
 alias zshrc="vim ~/.zshrc"
 
-alias start_docker="docker-machine start default && docker-machine env default && eval $(docker-machine env default)"
+#alias start_docker="$(which docker-machine) && docker-machine start default && docker-machine env default && eval $(docker-machine env default)"
 
 # vim:set et sw=4 ts=4 tw=80 ft=sh:
