@@ -1,6 +1,9 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
+export ZK_NOTEBOOK_DIR=$HOME/notes
+export ANDROID_HOME=$HOME/Library/Android/sdk
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -71,7 +74,7 @@ export NVM_AUTOLOAD=1
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn docker history-substring-search vi-mode macos sudo tmux zsh-autosuggestions)
+plugins=(git yarn history-substring-search vi-mode macos sudo zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.aliases
@@ -99,7 +102,7 @@ fi
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
-source <(/usr/bin/starship init zsh --print-full-init)
+source <($(which starship) init zsh --print-full-init)
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -109,10 +112,11 @@ source <(/usr/bin/starship init zsh --print-full-init)
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
+[ -d /opt/homebrew/etc/bash_completion.d ] && source /opt/homebrew/etc/bash_completion.d/*
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias luamake=/home/kevin/lua-language-server/3rd/luamake/luamake
 
+#alias luamake=/home/kevin/lua-language-server/3rd/luamake/luamake
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
