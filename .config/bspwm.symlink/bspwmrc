@@ -48,11 +48,18 @@ bspc rule -a Gimp desktop='^4' state=floating follow=on
 bspc rule -a org.remmina.Remmina desktop='^7' state=floating follow=on
 bspc rule -a telegram-desktop desktop='^3' state=floating follow=on
 bspc rule -a Chromium desktop='^1' follow=on
-bspc rule -a atom desktop='^4' follow=on
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a firefox desktop='^1' follow=on
+# To fix weried and annoying bug with jetbrain products
+bspc rule -a android-studio state=floating border=off follow=on
+# To fix weried and annoying bug with jetbrain products * 2
+bspc rule -a intellij state=floating border=off follow=on
+
+
+pkill wmname
+wmname LG3D &
 
 #remmina -i &
 #pkill keepassxc
