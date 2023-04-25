@@ -11,7 +11,8 @@ super + e
     pcmanfm-qt
 # program launcher
 alt + space
-    rofi -show drun -display-drun "Run" -show-icons
+    rofi -show combi -combi-modes "window,drun,ssh,zoom:$HOME/.config/rofi/zoom/launcher.sh" -modes combi -display-drun "" -show-icons
+    #rofi -show drun -display-drun "Run" -show-icons
 
 # make sxhkd reload its configuration files:
 super + Escape
