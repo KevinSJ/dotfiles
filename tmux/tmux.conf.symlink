@@ -76,7 +76,8 @@ set-option -g base-index 1
 set-option -g bell-action any
 # use 256 colors
 # set -g default-terminal 'tmux-256color-italic'
-set-option -ga terminal-overrides ",xterm-256color-italic:Tc"
+set-option -sa terminal-overrides ',XXX:RGB'
+#set-option -ga terminal-overrides ",xterm-256color-italic:Tc"
 #set-option -g default-command "reattach-to-user-namespace -l zsh -l"
 set-option -g default-shell /bin/zsh
 set-option -g default-size 80x24
@@ -102,7 +103,7 @@ set-option -g silence-action other
 set-option -g status on
 # Set ability to capture on start and restore on exit window data when running an application
 setw -g alternate-screen on
-set -g clock-mode-style 12
+set -g clock-mode-style 24
 # Renumber windows after removing one
 set -g renumber-windows on
 set -g mouse on
