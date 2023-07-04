@@ -1,6 +1,7 @@
 source ~/.config/nvim/plugin/plugins.vim
 
 :luafile ~/.config/nvim/lua/treesitter.lua
+:luafile ~/.config/nvim/lua/remaps.lua
 
 let g:jsx_ext_required = 0
 let g:echodoc#enable_at_startup = 1
@@ -60,6 +61,9 @@ map <Leader>w :update<CR>
 map <Leader>q :qall<CR>
 map <silent><silent><Esc><Esc> :q<CR>
 map <Leader>gs :Gstatus<CR>
+
+map <silent> <leader>fc :let @+=@%<cr>
+"
 "vim fzf config
 nnoremap <C-P> :GFiles --exclude-standard --cached --others<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -74,12 +78,6 @@ map <silent> <leader>7 :7tabn<cr>
 map <silent> <leader>8 :8tabn<cr>
 map <silent> <leader>9 :9tabn<cr>
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gx :call CocAction('jumpDefinition', 'split')<CR>
-nmap <silent> gD :call CocAction('jumpDefinition', 'drop')<CR>
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent><leader>k :call <SID>show_documentation()<CR>
 " Find/replace
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
