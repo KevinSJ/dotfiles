@@ -1,6 +1,6 @@
 # Inserts a blank line between shell prompts
 add_newline = true
-command_timeout = 1200
+command_timeout = 25000
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
@@ -29,7 +29,7 @@ renamed = "👅"
 deleted = "🗑"
 
 [azure]
-disabled = true
+disabled = false
 format = "on [$symbol($subscription)]($style) "
 symbol = "ﴃ "
 style = "blue bold"
