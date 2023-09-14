@@ -73,7 +73,7 @@ nm-applet &
 
 /usr/bin/lxqt-policykit-agent &
 
-AUTO_START=(caffeine picom plank dunst guake keepassxc blueman-applet)
+AUTO_START=(caffeine picom plank dunst guake keepassxc blueman-applet redshift)
 for p in ${AUTO_START[@]}; do
   pgrep -x $p > /dev/null || $p & disown
 done
