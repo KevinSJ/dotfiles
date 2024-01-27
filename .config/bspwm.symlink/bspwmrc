@@ -1,29 +1,30 @@
-#! /bin/bash
+#!/bin/bash
+
 xgetmons() {
     xrandr | grep \ connected | awk {'print $1'}
 }
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-DISP_NUM=`xrandr -d :0 -q | grep ' connected' | wc -l`
-RESOLUTION=`xrandr | grep \* | cut -d' ' -f4`
+DISP_NUM=$(xrandr -d :0 -q | grep -c ' connected')
+RESOLUTION=$(xrandr | grep ".*" | cut -d' ' -f4)
 INTERNAL=$(xgetmons | grep eDP)
 EXTERNAL=$(xgetmons | grep -v eDP)
 
-if [ $DISP_NUM -eq 2 ];
+if [ "$DISP_NUM" -eq 2 ];
 then
         dunstify "Using dual monitor setup"
-        bspc monitor $INTERNAL -d web code chat
+        bspc monitor "$INTERNAL" -d web code chat
         for mons in $EXTERNAL ; do
-          bspc monitor $EXTERNAL -d video game torrent
+          bspc monitor "$mons" -d video game torrent
         done
 else
-        if [ $RESOLUTION = '1080x1920' ];
+        if [ "$RESOLUTION" = '1080x1920' ];
         then
           bspc monitor -d web code server
         else
           dunstify "Using single monitor setup"
-          bspc monitor $INTERNAL -d web code chat video game torrent server
+          bspc monitor "$INTERNAL" -d web code chat video game torrent server
         fi
 fi
 
@@ -38,14 +39,16 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 #Focusing behavior
+#
 bspc config focus_follows_pointer     true
+#bspc config click_to_focus true
 
 #Multihead behavior
 bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 
 bspc rule -a Gimp desktop='^4' state=floating follow=on
-bspc rule -a org.remmina.Remmina desktop='^7' state=floating follow=on
+#bspc rule -a org.remmina.Remmina desktop='^7' state=floating follow=on
 bspc rule -a telegram-desktop desktop='^3' state=floating follow=on
 bspc rule -a Chromium desktop='^1' follow=on
 bspc rule -a mplayer2 state=floating
@@ -67,26 +70,22 @@ wmname LG3D &
 
 pkill xscreensaver
 xscreensaver -no-splash &
-nm-applet &
 
 #blueman-applet &
 
-/usr/bin/lxqt-policykit-agent &
-
-AUTO_START=(caffeine picom plank dunst guake keepassxc blueman-applet redshift)
-for p in ${AUTO_START[@]}; do
-  pgrep -x $p > /dev/null || $p & disown
+AUTO_START=(caffeine picom plank dunst guake keepassxc blueman-applet redshift lxqt-policykit-agent nm-applet)
+for p in "${AUTO_START[@]}"; do
+  pgrep -x "$p" > /dev/null || $p & disown
 done
 
+pgrep -x fcitx > /dev/null || fcitx -u fcitx-light-ui &
 
-pgrep -x fcitx > /dev/null || fcitx -u fcitx-light-ui&
+wal -i wallpapers/awesome.png
 
-wal -i wallpapers/pixels-d.webp
-
-$HOME/.config/polybar/launch.sh & disown
+"$HOME"/.config/polybar/launch.sh & disown
 
 # Remap Caps key to control
-setxkbmap -option ctrl:nocaps
+#setxkbmap -option ctrl:nocaps
 
 systemd-detect-virt 1> /dev/null
 
