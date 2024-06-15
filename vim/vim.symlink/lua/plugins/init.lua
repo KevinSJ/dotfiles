@@ -20,6 +20,12 @@ return require('packer').startup(function(use)
       "kyazdani42/nvim-web-devicons",
    }
 
+   --[[
+      [use {
+      [    "fatih/vim-go",
+      [}
+      ]]
+
    use {
       "nvim-treesitter/nvim-treesitter",
       event = "VimEnter",
