@@ -1,13 +1,13 @@
 {
-  "npm.binPath": "yarn",
+  "npm.binPath": "pnpm",
   "hover.target": "float",
   /* "coc.preferences.hoverTarget": "echo", */
   "coc.preferences.formatOnInsertLeave": true,
   /* "coc.preferences.enableFloatHighlight": false, */
   "coc.preferences.jumpCommand": "vsplit",
   "coc.preferences.enableFloatHighlight": true,
-  "coc.preferences.snippetStatusText": "Ⓢ ",
   "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.snippetStatusText": "Ⓢ ",
   /* "coc.preferences.currentFunctionSymbolAutoUpdate": true, */
   "coc.preferences.rootPatterns": [
     ".git",
@@ -200,9 +200,9 @@
   "snippets.userSnippetsDirectory": "~/.config/nvim/Ultisnips",
   "json.format.enable": true,
   "languageserver": {
-    "lua":{
-      "command": "/home/kevin/lua-language-server/bin/Linux/lua-language-server",
-      "args": ["-E", "/home/kevin/lua-language-server/bin/Linux/main.lua"],
+    "lua": {
+      "command": "/usr/bin/lua-language-server/bin/Linux/lua-language-server",
+      "args": ["-E", "/usr/bin/lua-language-server/bin/Linux/main.lua"],
       "filetypes": ["lua"],
       "rootPatterns": [".git/"],
       "settings": {
@@ -278,6 +278,17 @@
   "sourcekit.commandPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
   "cSpell.userWords": ["Innei", "Typegoose", "consola"],
   "smartf.timeout": 5000,
-  "java.format.settings.url": "/home/ksjiang/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd"
+  "java.format.settings.url": "/home/kevin/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.1/clangd_15.0.1/bin/clangd",
+  "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk",
+  "java.import.gradle.java.home": "/usr/lib/jvm/java-17-openjdk",
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable",
+  "java.imports.gradle.wrapper.checksums": [
+    {
+      "sha256": "e2b82129ab64751fd40437007bd2f7f2afb3c6e41a9198e628650b22d5824a14",
+      "allowed": false
+    }
+  ],
+  "snippets.ultisnips.pythonPrompt": false,
+  "svelte.enable-ts-plugin": true
 }

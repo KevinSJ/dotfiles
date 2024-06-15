@@ -20,7 +20,7 @@ autocmd FileType sh,cucumber,ruby,zsh,vim setlocal shiftwidth=2 tabstop=2 expand
 
 " specify syntax highlighting for specific files
 autocmd Bufread,BufNewFile *.spv set filetype=php
-
+nmap <leader>lc  <Plug>(coc-codelens-action)
 
 " Highlight words to avoid in tech writing
 " http://css-tricks.com/words-avoid-educational-writing/
@@ -28,6 +28,7 @@ match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|jus
 autocmd BufWinEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
 autocmd InsertEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
 autocmd InsertLeave * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
+command! -nargs=0 CocAction :call CocActionAsync('codeAction','')<CR>
 
 command! -nargs=0 Ns call Newscratch()
 fun! Newscratch()
