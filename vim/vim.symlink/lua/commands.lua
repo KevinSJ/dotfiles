@@ -91,12 +91,21 @@ vim.cmd[[
 
 function new_scratch()
     vim.api.nvim_command('tabnew')
+    --[[
+    [Parameters:
+    [{listed} Sets 'buflisted'
+    [{scratch} Creates a "throwaway" scratch-buffer for temporary work (always 'nomodified'). Also sets 'nomodeline' on the buffer.
+    ]]
     vim.api.nvim_create_buf(false, true)
     vim.opt_local.buftype = 'nofile'
     vim.opt_local.bufhidden = 'hide'
     vim.opt_local.swapfile = false
     M.mapBuf(vim.api.nvim_get_current_buf(), 'n', '<leader>s', ':file note_' .. os.time() ..'| set buftype= swapfile | w <cr>')
     M.mapBuf(vim.api.nvim_get_current_buf(), 'n', ',ff', ':%!jq . <cr><bar>:setf json')
+end
+
+function preview()
+
 end
 
 function node_execute(command)
@@ -159,4 +168,8 @@ M.autocmd({'Filetype'}, 'nmap <buffer><silent> ,js :lua node_execute(\'js\')<cr>
 M.autocmd({'Filetype'}, 'nmap <buffer><silent> ,py :lua node_execute(\'py\')<cr>', {"markdown"})
 M.autocmd({'Filetype'}, 'nmap <buffer><silent> ,rb :lua node_execute(\'rb\')<cr>', {"markdown"})
 --M.autocmd({'Filetype'}, 'vmap <buffer><silent> ,py :put=system(\'python\', getline(\'.\')) <cr>', {"markdown"})
-M.autocmd({'BufEnter'}, ':!pandoc %:S --to plain -o %:S', {"*.docx", "*.doc"})
+--M.autocmd({'BufEnter'}, ':!pandoc %:S --to plain -o %:S', {"*.docx", "*.doc"})
+M.autocmd({'BufEnter'}, ':!pandoc #:S --to plain -o -', {"*.docx", "*.doc"})
+--M.autocmd({'Filetype'}, 'nmap <buffer><silent> ,v :call Newscratch() | r !pdftotext -eol unix #:S -', {"*.pdf"})
+M.autocmd({'BufEnter'}, ':vnew |r !pdftotext -eol unix #:S -', {"*.pdf"})
+--M.autocmd({'BufEnter'}, ':vnew |r !pdftotext -eol unix #:S -', {"*.pdf"})

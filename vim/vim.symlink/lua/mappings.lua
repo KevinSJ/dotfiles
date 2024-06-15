@@ -14,7 +14,9 @@ M.map('','<leader>`','<C-W>v') -- Vertical split
 M.map('','<leader>]','<C-W>s') -- Horizontal split
 M.map('','<leader>[','<C-W>v') -- Vertical split
 M.map('','<leader>=','<C-W>=') -- Horizontal split
+
 M.map('','<leader><space>',':wincmd _ <cr> :wincmd | <cr>') -- maximize width and height
+M.map('','<leader>f',':set foldmethod=expr <cr><bar>:set foldexpr=nvim_treesitter#foldexpr()<cr>')
 M.map('','<leader>yt',':ls<cr>')
 M.map('','<leader>e',':Tabularize /=<cr>')
 M.map('','<leader>c',':Tabularize /:<cr>')
@@ -35,6 +37,16 @@ M.map('v','<C-r>','"hy:%s/<C-r>h//g<left><left>')
 M.map('c','w!!','%!sudo tee > /dev/null %' )
 
 M.map('t','<Esc>','<C-\\><C-n>' )
+
+M.map("v", "J", ":m '>+1<CR>gv=gv")
+M.map("v", "K", ":m '<-2<CR>gv=gv")
+M.map("n", "J", "mzJ`z")
+M.map("n", "<C-d>", "<C-d>zz")
+M.map("n", "<C-u>", "<C-u>zz")
+M.map("n", "n", "nzzzv")
+M.map("n", "N", "Nzzzv")
+-- greatest remap ever
+M.map("x", "<leader>p", [["_dP]])
 
 for i = 1, 9 do
   local leader = '<Leader>' .. i
