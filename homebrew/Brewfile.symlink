@@ -1,100 +1,289 @@
 tap "buo/cask-upgrade"
+tap "cfergeau/crc"
+tap "daveshanley/vacuum"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "hotchemi/tap"
-brew "aws-iam-authenticator"
+tap "nikitabobko/tap"
+tap "saulpw/vd"
+# New file format for still image compression
+brew "jpeg-xl"
+# Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
+# Shell extension to jump to frequently used directories
+brew "autojump"
+# Use AWS IAM credentials to authenticate to Kubernetes
+brew "aws-iam-authenticator"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Microsoft Azure CLI 2.0
 brew "azure-cli"
-brew "node"
-brew "bash-language-server"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Get/set bluetooth power and discoverable state
 brew "blueutil"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c@76"
+# Collection of portable C++ source libraries
+brew "boost"
+# Dependency manager for Cocoa projects
 brew "cocoapods"
+# Linux virtual machines
+brew "lima"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Apjanke's fork of the classic cowsay project
 brew "cowsay"
+# Command-line csv viewer
+brew "csvlens"
+# Load/unload environment variables based on $PWD
 brew "direnv"
+# Tool for exploring each layer in a docker image
+brew "dive"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Isolated development environments using Docker
+brew "docker-compose"
+# Create Docker hosts locally and on cloud providers
 brew "docker-machine"
+# Collection of reusable C++ library artifacts developed at Facebook
 brew "folly"
+# C++14 implementation of the TLS-1.3 standard
 brew "fizz"
+# Modular, composable client/server abstractions framework
 brew "wangle"
+# Facebook's branch of Apache Thrift, including a new C++ server
 brew "fbthrift"
+# Thrift functions for querying information from a service
 brew "fb303"
+# Shared library for Watchman and Eden projects
+brew "edencommon"
+# Validating, recursive, caching DNS resolver
 brew "unbound"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Image processing and image analysis library
+brew "leptonica"
+# Framework for layout and rendering of i18n text
+brew "pango"
+# OCR (Optical Character Recognition) engine
+brew "tesseract"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Infamous electronic fortune-cookie generator
 brew "fortune"
+# GNU compiler collection
 brew "gcc"
+# GitHub command-line tool
 brew "gh"
+# Distributed revision control system
 brew "git"
+# AVH edition of git-flow
 brew "git-flow-avh"
+# GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Command-line Golang template processor
 brew "gomplate"
+# Language server for the Go language
 brew "gopls"
+# GitHub Markdown previewer
 brew "grip"
+# Kubernetes package manager
 brew "helm"
+# HTTP load generator, ApacheBench (ab) replacement
 brew "hey"
+# User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
+# Add GitHub support to git on the command-line
 brew "hub"
+# Run and Test HTTP Requests with plain text and curl
+brew "hurl"
+# Get events and tasks from the macOS calendar database
 brew "ical-buddy"
+# Library to communicate with iOS devices natively
 brew "libimobiledevice"
+# Tool for managing apps on iOS devices
 brew "ideviceinstaller"
+# DevTools proxy for iOS devices
 brew "ios-webkit-debug-proxy"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Kubernetes command-line interface
 brew "kubernetes-cli"
+# Lazier way to manage everything docker
 brew "lazydocker"
+# Simple terminal UI for git commands
 brew "lazygit"
+# Rainbows and unicorns in your console!
 brew "lolcat"
+# Java-based project management
+brew "maven"
+# Like sed, awk, cut, join & sort for name-indexed data such as CSV
+brew "miller"
+# Run a Kubernetes cluster locally
 brew "minikube"
-brew "mitmproxy"
+# Intercept, modify, replay, save HTTP/S traffic
+brew "mitmproxy", link: false
+# QUIC transport protocol implementation
+brew "mvfst"
+# Text-based UI library
 brew "ncurses"
-brew "neofetch"
-brew "neovim"
-brew "nvm"
-brew "openjdk@8"
+# Swiss-army knife of markup format conversion
 brew "pandoc"
-brew "pyenv"
-brew "ranger"
-brew "reattach-to-user-namespace"
-brew "rename"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Command-line and local web note-taking, bookmarking, and archiving
+brew "nb"
+# NCurses Disk Usage
+brew "ncdu"
+# Fast, highly customisable system info script
+brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim", args: ["HEAD"]
+# Manage multiple Node.js versions
+brew "nvm"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
+# Development kit for the Java programming language
+brew "openjdk@11"
+# Generate clients, server & docs from an OpenAPI spec (v2, v3)
+brew "openapi-generator"
+# OpenShift command-line interface tools
+brew "openshift-cli"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
+# Fast, disk space efficient package manager
+brew "pnpm"
+# Tool for managing OCI containers and pods
+brew "podman", restart_service: true
+# Terminal slideshow tool
+brew "presenterm"
+# Python version management
+brew "pyenv"
+# File browser
+brew "ranger"
+# Reattach process (e.g., tmux) to background
+brew "reattach-to-user-namespace"
+# Perl-powered file rename script with many helpful built-ins
+brew "rename"
+# Fast and accurate code counter with complexity and COCOMO estimates
 brew "scc"
+# Display and control your Android device
+brew "scrcpy"
+# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Work with remote images registries
+brew "skopeo"
+# Monitors sleep, wakeup, and idleness of a Mac
 brew "sleepwatcher", restart_service: true
+# Terminal based presentation tool
+brew "slides"
+# SMART hard drive monitoring
+brew "smartmontools"
+# Cross-shell prompt for astronauts
 brew "starship"
+# Change macOS audio source from the command-line
 brew "switchaudio-osx"
+# User interface to the TELNET protocol
+brew "telnet"
+# Terraform version manager inspired by rbenv
 brew "tfenv"
+# Simplified and community-driven man pages
 brew "tldr"
+# Instant terminal sharing
 brew "tmate"
+# Terminal multiplexer
 brew "tmux"
+# Manage complex tmux sessions easily
 brew "tmuxinator"
+# Minimal, todo.txt-focused editor
+brew "todo-txt"
+# Vi 'workalike' with many additional features
 brew "vim"
+# Executes a program periodically, showing output fullscreen
 brew "watch"
-brew "watchman"
+# Internet file retriever
 brew "wget"
+# Personal information dashboard for your terminal
+brew "wtfutil"
+# XML command-line utilities
 brew "xmlstarlet"
-brew "yarn"
+# Tool for managing your YubiKey configuration
+brew "ykman"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Plain text note-taking assistant
+brew "zk"
+# UNIX shell (command interpreter)
 brew "zsh"
+# Command line hypervisor using Apple's Virtualization Framework
+brew "cfergeau/crc/vfkit"
+# The worlds fastest and most scalable OpenAPI linter
+brew "daveshanley/vacuum/vacuum"
+# Terminal utility for exploring and arranging tabular data
+brew "saulpw/vd/visidata"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "aerospace"
+# GPU-accelerated terminal emulator
 cask "alacritty"
-cask "android-platform-tools"
-cask "figma"
-cask "font-fira-code-nerd-font"
+# Tools for building Android applications
 cask "android-studio"
-cask "devutils"
+# OpenJDK distribution from Amazon
+cask "corretto@11"
+# OpenJDK distribution from Amazon
+cask "corretto@17"
+# OpenJDK distribution from Amazon
+cask "corretto@8"
+# Collaborative team software
+cask "figma"
+# UI toolkit for building applications for mobile, web and desktop
+cask "flutter"
+cask "font-fira-code-nerd-font"
+# Utility to hide menu bar items
 cask "hiddenbar"
+# Free and open-source media player
+cask "iina"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Keyboard customiser
 cask "karabiner-elements"
+# Password manager app
 cask "keepassxc"
+# Tool to prevent the system from going into sleep mode
 cask "keepingyouawake"
+# File archiver
 cask "keka"
+# Open-source keystroke visualiser
+cask "keycastr"
+# Free cross-platform office suite, fresh version
+cask "libreoffice"
+# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-cask "michaelvillar-timer"
+# Browse, manage, inspect containers and images
+cask "podman-desktop"
+# Collaboration platform for API development
 cask "postman"
+# RAW photo processor
+cask "rawtherapee"
+# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Rime input method engine
 cask "squirrel"
+# JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
+# Collection of tools to build a dedicated basic communication network
 cask "v2rayu"
-cask "virtualbox"
+# Binary releases of VS Code without MS branding/telemetry/licensing
 cask "vscodium"
+# Network protocol analyzer
+cask "wireshark"
+# Open-source version of the X.Org X Window System
 cask "xquartz"
+# Open-source markdown editor
 cask "zettlr"
