@@ -2,6 +2,7 @@ source ~/.config/nvim/plugin/plugins.vim
 
 :luafile ~/.config/nvim/lua/treesitter.lua
 :luafile ~/.config/nvim/lua/remaps.lua
+:luafile ~/.config/nvim/lua/init.lua
 
 let g:jsx_ext_required = 0
 let g:echodoc#enable_at_startup = 1
@@ -35,6 +36,7 @@ let g:github_user = $GITHUB_USER
 let g:github_token = $GITHUB_TOKEN
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
+let g:copilot_proxy_strict_ssl = v:false
 
 let g:go_fmt_command = "goimports"
 
@@ -62,6 +64,7 @@ map <Leader>q :qall<CR>
 map <silent><silent><Esc><Esc> :q<CR>
 map <Leader>gs :Gstatus<CR>
 
+" Copy file path to clipboard
 map <silent> <leader>fc :let @+=@%<cr>
 "
 "vim fzf config
@@ -80,7 +83,7 @@ map <silent> <leader>9 :9tabn<cr>
 " GoTo code navigation.
 nnoremap <silent><leader>k :call <SID>show_documentation()<CR>
 " Find/replace
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+vnoremap <C-r> "hy:%s@<C-r>h@@eng<left><left>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -105,13 +108,22 @@ augroup vimrcex
     \ endif
 
   " set syntax highlighting for specific file types
-  autocmd bufread,bufnewfile *.md set filetype=markdown
+  autocmd bufread,bufnewfile *.md set filetype=markdown spell wrap linebreak nolist textwidth=0 wrapmargin=0
+  autocmd bufread,bufnewfile *.drl set filetype=drool wrap linebreak nolist textwidth=0 shiftwidth=2 softtabstop=2 wrapmargin=0
   autocmd bufread,bufnewfile *.{js,ts}.snap set filetype=json
   autocmd bufread,bufnewfile .{jscs,jshint,eslint}rc set filetype=json
   autocmd bufread,bufnewfile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
   autocmd bufread,bufnewfile gitconfig.local set filetype=gitconfig
   autocmd bufread,bufnewfile tmux.conf.local set filetype=tmux
   autocmd bufread,bufnewfile vimrc.local set filetype=vim
+
+  autocmd bufread,bufnewfile *.txt,*.tex set wrap linebreak nolist textwidth=0 wrapmargin=0
+  autocmd bufread,bufnewfile *.spv set filetype=php
+  "
+  " file formats
+  autocmd Filetype gitcommit setlocal spell textwidth=72
+  autocmd Filetype markdown setlocal spell wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+  autocmd FileType sh,cucumber,ruby,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 augroup end
 
 " Mapping selecting mappings
@@ -212,20 +224,11 @@ fun! StripTrailingWhitespace()
 endfun
 autocmd BufWritePre * call StripTrailingWhitespace()
 "
-" specify syntax highlighting for specific files
-autocmd Bufread,BufNewFile *.md set filetype=markdown
-" au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
 
-" file formats
-autocmd Filetype gitcommit setlocal spell textwidth=72
-autocmd Filetype markdown setlocal spell wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-autocmd FileType sh,cucumber,ruby,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
 "
 "autocmd BufWinEnter terminal nmap <Esc><Esc> :bd!<cr>
 autocmd TermOpen * nnoremap <buffer> <Esc><Esc> :bd!<cr>
 
-" specify syntax highlighting for specific files
-autocmd Bufread,BufNewFile *.spv set filetype=php
 
 autocmd VimEnter * if !argc() | NERDTree | endif
 

@@ -1,5 +1,8 @@
 let g:coc_node_path = $NVM_BIN. "/node"
-let g:coc_global_extensions = [ 'coc-snippets', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-stylelint', 'coc-styled-components', 'coc-java', 'coc-docthis','coc-git']
+let g:python3_host_prog = "/usr/bin/python3"
+"let g:coc_node_path = "/opt/homebrew/bin/node"
+"let g:coc_global_extensions = [ 'coc-snippets', 'coc-tsserver', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-stylelint', 'coc-styled-components', 'coc-java', 'coc-docthis','coc-git']
+let g:coc_global_extensions = [ 'coc-snippets', 'coc-tsserver', 'coc-tslint-plugin',  'coc-json', 'coc-docthis','coc-git']
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -25,14 +28,17 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gx :call CocAction('jumpDefinition', 'split')<CR>
 nmap <silent> gD :call CocAction('jumpDefinition', 'drop')<CR>
+"nmap <silent> gs :call CocAction('jumpDefinition', 'drop')<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)
+
 
 
 

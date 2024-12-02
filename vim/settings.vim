@@ -1,6 +1,6 @@
 " Background color to dark, might be better
 " to leave this in the main file
-" set background=dark
+set background=dark
 
 " Persistent undo
 set undodir=~/.vim/undo/

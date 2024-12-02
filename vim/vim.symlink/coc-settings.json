@@ -1,32 +1,24 @@
 {
   "npm.binPath": "yarn",
   "hover.target": "float",
-  /* "coc.preferences.hoverTarget": "echo", */
-  /* "coc.preferences.enableFloatHighlight": false, */
   "coc.preferences.jumpCommand": "vsplit",
-  "coc.preferences.enableFloatHighlight": true,
-  "coc.preferences.snippetStatusText": "Ⓢ ",
+  "coc.preferences.floatActions": true,
   "coc.preferences.extensionUpdateCheck": "never",
-  /* "coc.preferences.currentFunctionSymbolAutoUpdate": true, */
-  "coc.preferences.rootPatterns": [
+  "workspace.rootPatterns": [
     ".vscode",
     ".git",
     ".hg",
     ".projections.json",
     "node_modules"
   ],
-  "suggest.detailMaxLength": 100,
+  "suggest.labelMaxLength": 100,
   "suggest.noselect": false,
   "suggest.enablePreselect": true,
   "suggest.triggerAfterInsertEnter": false,
   "suggest.timeout": 5000,
-  "suggest.enablePreview": true,
-  "suggest.floatEnable": true,
-  "tsserver.ignoreLocalTsserver": true,
-  "suggest.detailField": "menu",
+  "suggest.detailField": "abbr",
   "suggest.snippetIndicator": "*",
-  "suggest.triggerCompletionWait": 100,
-  "suggest.echodocSupport": true,
+  "suggest.triggerCompletionWait": 50,
   "suggest.completionItemKindLabels": {
     "class": "\uf0e8",
     "color": "\ue22b",
@@ -54,7 +46,7 @@
     "value": "\uf89f",
     "variable": "\ue71b"
   },
-  "diagnostic.highlightOffset": 3,
+  "coc.preferences.formatOnSave": true,
   "diagnostic.errorSign": "×",
   "diagnostic.warningSign": "»",
   "diagnostic.infoSign": "!",
@@ -65,110 +57,18 @@
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": "           => ",
   "diagnostic.virtualText": false,
-  /* "diagnostic.messageTarget": "echo", */
   "diagnostic.messageTarget": "float",
-  "codeLens.enable": true,
+  "tsserver.log": "verbose",
+  "tsserver.useSyntaxServer": "auto",
   "list.previewHighlightGroup": "Statement",
   "list.nextKeymap": "<C-e>",
   "list.previousKeymap": "<C-u>",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "python",
-    "css",
-    "javascript",
-    "javascriptreact",
-    "typescriptreact",
-    "typescript",
-    "vue",
-    "scss"
-  ],
   "prettier.printWidth": 80,
   "prettier.onlyUseLocalVersion": true,
   "prettier.semi": true,
   "prettier.singleQuote": true,
   "signature.target": "float",
-  /* "signature.target": "float", */
   "signature.enable": true,
-  "yank.priority": 30,
-  "explorer.width": 38,
-  "explorer.quitOnOpen": true,
-  "explorer.activeMode": true,
-  "explorer.icon.enableVimDevicons": true,
-  "explorer.file.tabCD": true,
-  "explorer.autoExpandSingleNode": true,
-  "explorer.openAction.changeDirectory": true,
-  "explorer.sources": [
-    {
-      "name": "buffer",
-      "expand": true
-    },
-    {
-      "name": "file",
-      "expand": true
-    }
-  ],
-  "explorer.file.column.indent.indentLine": true,
-  "explorer.file.showHiddenFiles": true,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.file.column.git.showIgnored": true,
-  "explorer.keyMappingMode": "none",
-  "explorer.keyMappings": {
-    "u": "nodePrev",
-    "e": "nodeNext",
-
-    "*": "toggleSelection",
-    "<tab>": "actionMenu",
-
-    "n": "expanded?",
-    "E": ["toggleSelection", "normal:j"],
-    "U": ["toggleSelection", "normal:k"],
-    "gl": "expandRecursive",
-    "gh": "collapseRecursive",
-    "i": "expand",
-    "s": "open:vsplit",
-    "<cr>": ["expandable?", "expandOrCollapse", "open"],
-    "o": ["expandable?", "expandOrCollapse", "open"],
-    "t": "open:tab",
-    "<bs>": "gotoParent",
-    "l": "gotoParent",
-
-    "yp": "copyFilepath",
-    "yn": "copyFilename",
-    "yy": "copyFile",
-    "dd": "cutFile",
-    "pp": "pasteFile",
-    "dD": "delete",
-    "Dd": "deleteForever",
-
-    "a": "addFile",
-    "M": "addDirectory",
-    "cw": "rename",
-
-    ".": "toggleHidden",
-    "zh": "toggleHidden",
-    "R": "refresh",
-
-    "?": "help",
-    "q": "quit",
-    "X": "systemExecute",
-    "gd": "listDrive",
-
-    "f": "search",
-    "F": "searchRecursive",
-
-    "B": "gotoSource:file",
-    "b": "gotoSource:buffer",
-
-    "[[": "sourcePrev",
-    "]]": "sourceNext",
-
-    "[d": "diagnosticPrev",
-    "]d": "diagnosticNext",
-
-    "[c": "gitPrev",
-    "]c": "gitNext",
-    "<<": "gitStage",
-    ">>": "gitUnstage"
-  },
   "git.enableGutters": true,
   "git.branchCharacter": "\uf408",
   "git.addGBlameToBufferVar": false,
@@ -180,45 +80,21 @@
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "tslint.autoFixOnSave": true,
-  "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": true,
-  "eslint.format.enable": true,
-  "python.autoComplete.addBrackets": true,
-  "python.jediEnabled": false,
-  "html.format.enable": true,
   "suggest.languageSourcePriority": 99,
-  "javascript.referencesCodeLens.enable": false,
+  "eslint.experimental.useFlatConfig":true,
+  "eslint.autoFixOnSave": true,
   "javascript.showUnused": true,
   "javascript.suggest.names": true,
   "javascript.suggestionActions.enabled": true,
-  "javascript.format.enabled": true,
   "javascript.suggest.includeCompletionsForImportStatements": true,
-  "tsserver.formatOnType": false,
+  "typescript.preferences.includePackageJsonAutoImports": "off",
   "tsserver.implicitProjectConfig.checkJs": true,
-  "tsserver.enableJavascript": true,
-  /* "tsserver.locale": "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/typescript-language-features", */
   "snippets.priority": 3,
   "snippets.autoTrigger": false,
   "snippets.userSnippetsDirectory": "~/.config/nvim/Ultisnips",
   "snippets.loadFromExtensions": false,
   "snippets.textmateSnippetsRoots":[ "/Users/t829332/.config/nvim/snippets" ],
   "json.format.enable": true,
-  "zi.enable": true,
-  "zi.patterns": {
-    "": [],
-    "javascript": ["^\\s*\\/\\/", "^\\s*\\/\\*", "^\\s*\\*", "const \\s*"],
-    "typescript": ["^\\s*\\/\\/", "^\\s*\\/\\*", "^\\s*\\*"],
-    "markdown": [],
-    "vim": ["^\\s*\\\""],
-    "gitcommit": []
-  },
-  "zi.syntaxKinds.javascript": [
-    "StringLiteral",
-    "NoSubstitutionTemplateLiteral",
-    "TemplateHead",
-    "TemplateTail",
-    "TemplateMiddle"
-  ],
   "languageserver": {
     "golang": {
       "command": "gopls",
@@ -239,36 +115,29 @@
   },
   "snippets.snipmate.author": "Kevin J",
   "snippets.extends": { "vue": [ "javascript" ], "typescript": [ "javascript" ] },
-  "html.filetypes": ["html", "handlebars", "htmldjango", "vue"],
-  "vetur.useWorkspaceDependencies": true,
-  "vetur.format.enable": true,
-  "vetur.format.defaultFormatter.js": "prettier-eslint",
-  "vetur.format.defaultFormatter.ts": "prettier-tslint",
-  "vetur.format.defaultFormatter.scss": "prettier",
-  "vetur.format.defaultFormatter.css": "prettier",
-  "vetur.format.defaultFormatter.html": "prettier",
-  "vetur.completion.useScaffoldSnippets": true,
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "typescriptreact": "typescriptreact"
-  },
-  "emmet.showSuggestionsAsSnippets": true,
-  "emmet.optimizeStylesheetParsing": true,
-  "cSpell.maxNumberOfProblems": 10,
-  "cSpell.ignorePaths": [
-    "node_modules",
-    "**/node_modules",
-    "**/node_modules/**",
-    "node_modules/**",
-    "vscode-extension",
-    ".git",
-    "*.dll",
-    "**/*.dll",
-    "init.vim"
-  ],
   "yaml.format.enable": true,
-  "sourcekit.commandPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
-  "cSpell.userWords": ["Innei", "Typegoose", "consola"],
-  "smartf.timeout": 5000,
-  "java.format.settings.url": "/home/ksjiang/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
+  "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/temurin-23.jdk/Contents/Home",
+  "java.format.settings.url": "/Users/t829332/.config/coc/extensions/node_modules/coc-java/formatters/eclipse-formatter.xml",
+  "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home",
+
+  "inlayHint.enable": true,
+  "inlayHint.display": true,
+  "inlayHint.enableParameter": true,
+  "inlayHint.refreshOnInsertMode": true,
+  "java.inlayHints.parameterNames.enabled": "all",
+
+
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
+  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
+
+  "tsserver.tsdk": "/Users/t829332/.config/coc/extensions/node_modules/coc-tsserver/node_modules/typescript/lib",
 }

@@ -1,4 +1,13 @@
 call plug#begin('~/.vim/plugged')
+
+" Added 2024-09-30
+Plug 'vim-test/vim-test'
+
+" Added 2024-07-09
+Plug 'kevinhwang91/promise-async'
+Plug 'kevinhwang91/nvim-ufo'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'github/copilot.vim'
 " Added 15/03/2021
 Plug 'jlanzarotta/bufexplorer'
 Plug 'roman/golden-ratio'
@@ -61,8 +70,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jreybert/vimagit'
 
 " Other
-Plug 'hashivim/vim-terraform', {'for': 'terraform'}
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'markdown' }
+"Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'markdown' }
 "Plug 'jparise/vim-graphql', {'for': ['graphql', 'javascript', 'typescript']}
 "Plug 'jxnblk/vim-mdx-js', {'for': ['markdown', 'markdown.mdx']}
 call plug#end()
