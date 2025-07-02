@@ -11,3 +11,5 @@ tmp/**/*
 zeus.json
 .nvmrc
 .envrc
+.project
+*.hurl
