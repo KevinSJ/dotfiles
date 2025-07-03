@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+" Added 2025-05-12
+Plug 'ellisonleao/gruvbox.nvim'
+
 " Added 2024-09-30
 Plug 'vim-test/vim-test'
 
@@ -62,7 +65,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'joshdick/onedark.vim'
+"Plug 'joshdick/onedark.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
