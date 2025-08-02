@@ -1,7 +1,9 @@
 configuration {
-	modi: "window,drun,ssh,combi";
-    show: "combi";
-	font: "hack 12";
+	modi: "window,drun,ssh,combi,calc";
+    show: "calc";
+	font: "hack 18";
+    terminal: "ghostty";
 	show-icons: true;
+    auto-select: true;
 }
 @theme "/usr/share/rofi/themes/Paper.rasi"
