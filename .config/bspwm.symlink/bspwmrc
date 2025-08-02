@@ -72,13 +72,13 @@ pkill xscreensaver
 xscreensaver -no-splash &
 
 #blueman-applet &
-
-AUTO_START=(caffeine picom plank dunst guake keepassxc blueman-applet redshift lxqt-policykit-agent nm-applet)
+#redshift
+AUTO_START=(caffeine picom plank dunst guake keepassxc blueman-applet lxqt-policykit-agent nm-applet)
 for p in "${AUTO_START[@]}"; do
   pgrep -x "$p" > /dev/null || $p & disown
 done
 
-pgrep -x fcitx > /dev/null || fcitx -u fcitx-light-ui &
+pgrep -x fcitx5 > /dev/null || fcitx5
 
 wal -i wallpapers/awesome.png
 
