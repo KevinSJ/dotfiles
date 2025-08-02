@@ -1,8 +1,12 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "all", -- one of 'all', 'language', or a list of languages
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+    -- List of parsers to ignore installing (for "all")
+    ignore_install = { "phpdoc", "tree-sitter-phpdoc","haskell", "jsonc", "ipkg"},
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = {'markdown'}, -- list of language that will be disabled
+		disable = {'markdown', "ipkg"}, -- list of language that will be disabled
         additional_vim_regex_highlighting = false,
 	},
 	incremental_selection = {
