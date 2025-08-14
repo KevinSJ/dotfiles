@@ -204,6 +204,7 @@ brew "tmux"
 brew "tmuxinator"
 # Minimal, todo.txt-focused editor
 brew "todo-txt"
+brew "tree"
 # Vi 'workalike' with many additional features
 brew "vim"
 # Executes a program periodically, showing output fullscreen
@@ -287,3 +288,7 @@ cask "wireshark"
 cask "xquartz"
 # Open-source markdown editor
 cask "zettlr"
+vscode "dbaeumer.vscode-eslint"
+vscode "eamodio.gitlens"
+vscode "esbenp.prettier-vscode"
+vscode "sonarsource.sonarlint-vscode"
