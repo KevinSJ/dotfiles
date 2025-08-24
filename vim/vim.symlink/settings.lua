@@ -24,7 +24,6 @@ vim.g.loaded_netrwFileHandlers = 1
 -- Some settings copied from:
 -- https://github.com/ahmedelgabri/dotfiles/blob/main/config/nvim/init.lua
 -- Persistent undo
-vim.opt.background = 'dark'
 vim.opt.undodir = home .. '/.vim/undo'
 vim.opt.undofile = true
 vim.opt.undolevels = 1000
@@ -187,6 +186,34 @@ vim.opt.maxmempattern = 2000000
 
 -- start highlighting from 256 lines backwards
 vim.cmd 'syntax sync minlines=256'
+vim.opt.background = 'light'
+-- Default options:
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = false,
+})
+vim.cmd("colorscheme gruvbox")
+--
+--
 -- do not highlight very long lines
 vim.opt.synmaxcol = 300
 
