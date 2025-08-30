@@ -62,10 +62,14 @@
   # squash commits down when merging
   # https://thoughtbot.com/blog/autosquashing-git-commits
   autosquash = true
+  autostash  = true
 [pull]
-  ff = only
+  ff                     = only
   # Always prefer rebase
-  rebase = true
+  rebase                 = true
+  autostash              = true
+[push]
+  autosetupremote = true
 [commit]
   gpgsign = false
 [hub]
