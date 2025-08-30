@@ -10,17 +10,20 @@ super + Return
 super + e
     pcmanfm-qt
 # program launcher
+ctrl + alt +space
+    rofi -show calc -modi calc -no-show-match -no-sort -automatic-save-to-history
 alt + space
-    rofi -show drun -display-drun "Run" -show-icons
+    rofi -show combi -combi-modes "window,drun,ssh,calc:$HOME/.config/rofi/zoom/launcher.sh" -modes combi -display-drun "" -show-icons
+    #rofi -show drun -display-drun "Run" -show-icons
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
 # Lock the screen
-super + l
-	xautolock -enable; sleep 1; xautolock -locknow
-
+#super + l
+    #lxqt-leave --lockscreen
+	#xautolock -enable; sleep 1; xautolock -locknow
 #
 # bspwm hotkeys
 #
@@ -108,7 +111,7 @@ super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
 # Balance the split rations of window
-super + b
+super + v
 	bspc node @/ -B
 #
 # preselect
@@ -172,10 +175,12 @@ XF86AudioMute
 ######################
 
 XF86MonBrightnessUp
-   xbacklight -inc 5
+   brightnessctl set 10%+
+   #xbacklight -inc 5
 
 XF86MonBrightnessDown
-   xbacklight -dec 5
+   brightnessctl set 10%-
+   #xbacklight -dec 5
 
 
 ######################
@@ -183,8 +188,14 @@ XF86MonBrightnessDown
 ######################
 
 Print
-    screengrab
+    flameshot gui
+    #screengrab
 
+XF86Display
+    arandr
+
+XF86AudioMicMute
+    amixer -q set Capture toggle
 #
 # pointer focus/move/resize
 #

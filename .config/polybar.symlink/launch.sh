@@ -9,12 +9,13 @@ export BAT=$(ls -A1 /sys/class/power_supply|grep -E 'BAT')
 export AC=$(ls -A1 /sys/class/power_supply|grep -v 'BAT')
 export ETH_INTERFACE=$(ip -4 -o link show | awk -F': ' '{print $2}'|grep en)
 export WLAN_INTERFACE=$(ip -4 -o link show | awk -F': ' '{print $2}'|grep wl)
+export BRIGHTNESS_CARD=$(ls -1 /sys/class/backlight/)
 
 while pgrep -u $UID -x polybar > /dev/null; do sleep 1; done
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar top &
+    (MONITOR=$m polybar top &)
   done
 else
   polybar --reload top &
