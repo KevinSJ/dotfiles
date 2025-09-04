@@ -1,9 +1,17 @@
-
+if [[ $INTELLIJ_ENVIRONMENT_READER ]]; then
+return
+fi
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export ZK_NOTEBOOK_DIR=$HOME/notes
+#export DOCKER_HOST=unix://$HOME/.colima/docker.sock
+
+export HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile
+
+# For using Android build tools in cli.
 export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$ANDROID_HOME:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -49,12 +57,12 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -74,7 +82,7 @@ export NVM_AUTOLOAD=1
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn history-substring-search vi-mode macos sudo zsh-autosuggestions)
+plugins=(git yarn history-substring-search vi-mode macos sudo zsh-autosuggestions git-auto-fetch)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.aliases
@@ -117,6 +125,33 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 
 
 #alias luamake=/home/kevin/lua-language-server/3rd/luamake/luamake
+
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
+_direnv_hook() {
+  trap -- '' SIGINT;
+  eval "$("/opt/homebrew/bin/direnv" export zsh)";
+  trap - SIGINT;
+}
+typeset -ag precmd_functions;
+if [[ -z "${precmd_functions[(r)_direnv_hook]+1}" ]]; then
+  precmd_functions=( _direnv_hook ${precmd_functions[@]} )
+fi
+typeset -ag chpwd_functions;
+if [[ -z "${chpwd_functions[(r)_direnv_hook]+1}" ]]; then
+  chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
+fi
+
+# pnpm
+export PNPM_HOME="/Users/$USER/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+test -e /Users/$USER/.iterm2_shell_integration.zsh && source /Users/$USER/.iterm2_shell_integration.zsh || true
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
