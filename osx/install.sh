@@ -573,6 +573,9 @@ EOD
     defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
     defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
+    # Map command+h to history in Chrome, so it's the same as in other system.
+    defaults write com.google.Chrome NSUserKeyEquivalents -dict \
+      "Show full history" "@h"
 
     ###############################################################################
     # Transmission.app                                                            #
@@ -621,9 +624,11 @@ EOD
 
     defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
-    # Map command+h to history in Chrome, so it's the same as in other system.
-    defaults write com.google.Chrome NSUserKeyEquivalents -dict \
-      "Show full history" "@h"
+    # Xcode
+    defaults write com.apple.dt.Xcode DVTTextShowAuthors -bool true
+    defaults write com.apple.dt.Xcode DVTTextShowMinimap -bool true
+    defaults write com.apple.dt.Xcode DVTTextShowPageGuide -bool true
+
 
 
     defaults write com.apple.systemuiserver "NSStatusItem Visible Siri" -bool false
