@@ -77,5 +77,10 @@
 [fetch]
   prune = true
 
+[includeIf "gitdir:example_work_repo"]
+  path = example_work_git_config_file
+[includeIf "gitdir:example_personal_repo"]
+  path = example_personal_git_config_file
+
 # Force vim to use .gitconfig type
 # vim:ft=.gitconfig:ts=2:sw=2
