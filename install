@@ -38,13 +38,13 @@ setup_gitconfig () {
     fi
 
     user ' - What is your github author name?'
-    read -e git_authorname
+    read -e -r git_authorname
     user ' - What is your github author email?'
-    read -e git_authoremail
+    read -e -r  git_authoremail
     user ' - What is your github username?'
-    read -e git_authorhandle
+    read -e -r git_authorhandle
     user ' - What is your GPG signing key? (Run `gpg --list-keys`)'
-    read -e gpg_signing_key
+    read -e -r gpg_signing_key
 
     sed -e "s/AUTHOR_NAME/$git_authorname/g" -e "s/AUTHOR_EMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" -e "s/AUTHOR_HANDLE/$git_authorhandle/g" -e "s/GPG_SIGNING_KEY/$gpg_signing_key/g" git/gitconfig.symlink.example > git/gitconfig.symlink
 
