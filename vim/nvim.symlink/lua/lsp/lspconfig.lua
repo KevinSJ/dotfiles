@@ -135,7 +135,12 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches.
 -- Add your language server below:
-local servers = { 'bashls', 'pyright', 'clangd', 'html', 'cssls', 'jdtls' }
+local servers = { 'bashls', 'pyright', 'clangd', 'html', 'cssls', 'jdtls', 'gopls' }
+
+lspconfig.jdtls.setup({
+  handlers = handlers,
+  cmd = {"jdtls"}
+})
 
 lspconfig.ts_ls.setup({
   handlers = handlers,
