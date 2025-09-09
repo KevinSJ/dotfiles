@@ -1,13 +1,17 @@
 if [[ $INTELLIJ_ENVIRONMENT_READER ]]; then
 return
 fi
+
+export BREW_ROOT="/opt/homebrew"
+if [[ -d $BREW_ROOT/bin ]]; then
+    export PATH="$BREW_ROOT/bin:$PATH"
+    export HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile
+fi
 # If you come from bash you might have to change your $PATH.
 #export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/opt/homebrew/bin:$PATH
 export ZK_NOTEBOOK_DIR=$HOME/notes
 #export DOCKER_HOST=unix://$HOME/.colima/docker.sock
 
-export HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile
 
 # For using Android build tools in cli.
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -129,12 +133,14 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "/usr/libexec/java_home" ] && \. export JAVA_HOME=`/usr/libexec/java_home -v 17`;
+[ -s "/usr/bin/archlinux-java" ] && eval "$(sudo archlinux-java set java-17-openjdk)";
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+DIRENV_DIR="$(which direnv)"
 
 _direnv_hook() {
   trap -- '' SIGINT;
-  eval "$("/opt/homebrew/bin/direnv" export zsh)";
+  eval "$($DIRENV_DIR export zsh)";
   trap - SIGINT;
 }
 typeset -ag precmd_functions;
