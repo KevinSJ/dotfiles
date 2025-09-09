@@ -1,0 +1,8 @@
+require('plugins/indent-blankline')
+require('plugins/nvim-cmp')
+require('plugins/nvim-tree')
+--require('plugins/fzf-lua')
+require('plugins/gitsigns')
+require('plugins/nvim-treesitter')
+require('plugins/alpha-nvim')
+require('plugins/nvim-ufo')
