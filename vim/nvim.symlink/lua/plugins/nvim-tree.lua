@@ -38,14 +38,13 @@ function vsplit_preview()
     api.node.open.edit()
   else
     -- open file as vsplit
-    api.node.open.vertical_no_picker(nil, {quit_on_open=false, focus=false})
+    api.node.open.vertical_no_picker(nil, { quit_on_open = false, focus = false })
     api.node.open.drop()
   end
 
   -- Finally refocus on tree if it was lost
   --api.tree.focus()
 end
-
 
 local function my_on_attach(bufnr)
   local function opts(desc)
@@ -66,15 +65,15 @@ end
 -- nested options are documented by accessing them with `.` (eg: `:help nvim-tree.view.mappings.list`)
 nvim_tree.setup {
   on_attach = my_on_attach,
-  hijack_cursor = false,
+  hijack_cursor = true,
   auto_reload_on_write = true,
   --disable_netrw = false, -> already disabled on `/core/options.lua`
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
   root_dirs = {},
-  prefer_startup_root = false,
-  sync_root_with_cwd = false,
-  reload_on_bufenter = false,
+  prefer_startup_root = true,
+  sync_root_with_cwd = true,
+  reload_on_bufenter = true,
   respect_buf_cwd = false,
   select_prompts = false,
   sort = {
@@ -89,17 +88,17 @@ nvim_tree.setup {
     width = 34,
     side = "left",
     preserve_window_proportions = false,
-    number = false,
-    relativenumber = false,
+    number = true,
+    relativenumber = true,
     signcolumn = "yes",
     float = {
-      enable = false,
+      enable = true,
       quit_on_focus_loss = true,
       open_win_config = {
         relative = "editor",
         border = "rounded",
         width = 30,
-        height = 30,
+        height = 80,
         row = 1,
         col = 1,
       },
@@ -108,7 +107,7 @@ nvim_tree.setup {
   renderer = {
     add_trailing = false,
     group_empty = false,
-    full_name = false,
+    full_name = true,
     root_folder_label = ":~:s?$?/..?",
     indent_width = 2,
     special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
@@ -230,7 +229,7 @@ nvim_tree.setup {
     },
   },
   modified = {
-    enable = false,
+    enable = true,
     show_on_dirs = true,
     show_on_open_dirs = true,
   },
@@ -262,7 +261,7 @@ nvim_tree.setup {
     use_system_clipboard = true,
     change_dir = {
       enable = true,
-      global = false,
+      global = true,
       restrict_above_cwd = false,
     },
     expand_all = {
