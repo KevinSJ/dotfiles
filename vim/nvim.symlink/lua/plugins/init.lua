@@ -1,4 +1,5 @@
 require('plugins/indent-blankline')
+require('plugins/luasnip')
 require('plugins/nvim-cmp')
 require('plugins/nvim-tree')
 --require('plugins/fzf-lua')
