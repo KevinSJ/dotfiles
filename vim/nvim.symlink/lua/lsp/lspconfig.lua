@@ -8,11 +8,6 @@
 -- For configuration see the Wiki: https://github.com/neovim/nvim-lspconfig/wiki
 -- Autocompletion settings of "nvim-cmp" are defined in plugins/nvim-cmp.lua
 
-local lsp_status_ok, lspconfig = pcall(require, 'lspconfig')
-if not lsp_status_ok then
-  return
-end
-
 local cmp_status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if not cmp_status_ok then
   return
@@ -125,24 +120,18 @@ JavaScript/TypeScript -> ts_ls
 Java/Kotlin          -> jdtls
 --]]
 
--- Define `root_dir` when needed
--- See: https://github.com/neovim/nvim-lspconfig/issues/320
--- This is a workaround, maybe not work with some servers.
-local root_dir = function()
-  return vim.fn.getcwd()
-end
-
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches.
 -- Add your language server below:
-local servers = { 'bashls', 'pyright', 'clangd', 'html', 'cssls', 'jdtls', 'gopls' }
+local servers = { 'bashls', 'basedpyright', 'clangd', 'jdtls', 'gopls', 'ts_ls'}
 
-lspconfig.jdtls.setup({
+--vim.lsp.config('jdtls', {
+vim.lsp.config['jdtls'] = {
   handlers = handlers,
   cmd = {"jdtls"}
-})
+}
 
-lspconfig.ts_ls.setup({
+vim.lsp.config['ts_ls'] = {
   handlers = handlers,
   on_attach = on_attach,
   root_dir = root_dir,
@@ -188,17 +177,17 @@ lspconfig.ts_ls.setup({
       },
     },
   },
-})
+}
 
 -- Call setup
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
-    root_dir = root_dir,
+    --root_dir = root_dir,
+    --filetypes = filetypes,
+    --root_markers = { '.git' },
     capabilities = capabilities,
-    flags = {
-      -- default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
-  }
+  })
 end
+
+vim.lsp.enable(servers)
