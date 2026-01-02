@@ -2,7 +2,7 @@ ACTIVE_MACHINES="$(virsh --connect=qemu:///system list --state-running --name)"
 NON_ACTIVE_MACHINES="$(virsh --connect=qemu:///system list --state-shutoff --name)"
 ALL_MACHINES="$(virsh --connect qemu:///system list --all|sed '/^[[:space:]]*$/d')"
 
-selected="$(echo "$ALL_MACHINES"|sed 1,2d| rofi -dmenu -p 'Available VMs:' | awk -F ' ' '{print $2}')"
+selected="$(echo "$ALL_MACHINES"|sed 1,2d| rofi -dmenu -p 'Available VMs' | awk -F ' ' '{print $2}')"
 
 #if echo "$NON_ACTIVE_MACHINES" | grep -Fxq "$selected"; then
   #virsh --connect=qemu:///system start "$selected"
