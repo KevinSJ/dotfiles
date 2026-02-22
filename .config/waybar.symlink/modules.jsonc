@@ -23,6 +23,7 @@
           "suspend": "systemctl suspend",
           "hibernate": "systemctl hibernate",
       },
+      "on-click-right": "wlogout",
   },
   "custom/quicklaunch":{
 
@@ -167,6 +168,7 @@
           "default": ["", ""]
       },
       "on-click": "pavucontrol-qt",
+      "on-click-right": "amixer -q set Master toggle",
       "on-scroll-up": "pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob",
       "on-scroll-down": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob"
   },
