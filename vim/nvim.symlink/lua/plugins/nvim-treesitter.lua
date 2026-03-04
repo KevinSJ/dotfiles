@@ -5,23 +5,65 @@
 -- Plugin: nvim-treesitter
 -- URL: https://github.com/nvim-treesitter/nvim-treesitter
 
-local status_ok, nvim_treesitter = pcall(require, 'nvim-treesitter.configs')
+local status_ok, _ = pcall(require, 'nvim-treesitter')
 if not status_ok then
   return
 end
 
+vim.keymap.set({ "n" }, "<cr>", function()
+  local node = vim.treesitter.get_node()
+  if not node then return end
+
+  local start_row, start_col, end_row, end_col = node:range()
+  vim.fn.setpos("'<", { 0, start_row + 1, start_col + 1, 0 })
+  vim.fn.setpos("'>", { 0, end_row + 1, end_col, 0 })
+  vim.cmd('normal! gv')
+end, { desc = "Select treesitter node" })
+
+vim.api.nvim_create_autocmd({ 'Filetype' }, {
+  callback = function(event)
+    local ignored_fts = {
+      'snacks_dashboard',
+      'snacks_notif',
+      'snacks_input',
+      'prompt', -- bt: snacks_picker_input
+    }
+
+    if vim.tbl_contains(ignored_fts, event.match) then return end
+
+    -- make sure nvim-treesitter is loaded
+    local ok, nvim_treesitter = pcall(require, 'nvim-treesitter')
+
+    -- no nvim-treesitter, maybe fresh install
+    if not ok then return end
+
+    local ft = vim.bo[event.buf].ft
+    local lang = vim.treesitter.language.get_lang(ft)
+    nvim_treesitter.install({ lang }):await(function(err)
+      if err then
+        vim.notify('Treesitter install error for ft: ' .. ft .. ' err: ' .. err)
+        return
+      end
+
+      pcall(vim.treesitter.start, event.buf)
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    end)
+  end,
+})
+
 -- See: https://github.com/nvim-treesitter/nvim-treesitter#quickstart
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter'.setup {
   -- A list of parser names, or "all"
   --ensure_installed = "all",
   ensure_installed = {
-    'angular', 'awk', 'bash', 'c', 'c_sharp', 'cmake', 'cpp', 'css', 'csv',
+    'angular', 'awk', 'bash', 'c', 'c_sharp', 'cmake', 'cpp', 'css', 'csv', 'cython',
     'dart', 'diff', 'dockerfile', 'dot', 'elixir', 'elm', 'erlang', 'fish',
-    'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
+    'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'kotlin',
     'gitignore', 'go', 'haskell', 'html', 'http', 'java', 'javascript', 'json', 'lua',
     'luadoc', 'make', 'markdown', 'markdown_inline', 'nix', 'perl', 'python',
-    'query', 'regex','rust', 'sql', 'toml', 'typescript', 'vim', 'yaml',
-    'hurl', 'jsonc', 'terraform', 'vue', 'ruby','rust', 'sql', 'toml', 'typescript', 'vim', 'yaml'
+    'query', 'regex', 'rust', 'sql', 'toml', 'typescript', 'vim', 'yaml', 'latex',
+    'hurl', 'jsonc', 'terraform', 'vue', 'ruby', 'rust', 'sql', 'toml', 'typescript', 'vim', 'yaml'
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -51,51 +93,41 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<CR>",
-      scope_incremental = "<CR>",
-      node_incremental = "<TAB>",
-      node_decremental = "<S-TAB>",
-    },
-  },
-
   textobjects = {
-      select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["aa"] = "@parameter.outer",
-              ["ia"] = "@parameter.inner",
-          }
-      },
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
+      }
+    },
   },
 }
 
-require'treesitter-context'.setup{
-    enable = true,
-    patterns = {
-        default = {
-            'class',
-            'function',
-            'method',
-            'for',
-            'while',
-            'if',
-            'switch',
-            'case',
-        },
-        json = {
-            'pair',
-        },
-        terraform = {
-            'block',
-        }
+require 'treesitter-context'.setup {
+  enable = true,
+  patterns = {
+    default = {
+      'class',
+      'function',
+      'method',
+      'for',
+      'while',
+      'if',
+      'switch',
+      'case',
     },
-    mode = 'topline',
+    json = {
+      'pair',
+    },
+    terraform = {
+      'block',
+    }
+  },
+  mode = 'topline',
 }

@@ -6,8 +6,8 @@
 -- See: :h api-autocmd, :h augroup
 -- https://neovim.io/doc/user/autocmd.html
 
-local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
-local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
+local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
+local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
 -----------------------------------------------------------
 -- General settings
@@ -56,7 +56,7 @@ autocmd('Filetype', {
   command = 'setlocal shiftwidth=2 tabstop=2'
 })
 
-augroup('spellchecker', {clear = true})
+augroup('spellchecker', { clear = true })
 autocmd('Filetype', {
   group = 'spellchecker',
   pattern = { 'markdown' },
@@ -81,7 +81,7 @@ vim.api.nvim_create_user_command("Rr", function(opts)
 end, { nargs = "?" })
 
 -- Create an autocmd group
-augroup('rr_group', {clear = true})
+augroup('rr_group', { clear = true })
 
 -- Buffer-local mapping set on FileType
 vim.api.nvim_create_autocmd("FileType", {
@@ -99,7 +99,7 @@ vim.api.nvim_create_autocmd("FileType", {
 augroup('format_on_save', { clear = true })
 autocmd('BufWritePre', {
   group = 'format_on_save',
-  pattern = { '*.go', '*.rs', '*.lua', '*.js', '*.ts', '*.jsx', '*.tsx' },
+  pattern = { '*.go', '*.py', '*.rs', '*.java', '*.lua', '*.js', '*.ts', '*.jsx', '*.tsx' },
   command = 'silent! lua vim.lsp.buf.format({ async = false })'
 })
 
