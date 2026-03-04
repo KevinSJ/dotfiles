@@ -21,7 +21,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -31,7 +31,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Use a protected call so we don't error out on first use
-local status_ok, lazy = pcall(require, 'lazy')require('lazy')
+local status_ok, lazy = pcall(require, 'lazy')
+require('lazy')
 if not status_ok then
   return
 end
@@ -52,7 +53,7 @@ lazy.setup({
   },
   -- leave nil when passing the spec as the first argument to setup()
   --spec = nil, ---@type LazySpec
-  local_spec = true, -- load project specific .lazy.lua spec files. They will be added at the end of the spec.
+  local_spec = true,                                        -- load project specific .lazy.lua spec files. They will be added at the end of the spec.
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
   ---@type number? limit the maximum amount of concurrent tasks
   concurrency = jit.os:find("Windows") and (vim.uv.available_parallelism() * 2) or nil,
@@ -60,7 +61,7 @@ lazy.setup({
     -- defaults for the `Lazy log` command
     -- log = { "--since=3 days ago" }, -- show commits from the last 3 days
     log = { "-8" }, -- show the last 8 commits
-    timeout = 120, -- kill processes that take more than 2 minutes
+    timeout = 120,  -- kill processes that take more than 2 minutes
     url_format = "https://github.com/%s.git",
     -- lazy.nvim requires git >=2.19.0. If you really want to use lazy with an older version,
     -- then set the below to false. This should work, but is NOT supported and will
@@ -131,7 +132,7 @@ lazy.setup({
         "●",
         "➜",
         "★",
-        "‒",
+        "-",
       },
     },
     -- leave nil, to automatically select a browser depending on your OS.
@@ -196,8 +197,8 @@ lazy.setup({
     -- automatically check for plugin updates
     enabled = false,
     concurrency = nil, ---@type number? set to 1 to check for updates very slowly
-    notify = true, -- get a notification when new updates are found
-    frequency = 3600, -- check for updates every hour
+    notify = true,        -- get a notification when new updates are found
+    frequency = 3600,     -- check for updates every hour
     check_pinned = false, -- check for pinned packages that can't be updated
   },
   change_detection = {
@@ -205,7 +206,7 @@ lazy.setup({
     enabled = true,
     notify = true, -- get a notification when changes are found
   },
-   -- lazy can generate helptags from the headings in markdown readme files,
+  -- lazy can generate helptags from the headings in markdown readme files,
   -- so :help works even for plugins that don't have vim docs.
   -- when the readme opens with :help it will be correctly displayed as markdown
   readme = {
@@ -237,77 +238,78 @@ lazy.setup({
     -- OneDark
     {
       'navarasu/onedark.nvim',
-      lazy = false, -- make sure we load this during startup if it is your main colorscheme
-      priority = 1000, -- make sure to load this before all the other start plugins
+      lazy = true, -- make sure we load this during startup if it is your main colorscheme
+      --priority = 1000,                                                          -- make sure to load this before all the other start plugins
     },
-    { 'rebelot/kanagawa.nvim', lazy = true },       -- Kanagawa
-    { 'loctvl842/monokai-pro.nvim', lazy = true },  -- Monokai Pro
-    { 'https://github.com/rose-pine/neovim', name = 'rose-pine', lazy = true }, -- Rosè Pine
-    { 'alexghergh/nvim-tmux-navigation', config = function()
-      require'nvim-tmux-navigation'.setup {
-        disable_when_zoomed = true, -- defaults to false
-        keybindings = {
-          left = "<C-h>",
-          down = "<C-j>",
-          up = "<C-k>",
-          right = "<C-l>",
-          last_active = "<C-\\>",
-          next = "<C-Space>",
+    { 'rebelot/kanagawa.nvim',               lazy = true },                                       -- Kanagawa
+    { 'loctvl842/monokai-pro.nvim',          lazy = true },                                       -- Monokai Pro
+    { 'https://github.com/rose-pine/neovim', name = 'rose-pine', lazy = false, priority = 1000 }, -- Rosè Pine
+    {
+      'alexghergh/nvim-tmux-navigation',
+      config = function()
+        require 'nvim-tmux-navigation'.setup {
+          disable_when_zoomed = true, -- defaults to false
+          keybindings = {
+            left = "<C-h>",
+            down = "<C-j>",
+            up = "<C-k>",
+            right = "<C-l>",
+            last_active = "<C-\\>",
+            next = "<C-Space>",
+          }
         }
-      }
       end
     },
     {
-        "ibhagwan/fzf-lua",
-        lazy = true,
-        -- optional for icon support
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        init = function()
-          vim.api.nvim_command('set runtimepath^=~/Private/neovim-lua/nvim/')
-          require("fzf-lua").setup(require("plugins.fzf-lua"))
-        end,
+      "ibhagwan/fzf-lua",
+      lazy = true,
+      -- optional for icon support
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      init = function()
+        require("fzf-lua").setup(require("plugins.fzf-lua"))
+      end,
     },
     {
-        "kevinhwang91/nvim-ufo",
-        dependencies = { "kevinhwang91/promise-async" },
-        lazy = false,
-        opts = {
-            open_fold_hl_timeout = 0, -- disable highlighting when opening folds
-            fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
-                local newVirtText = {}
-                local suffix = (' 󰁂 %d '):format(endLnum - lnum)
-                local sufWidth = vim.fn.strdisplaywidth(suffix)
-                local targetWidth = width - sufWidth
-                local curWidth = 0
-                for _, chunk in ipairs(virtText) do
-                    local chunkText = chunk[1]
-                    local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-                    if targetWidth > curWidth + chunkWidth then
-                        table.insert(newVirtText, chunk)
-                    else
-                        chunkText = truncate(chunkText, targetWidth - curWidth)
-                        local hlGroup = chunk[2]
-                        table.insert(newVirtText, { chunkText, hlGroup })
-                        chunkWidth = vim.fn.strdisplaywidth(chunkText)
-                        -- str width returned from truncate() may less than 2nd argument, need padding
-                        if curWidth + chunkWidth < targetWidth then
-                            suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
-                        end
-                        break
-                    end
-                    curWidth = curWidth + chunkWidth
-                end
-                table.insert(newVirtText, { suffix, 'MoreMsg' })
-                return newVirtText
-            end,
-            provider_selector = function(bufnr, filetype, buftype)
-                return { 'treesitter', 'indent' }
+      "kevinhwang91/nvim-ufo",
+      dependencies = { "kevinhwang91/promise-async" },
+      lazy = false,
+      opts = {
+        open_fold_hl_timeout = 0, -- disable highlighting when opening folds
+        fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+          local newVirtText = {}
+          local suffix = (' 󰁂 %d '):format(endLnum - lnum)
+          local sufWidth = vim.fn.strdisplaywidth(suffix)
+          local targetWidth = width - sufWidth
+          local curWidth = 0
+          for _, chunk in ipairs(virtText) do
+            local chunkText = chunk[1]
+            local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            if targetWidth > curWidth + chunkWidth then
+              table.insert(newVirtText, chunk)
+            else
+              chunkText = truncate(chunkText, targetWidth - curWidth)
+              local hlGroup = chunk[2]
+              table.insert(newVirtText, { chunkText, hlGroup })
+              chunkWidth = vim.fn.strdisplaywidth(chunkText)
+              -- str width returned from truncate() may less than 2nd argument, need padding
+              if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+              end
+              break
             end
-        }
+            curWidth = curWidth + chunkWidth
+          end
+          table.insert(newVirtText, { suffix, 'MoreMsg' })
+          return newVirtText
+        end,
+        provider_selector = function(bufnr, filetype, buftype)
+          return { 'treesitter', 'indent' }
+        end
+      }
     },
 
     -- Icons
-    { 'kyazdani42/nvim-web-devicons', lazy = true },
+    { 'kyazdani42/nvim-web-devicons',                lazy = true },
 
     -- Dashboard (start screen)
     {
@@ -324,7 +326,7 @@ lazy.setup({
         'kyazdani42/nvim-web-devicons',
       },
       config = function()
-        require('gitsigns').setup{}
+        require('gitsigns').setup {}
       end
     },
 
@@ -344,27 +346,31 @@ lazy.setup({
     },
 
     -- Treesitter
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    { 'nvim-treesitter/nvim-treesitter',             branch = "main", build = ':TSUpdate', lazy = false },
     { 'nvim-treesitter/nvim-treesitter-context' },
-    { 'nvim-treesitter/nvim-treesitter-textobjects' },
+    { 'nvim-treesitter/nvim-treesitter-textobjects', branch = "main" },
 
     -- Indent line
-    { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
+    { 'lukas-reineke/indent-blankline.nvim',         main = 'ibl',    opts = {} },
 
-    { 'mfussenegger/nvim-jdtls', lazy = true },
+    { 'mfussenegger/nvim-jdtls',                     lazy = true },
 
     -- Autopair
     {
       'windwp/nvim-autopairs',
       event = 'InsertEnter',
       config = function()
-        require('nvim-autopairs').setup{}
+        require('nvim-autopairs').setup {}
       end
     },
 
     -- LSP
-    { 'neovim/nvim-lspconfig' },
-
+    {
+      'neovim/nvim-lspconfig',
+      dependencies = {
+        "hrsh7th/cmp-nvim-lsp", -- Required to tell LSP we want completions
+      },
+    },
     -- Autocomplete
     {
       'hrsh7th/nvim-cmp',
@@ -380,14 +386,27 @@ lazy.setup({
         'saadparwaiz1/cmp_luasnip',
       },
     },
-    {'airblade/vim-gitgutter', lazy=false},
-    {'scrooloose/nerdcommenter', lazy=false},
-    {'tpope/vim-surround', lazy=false},
-    {'tpope/vim-fugitive', lazy=false},
-    {'tpope/vim-surround', lazy=false},
-    {'roman/golden-ratio', lazy=false},
-    {'honza/vim-snippets', lazy=false},
-    {'jeffkreeftmeijer/vim-numbertoggle', lazy=false},
+    { 'airblade/vim-gitgutter',            lazy = false },
+    { 'scrooloose/nerdcommenter',          lazy = false },
+    { 'tpope/vim-surround',                lazy = false },
+    { 'tpope/vim-fugitive',                lazy = false },
+    { 'tpope/vim-surround',                lazy = false },
+    { 'roman/golden-ratio',                lazy = false },
+    { 'honza/vim-snippets',                lazy = false },
+    { 'jeffkreeftmeijer/vim-numbertoggle', lazy = false },
+    { 'williamboman/mason.nvim',           lazy = false },
+    {
+      "JavaHello/spring-boot.nvim",
+      ft = { "java", "yaml", "jproperties" },
+      dependencies = {
+        "neovim/nvim-lspconfig", -- or nvim-java, nvim-lspconfig
+        "ibhagwan/fzf-lua",      -- 可选,用于符号选择等UI功能.也可以使用其他选择器（例如 telescope.nvim）。
+      },
+      opts = {
+        java_cmd = '/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/bin/java',
+        ls_path = os.getenv "HOME" .. '/jars/spring-boot-language-server-1.64.0-SNAPSHOT-exec.jar'
+      }
+    },
     {
       "folke/which-key.nvim",
       event = "VeryLazy",
