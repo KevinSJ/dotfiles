@@ -3,7 +3,7 @@
 -----------------------------------------------------------
 
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap=true, silent=true }
+  local options = { noremap = true, silent = true }
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
@@ -14,7 +14,7 @@ end
 -- Neovim shortcuts
 -----------------------------------------------------------
 
-map('','<leader><leader>',':wincmd _ <cr> :wincmd | <cr>')
+map('', '<leader><leader>', ':wincmd _ <cr> :wincmd | <cr>')
 
 -- Disable arrow keys
 map('', '<up>', '<nop>')
@@ -79,21 +79,21 @@ map("v", "<leader>Y", [["+Y]])
 --end)
 
 
-map('','<leader>;','<C-W>s') -- Horizontal split
-map('','<leader>`','<C-W>v') -- Vertical split
+map('', '<leader>;', '<C-W>s') -- Horizontal split
+map('', '<leader>`', '<C-W>v') -- Vertical split
 
 
-map('','<leader>]','<C-W>s') -- Horizontal split
-map('','<leader>[','<C-W>v') -- Vertical split
-map('','<leader>=','<C-W>=') -- Horizontal split
-map('','<Esc><Esc>',':q<cr>', {noremap = false, silent = true} )
+map('', '<leader>]', '<C-W>s') -- Horizontal split
+map('', '<leader>[', '<C-W>v') -- Vertical split
+map('', '<leader>=', '<C-W>=') -- Horizontal split
+map('', '<Esc><Esc>', ':q<cr>', { noremap = false, silent = true })
 
 
 for i = 1, 9 do
   local leader = '<Leader>' .. i
   local tab = ':' .. i .. 'tabn<cr>'
   map('n', leader, tab)
- end
+end
 
 
 -----------------------------------------------------------
@@ -101,25 +101,27 @@ for i = 1, 9 do
 -----------------------------------------------------------
 
 -- Terminal mappings
-map('n', '<C-t>', ':Term<CR>', { noremap = true })  -- open
-map('t', '<Esc>', '<C-\\><C-n>')                    -- exit
+map('n', '<C-t>', ':Term<CR>', { noremap = true }) -- open
+map('t', '<Esc>', '<C-\\><C-n>')                   -- exit
 
 -- NvimTree
-map('n', '<leader>\'', ':NvimTreeToggle<CR>')            -- open/close
-map('n', '<leader>F', ':NvimTreeFindFile<CR>')      -- search file
+map('n', '<leader>\'', ':NvimTreeToggle<CR>')  -- open/close
+map('n', '<leader>F', ':NvimTreeFindFile<CR>') -- search file
 
 
 -- FZF
 map('', '<C-p>', ':GFiles --exclude-standard --cached --others<CR>')
+map('n', 'K', ':RG <C-R><C-W><CR>')
 map('', '<leader>b', ':Buffers<CR>')
 map('', '<leader>h', ':History<CR>')
 map('', '<leader><tab>', ':FzfLua keymaps<CR>')
 
 
 -- Tmux coexist
-map('n', "<C-h>", ":NvimTmuxNavigateLeft<CR>", {silent = true})
-map('n', "<C-j>", ":NvimTmuxNavigateDown<CR>", {silent = true})
-map('n', "<C-k>", ":NvimTmuxNavigateUp<CR>", {silent = true})
-map('n', "<C-l>", ":NvimTmuxNavigateRight<CR>", {silent = true})
-map('n', "<C-\\>", ":NvimTmuxNavigateLastActive<CR>", {silent = true})
-map('n', "<C-Space>", ":NvimTmuxNavigateNext<CR>", {silent = true})
+map('n', "<C-h>", ":NvimTmuxNavigateLeft<CR>", { silent = true })
+map('n', "<C-j>", ":NvimTmuxNavigateDown<CR>", { silent = true })
+map('n', "<C-k>", ":NvimTmuxNavigateUp<CR>", { silent = true })
+map('n', "<C-l>", ":NvimTmuxNavigateRight<CR>", { silent = true })
+map('n', "<C-\\>", ":NvimTmuxNavigateLastActive<CR>", { silent = true })
+map('n', "<C-Space>", ":NvimTmuxNavigateNext<CR>", { silent = true })
+map('n', "<leader>n", ":Ns<CR>", { silent = true })
