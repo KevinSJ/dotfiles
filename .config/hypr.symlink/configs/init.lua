@@ -1,0 +1,5 @@
+require('configs.env')
+require('configs.key_bindings')
+require('configs.monitors')
+require('configs.permissions')
+require('configs.window_rule')
