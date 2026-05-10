@@ -53,7 +53,7 @@
           "default": ""
       },
       "persistent-workspaces": {
-          "*": 5
+          "*": 3
       }
   },
 
@@ -89,12 +89,12 @@
 
   // Memory / CPU / Temp
   "memory": {
-      "format": " {: >3}%",
+      "format": " {:>3}%",
       "on-click": "neohtop"
   },
   "cpu": {
-      "format": " {usage: >3}%",
-      "on-click": "neohtop"
+      "format": " {usage:>3}%",
+      "on-click": "htop"
   },
   "temperature": {
       "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon5/temp1_input",
@@ -116,6 +116,8 @@
 
   // Battery
   "battery": {
+      "bat": "BAT0",
+      "interval": 120,
       "on-click": "gnome-power-statistics",
       "on-click-right": "sudo tlp fullcharge",
       "tooltip-format": "Left: Battery Stats\nRight: Charge to Full",
@@ -183,8 +185,7 @@
       "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
       "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
       "tooltip-format-disconnected": "Disconnected",
-      "max-length": 25,
-      "on-click": "nm-connection-editor",
+      "on-click": "iwmenu --launcher rofi",
       "on-click-right": "nm-connection-editor"
   },
 
@@ -194,6 +195,7 @@
       "format": "  {:%H:%M %a}",
       "format-alt": "  {:%d/%m/%Y  %H:%M:%S}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "on-click-right": "gnome-calendar",
       "calendar": {
           "mode": "month",
           "mode-mon-col": 3,

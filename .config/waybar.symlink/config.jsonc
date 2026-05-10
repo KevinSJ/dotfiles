@@ -7,24 +7,23 @@
         "height": 55,
 
         "modules-left": [
-            //"custom/launcher",
             "custom/power",
             "hyprland/workspaces",
-            "custom/vmlauncher"
+            "custom/vmlauncher",
+            "custom/launcher"
         ],
 
         "modules-center": [
         ],
 
         "modules-right": [
-            "idle_inhibitor",
+            "network",
             "memory",
             "cpu",
             "temperature",
             "battery",
             "backlight",
             "pulseaudio",
-            "network",
             "clock",
             "custom/notification",
             "tray"
