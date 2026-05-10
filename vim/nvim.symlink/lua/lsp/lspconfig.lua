@@ -9,9 +9,6 @@
 -- Autocompletion settings of "nvim-cmp" are defined in plugins/nvim-cmp.lua
 local home = os.getenv "HOME"
 
-lspconfig = vim.lsp.config
-enable = vim.lsp.enable
-
 local cmp_status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if not cmp_status_ok then
   return
@@ -21,6 +18,7 @@ end
 -- See: https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -128,8 +126,8 @@ Java/Kotlin          -> jdtls
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches.
 -- Add your language server below:
-local servers = { 'bashls', 'lua_ls', 'jdtls', 'ts_ls', 'eslint', 'pyright', 'clangd', 'html',
-  'cssls' }
+local servers = { 'bashls', 'lua_ls', 'jdtls', 'ts_ls', 'eslint', 'clangd', 'html',
+  'cssls', 'gopls' }
 
 local jar_dir = home .. "/jars/lombok.jar"
 
@@ -243,6 +241,17 @@ vim.lsp.config['jdtls'] = {
   },
 }
 
+vim.lsp.config['zk'] = {
+  default_config = {
+    cmd = { 'zk', 'lsp' },
+    filetypes = { 'markdown' },
+    root_dir = function()
+      return vim.loop.cwd()
+    end,
+    settings = {}
+  },
+}
+
 vim.lsp.config['ts_ls'] = {
   handlers = handlers,
   on_attach = on_attach,
@@ -291,7 +300,6 @@ vim.lsp.config['ts_ls'] = {
 }
 
 
-
 vim.lsp.config['eslint'] = {
   on_attach = function(client, bufnr)
     -- you can add other stuff here e.g. keymaps
@@ -305,6 +313,57 @@ vim.lsp.config['eslint'] = {
   capabilities = capabilities,
 }
 
+vim.lsp.config['basedpyright'] = {
+  capabilities = capabilities, -- IMPORTANT: This connects cmp to the LSP
+  on_attach = on_attach,
+  settings = {
+    pyright = {
+      -- Using Ruff's import organizer
+      disableOrganizeImports = true,
+    },
+    basedpyright = {
+      analysis = {
+        diagnosticMode = 'workspace',
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+      }
+    }
+  },
+}
+
+
+vim.lsp.config['ruff'] = {
+  capabilities = capabilities, -- IMPORTANT: This connects cmp to the LSP
+  on_attach = function(client, buf)
+    on_attach(client, buf)
+    -- Disable hover in favor of basedpyright
+    client.server_capabilities.hoverProvider = false
+  end,
+  init_options = {
+    settings = {
+      configuration = {
+        lint = {
+          unfixable = { "F401" },
+          ["extend-select"] = { "TID251" },
+          ["flake8-tidy-imports"] = {
+            ["banned-api"] = {
+              ["typing.TypedDict"] = {
+                msg = "Use `typing_extensions.TypedDict` instead"
+              }
+            }
+          }
+        },
+        format = {
+          ["quote-style"] = "single"
+        }
+      }
+    }
+  }
+}
+
+
+vim.lsp.enable('ruff')
+vim.lsp.enable('basedpyright')
 
 -- Call setup
 for _, lsp in ipairs(servers) do
